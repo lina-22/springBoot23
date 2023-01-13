@@ -2,15 +2,20 @@ package com.clickAndcollect.javaSpringBoot.response;
 
 public class MessageResponse {
 
+    boolean success = true;
+    String message;
     public boolean isSuccess() {
+
         return success;
     }
 
     public void setSuccess(boolean success) {
+
         this.success = success;
     }
 
     public String getMessage() {
+
         return message;
     }
 
@@ -18,10 +23,10 @@ public class MessageResponse {
         this.message = message;
     }
 
-    boolean success = true;
-    String message;
+  /*************************MessageResponse constructor create********************************/
 
     MessageResponse(String message){
+
         this.message = message;
     }
     MessageResponse(boolean success, String message){
