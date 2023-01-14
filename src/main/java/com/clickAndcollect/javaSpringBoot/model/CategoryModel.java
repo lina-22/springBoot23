@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")
-
 public class CategoryModel {
 
     @Id
@@ -33,11 +32,16 @@ public class CategoryModel {
 
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
 }
+
+
+//persistence = জেদ/Persistance/détermination/অধ্যবসায়/save

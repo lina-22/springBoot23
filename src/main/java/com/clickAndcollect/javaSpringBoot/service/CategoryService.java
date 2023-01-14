@@ -13,6 +13,8 @@ public interface CategoryService {
 
     public Optional<CategoryModel> findById(Long id);
 
+
+
     public List<CategoryModel> findAll();
 
 }
