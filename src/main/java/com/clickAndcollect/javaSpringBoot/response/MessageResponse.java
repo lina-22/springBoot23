@@ -20,16 +20,17 @@ public class MessageResponse {
     }
 
     public void setMessage(String message) {
+
         this.message = message;
     }
 
   /*************************MessageResponse constructor create********************************/
 
-    MessageResponse(String message){
+   public MessageResponse(String message){
 
         this.message = message;
     }
-    MessageResponse(boolean success, String message){
+   public MessageResponse(boolean success, String message){
         this.success = success;
         this.message = message;
     }

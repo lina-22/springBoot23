@@ -13,6 +13,14 @@ public interface CategoryService {
 
     public Optional<CategoryModel> findById(Long id);
 
+
+
     public List<CategoryModel> findAll();
+
+    public CategoryModel update(CategoryModel categoryModel);
+
+    public CategoryModel insert(CategoryModel categoryModel);
+
+
 
 }
