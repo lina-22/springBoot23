@@ -3,11 +3,13 @@ package com.clickAndcollect.javaSpringBoot.service;
 import com.clickAndcollect.javaSpringBoot.model.CategoryModel;
 import com.clickAndcollect.javaSpringBoot.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
