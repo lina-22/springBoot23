@@ -14,6 +14,12 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     CategoryRepository mCategoryRepository;
+
+    @Override
+    public CategoryModel insert(CategoryModel categoryModel){
+
+        return  mCategoryRepository.save(categoryModel);
+    }
     @Override
     public Optional<CategoryModel> findById(Long id){
 
@@ -29,10 +35,8 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public CategoryModel update(CategoryModel categoryModel){
         return  mCategoryRepository.save(categoryModel);
-    }@Override
-    public CategoryModel insert(CategoryModel categoryModel){
-        return  mCategoryRepository.save(categoryModel);
     }
+
 }
 
 

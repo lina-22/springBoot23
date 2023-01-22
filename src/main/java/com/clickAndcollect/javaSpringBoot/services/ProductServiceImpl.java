@@ -1,5 +1,6 @@
 package com.clickAndcollect.javaSpringBoot.services;
 
+import com.clickAndcollect.javaSpringBoot.model.CategoryModel;
 import com.clickAndcollect.javaSpringBoot.model.ProductModel;
 import com.clickAndcollect.javaSpringBoot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,24 @@ public class ProductServiceImpl implements ProductService{
     ProductRepository mProductRepository;
 
     @Override
+    public ProductModel insert(ProductModel productModel){
+
+        return  mProductRepository.save(productModel);
+    }
+    @Override
     public Optional<ProductModel> findById(Long id) {
-       return mProductRepository.findById(id);
+
+        return mProductRepository.findById(id);
     }
 
     @Override
     public List<ProductModel> findAll() {
+
         return mProductRepository.findAll();
+    }
+
+    @Override
+    public ProductModel update(ProductModel productModel){
+        return  mProductRepository.save(productModel);
     }
 }
