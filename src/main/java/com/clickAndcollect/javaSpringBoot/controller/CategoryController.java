@@ -4,13 +4,10 @@ import com.clickAndcollect.javaSpringBoot.dto.CategoryDto;
 import com.clickAndcollect.javaSpringBoot.manager.CategoryManager;
 import com.clickAndcollect.javaSpringBoot.model.CategoryModel;
 import com.clickAndcollect.javaSpringBoot.response.MessageResponse;
-import com.clickAndcollect.javaSpringBoot.service.CategoryService;
+import com.clickAndcollect.javaSpringBoot.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/category")
@@ -32,7 +29,7 @@ class CategoryController {
         }
     }
 
-    @PostMapping("read")
+    @GetMapping("showOne")
     ResponseEntity<?> read(@RequestBody  CategoryDto dto){
         MessageResponse  validation = CategoryManager.readValidation(dto);
         if(!validation.isSuccess()){
@@ -46,13 +43,13 @@ class CategoryController {
         }
     }
 
-    @PostMapping("read")
+    @GetMapping("showAll")
     ResponseEntity<?> showAll(){
         return ResponseEntity.ok(mCategoryService.findAll());
     }
 
 
-    @PostMapping("update")
+    @PutMapping("update")
     ResponseEntity<?> update(@RequestBody  CategoryDto dto){
         MessageResponse  validation = CategoryManager.updatedValidation(dto);
         if(!validation.isSuccess()){

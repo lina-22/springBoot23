@@ -1,8 +1,7 @@
-package com.clickAndcollect.javaSpringBoot.service;
+package com.clickAndcollect.javaSpringBoot.services;
 
 
 import com.clickAndcollect.javaSpringBoot.model.CategoryModel;
-import org.springframework.stereotype.Component;
 
 
 import java.util.List;
@@ -13,14 +12,10 @@ public interface CategoryService {
 
     public Optional<CategoryModel> findById(Long id);
 
-
-
     public List<CategoryModel> findAll();
 
     public CategoryModel update(CategoryModel categoryModel);
 
     public CategoryModel insert(CategoryModel categoryModel);
-
-
 
 }

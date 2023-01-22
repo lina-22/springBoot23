@@ -1,23 +1,17 @@
 package com.clickAndcollect.javaSpringBoot.model;
-
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")
 public class CategoryModel {
 
+    //@Column(name = "id", nullable = false)
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @Column(name = "name", nullable = false)
     private  String name;
-
-
 
     public Long getId() {
 
@@ -28,8 +22,6 @@ public class CategoryModel {
 
         this.id = id;
     }
-
-
 
     public String getName() {
 

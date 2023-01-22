@@ -1,4 +1,4 @@
-package com.clickAndcollect.javaSpringBoot.service;
+package com.clickAndcollect.javaSpringBoot.services;
 
 import com.clickAndcollect.javaSpringBoot.model.ProductModel;
 import com.clickAndcollect.javaSpringBoot.repository.ProductRepository;
