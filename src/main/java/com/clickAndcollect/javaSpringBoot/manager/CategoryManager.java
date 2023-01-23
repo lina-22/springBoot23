@@ -11,6 +11,14 @@ public class CategoryManager {
             return new MessageResponse("Successfully validated");
         }
     }
+
+    public static MessageResponse readValidation(CategoryDto dto){
+        if(dto.getId().isEmpty()){
+            return new MessageResponse(false, "Category id not provided");
+        }else {
+            return new MessageResponse("Successfully validated");
+        }
+    }
     public static MessageResponse updatedValidation(CategoryDto dto){
         if(dto.getId().isEmpty()){
             return new MessageResponse(false, "Category id not provided");
@@ -29,11 +37,5 @@ public class CategoryManager {
         }
     }
 
-    public static MessageResponse readValidation(CategoryDto dto){
-        if(dto.getId().isEmpty()){
-            return new MessageResponse(false, "Category id not provided");
-        }else {
-            return new MessageResponse("Successfully validated");
-        }
-    }
+
 }
