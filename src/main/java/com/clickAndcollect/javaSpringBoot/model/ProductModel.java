@@ -14,13 +14,13 @@ public class ProductModel {
     @Column(name="name", nullable = false)
     private  String name;
 
-    @Column(name= "is_featured", nullable = true)
+    @Column(name= "is_featured", nullable = false, columnDefinition ="false")
     private boolean is_featured;
 
-    @Column(name= "price", nullable = true)
+    @Column(name= "price", nullable = false, columnDefinition ="0.0")
     private Double price;
 
-    @Column(name="discount", nullable = true)
+    @Column(name="discount", nullable = false, columnDefinition ="0.0")
     private Double discount;
 
     @Column(name = "image", nullable = true)
@@ -102,4 +102,4 @@ public class ProductModel {
 
 }
 
-//id/name/is_featured/price/dicount/image/description
+//id/name/is_featured/price/discount/image/description

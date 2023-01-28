@@ -12,36 +12,26 @@ public class ProductManager {
 
         if(dto.getName().isEmpty()){
             return new MessageResponse(false, "Product name not provided");
-        }else {
-            return new MessageResponse("Product name Successfully validated");
         }
-        //        *********************is featured need to verify*******************************
-//        if(dto.isIs_featured()){
-//            return new MessageResponse(false, "Product name not provided");
-//        }else {
-//            return new MessageResponse("Successfully validated");
-//        }
-//        if(dto.getPrice().toString().isEmpty()){
-//            return new MessageResponse(false, "Product price not provided");
-//        }else {
-//            return new MessageResponse("Product price Successfully validated");
-//        }
-//        if(dto.getDiscount().toString().isEmpty()){
-//            return new MessageResponse(false, "Product discount price not provided");
-//        }else {
-//            return new MessageResponse(" Product discount price Successfully validated");
-//        }
-//        if(dto.getImage().isEmpty()){
-//            return new MessageResponse(false, "Product image not provided");
-//        }else {
-//            return new MessageResponse("Product image Successfully validated");
-//        }
+//                *********************is featured need to verify*******************************
+        if(dto.isIs_featured()){
+            return new MessageResponse(false, "Product name not provided");
+        }
+        if(dto.getPrice().toString().isEmpty()){
+            return new MessageResponse(false, "Product price not provided");
+        }
+        if(dto.getDiscount().toString().isEmpty()){
+            return new MessageResponse(false, "Product discount price not provided");
+        }
+        if(dto.getImage().isEmpty()){
+            return new MessageResponse(false, "Product image not provided");
+        }
 
-//        if(dto.getDescription().isEmpty()){
-//            return new MessageResponse(false, "Product Description name not provided");
-//        }else {
-//            return new MessageResponse( "Product DescriptionSuccessfully validated");
-//        }
+        if(dto.getDescription().isEmpty()){
+            return new MessageResponse(false, "Product Description name not provided");
+        }else {
+            return new MessageResponse( "Product DescriptionSuccessfully validated");
+        }
 
     }
 
@@ -52,36 +42,26 @@ public class ProductManager {
 
         if(dto.getName().isEmpty()){
             return new MessageResponse(false, "Product name not provided");
-        }else {
-            return new MessageResponse("Product name Successfully validated");
         }
         //        *********************is featured need to verify*******************************
-//        if(dto.isIs_featured()){
-//            return new MessageResponse(false, "Product name not provided");
-//        }else {
-//            return new MessageResponse("Successfully validated");
-//        }
-//        if(dto.getPrice().toString().isEmpty()){
-//            return new MessageResponse(false, "Product price not provided");
-//        }else {
-//            return new MessageResponse("Product price Successfully validated");
-//        }
-//        if(dto.getDiscount().toString().isEmpty()){
-//            return new MessageResponse(false, "Product discount price not provided");
-//        }else {
-//            return new MessageResponse(" Product discount price Successfully validated");
-//        }
-//        if(dto.getImage().isEmpty()){
-//            return new MessageResponse(false, "Product image not provided");
-//        }else {
-//            return new MessageResponse("Product image Successfully validated");
-//        }
+        if(dto.isIs_featured()){
+            return new MessageResponse(false, "Product name not provided");
+        }
+        if(dto.getPrice()<0.0){
+            return new MessageResponse(false, "Product price not provided");
+        }
+        if(dto.getDiscount()<0.0){
+            return new MessageResponse(false, "Product discount price not provided");
+        }
+        if(dto.getImage().isEmpty()){
+            return new MessageResponse(false, "Product image not provided");
+        }
 
-//        if(dto.getDescription().isEmpty()){
-//            return new MessageResponse(false, "Product Description name not provided");
-//        }else {
-//            return new MessageResponse( "Product DescriptionSuccessfully validated");
-//        }
+        if(dto.getDescription().isEmpty()){
+            return new MessageResponse(false, "Product Description name not provided");
+        }else {
+            return new MessageResponse( "Product Successfully validated");
+        }
 
     }
 
@@ -92,36 +72,26 @@ public class ProductManager {
 
         if(dto.getName().isEmpty()){
             return new MessageResponse(false, "Product name not provided");
-        }else {
-            return new MessageResponse("Product name Successfully validated");
         }
         //        *********************is featured need to verify*******************************
-//        if(dto.isIs_featured()){
-//            return new MessageResponse(false, "Product name not provided");
-//        }else {
-//            return new MessageResponse("Successfully validated");
-//        }
-//        if(dto.getPrice().toString().isEmpty()){
-//            return new MessageResponse(false, "Product price not provided");
-//        }else {
-//            return new MessageResponse("Product price Successfully validated");
-//        }
-//        if(dto.getDiscount().toString().isEmpty()){
-//            return new MessageResponse(false, "Product discount price not provided");
-//        }else {
-//            return new MessageResponse(" Product discount price Successfully validated");
-//        }
-//        if(dto.getImage().isEmpty()){
-//            return new MessageResponse(false, "Product image not provided");
-//        }else {
-//            return new MessageResponse("Product image Successfully validated");
-//        }
+        if(dto.isIs_featured()){
+            return new MessageResponse(false, "Product name not provided");
+        }
+        if(dto.getPrice()<0.0){
+            return new MessageResponse(false, "Product price not provided");
+        }
+        if(dto.getDiscount()<0.0){
+            return new MessageResponse(false, "Product discount price not provided");
+        }
+        if(dto.getImage().isEmpty()){
+            return new MessageResponse(false, "Product image not provided");
+        }
 
-//        if(dto.getDescription().isEmpty()){
-//            return new MessageResponse(false, "Product Description name not provided");
-//        }else {
-//            return new MessageResponse( "Product DescriptionSuccessfully validated");
-//        }
+        if(dto.getDescription().isEmpty()){
+            return new MessageResponse(false, "Product Description name not provided");
+        }else {
+            return new MessageResponse( "Product DescriptionSuccessfully validated");
+        }
 
     }
     public static MessageResponse deletedValidation(ProductDto dto){
@@ -131,36 +101,26 @@ public class ProductManager {
 
         if(dto.getName().isEmpty()){
             return new MessageResponse(false, "Product name not provided");
-        }else {
-            return new MessageResponse("Product name Successfully validated");
         }
         //        *********************is featured need to verify*******************************
-//        if(dto.isIs_featured()){
-//            return new MessageResponse(false, "Product name not provided");
-//        }else {
-//            return new MessageResponse("Successfully validated");
-//        }
-//        if(dto.getPrice().toString().isEmpty()){
-//            return new MessageResponse(false, "Product price not provided");
-//        }else {
-//            return new MessageResponse("Product price Successfully validated");
-//        }
-//        if(dto.getDiscount().toString().isEmpty()){
-//            return new MessageResponse(false, "Product discount price not provided");
-//        }else {
-//            return new MessageResponse(" Product discount price Successfully validated");
-//        }
-//        if(dto.getImage().isEmpty()){
-//            return new MessageResponse(false, "Product image not provided");
-//        }else {
-//            return new MessageResponse("Product image Successfully validated");
-//        }
+        if(dto.isIs_featured()){
+            return new MessageResponse(false, "Product name not provided");
+        }
+        if(dto.getPrice()<0.0){
+            return new MessageResponse(false, "Product price not provided");
+        }
+        if(dto.getDiscount()<0.0){
+            return new MessageResponse(false, "Product discount price not provided");
+        }
+        if(dto.getImage().isEmpty()){
+            return new MessageResponse(false, "Product image not provided");
+        }
 
-//        if(dto.getDescription().isEmpty()){
-//            return new MessageResponse(false, "Product Description name not provided");
-//        }else {
-//            return new MessageResponse( "Product DescriptionSuccessfully validated");
-//        }
+        if(dto.getDescription().isEmpty()){
+            return new MessageResponse(false, "Product Description name not provided");
+        }else {
+            return new MessageResponse( "Product DescriptionSuccessfully validated");
+        }
 
 
 }
