@@ -1,11 +1,14 @@
 package com.clickAndcollect.javaSpringBoot.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
 public class ProductModel {
 
+    @ManyToMany(mappedBy = "productModelSet")
+    Set<CategoryModel> categoryModelSet;
     @Id
     @Column(name ="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

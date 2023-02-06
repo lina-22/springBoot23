@@ -22,6 +22,8 @@ public class AvailableProductManager {
 
     }
 
+
+//  idProduct primary and secondary also
 //    only one for readValidation
         public static MessageResponse readValidation(AvailableProductDto dto){
             if(dto.getId().toString().isEmpty()){

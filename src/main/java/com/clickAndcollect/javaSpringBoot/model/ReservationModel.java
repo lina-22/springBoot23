@@ -11,6 +11,12 @@ public class ReservationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @Id
+//    @Column(name ="idUser", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long idUser;
+
+
     @Column(name="reference", nullable = false)
     private String reference;
 

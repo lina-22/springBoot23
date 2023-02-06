@@ -5,6 +5,8 @@ import java.util.Date;
 public class ReservationDto {
 
     private Long id;
+
+    //private Long idUser;
     private  String reference;
     private  String status;
     private Date expireDate;
