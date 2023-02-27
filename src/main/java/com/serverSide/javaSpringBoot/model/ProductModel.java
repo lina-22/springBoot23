@@ -1,0 +1,143 @@
+package com.serverSide.javaSpringBoot.model;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "products")
+public class ProductModel {
+
+    public void addModel(Long id, String name, boolean is_featured, Double price, Double discount, String image, String description, String importCountry) {
+        this.id = id;
+        this.name = name;
+        this.is_featured = is_featured;
+        this.price = price;
+        this.discount = discount;
+        this.image = image;
+        this.description = description;
+        this.importCountry = importCountry;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade =  { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE })// this lines for delete the join table ondelete cascade use
+    @JoinTable(
+            name = "category_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id") // for many to many relation
+    )
+    private final Set<CategoryModel> mCategories = new HashSet<>(); // final set for bring the category name at product table
+
+    public void addCategory(CategoryModel category) {  // for many to many relation
+
+        this.mCategories.add(category);
+    }
+    @Id
+    @Column(name ="id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name="name", nullable = false)
+    private  String name;
+
+    @Column(name= "is_featured", nullable = false, columnDefinition ="false")
+    private boolean is_featured;
+
+    @Column(name= "price", nullable = false, columnDefinition ="0.0")
+    private Double price;
+
+    @Column(name="discount", nullable = false, columnDefinition ="0.0")
+    private Double discount;
+
+    @Column(name = "image", nullable = true)
+    private String image;
+
+    @Column(name = "description", nullable = true)
+    private String description;
+
+
+    @Column(name = "importCountry", nullable = true)
+    private String importCountry;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+
+        this.id = id;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+    }
+
+    public boolean isIs_featured() {
+        // is featured doennot support get and boolean so put the isIs ...
+        return is_featured;
+    }
+
+    public void setIs_featured(boolean is_featured) {
+
+        this.is_featured = is_featured;
+    }
+
+    public Double getPrice() {
+
+        return price;
+    }
+
+    public void setPrice(Double price) {
+
+        this.price = price;
+    }
+
+    public Double getDiscount() {
+
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+
+        this.discount = discount;
+    }
+
+    public String getImage() {
+
+        return image;
+    }
+
+    public void setImage(String image) {
+
+        this.image = image;
+    }
+
+    public String getDescription() {
+
+        return description;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
+    }
+
+
+    public String getImportCountry() {
+
+        return importCountry;
+    }
+
+    public void setImportCountry(String importCountry) {
+
+        this.importCountry = importCountry;
+    }
+
+}
+
+//id/name/is_featured/price/discount/image/description
