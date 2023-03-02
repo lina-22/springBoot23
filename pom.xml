@@ -8,10 +8,10 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.clickAndcollect</groupId>
+	<groupId>com.serverSide</groupId>
 	<artifactId>javaSpringBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>javaSpringBoot</name>
+	<name>javaserver23</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>19</java.version>

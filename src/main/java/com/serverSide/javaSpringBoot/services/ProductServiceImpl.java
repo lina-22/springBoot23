@@ -20,9 +20,10 @@ public class ProductServiceImpl implements ProductService{
     CategoryRepository mCategoryRepo;
 
     @Override
-    public ProductModel insert(ProductModel productModel){
+    public ProductModel insert(ProductModel productModel){ // insert method productmodel variable and datatype ProductModel
 
-        return  mProductRepository.saveAndFlush(productModel);
+        return  mProductRepository.saveAndFlush(productModel); // save and flush?
+
     }
     @Override
     public Optional<ProductModel> findById(Long id) {
@@ -38,18 +39,22 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductModel update(ProductModel productModel){
+
         return  mProductRepository.save(productModel);
     }
 
-    @Override
-    public Optional<CategoryModel> isValidCategory(String id) {
-        return mCategoryRepo.findById(Long.valueOf(id));
-    }
 
     @Override
     public void delete(Long id) {
         mProductRepository.deleteById(id);
     }
+
+
+    @Override
+    public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
+        return mCategoryRepo.findById(Long.valueOf(id));
+    }
+
 
 
 }

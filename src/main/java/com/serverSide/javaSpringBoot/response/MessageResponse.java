@@ -4,6 +4,8 @@ public class MessageResponse {
 
     boolean success = true;
     String message;
+
+    // success getter and setter create
     public boolean isSuccess() {
 
         return success;
@@ -14,17 +16,19 @@ public class MessageResponse {
         this.success = success;
     }
 
-    public String getMessage() {
 
-        return message;
-    }
-
+   //message getter and setter create
     public void setMessage(String message) {
 
         this.message = message;
     }
 
-  /*************************MessageResponse constructor create********************************/
+    public String getMessage() {
+
+        return message;
+    }
+
+  //*************************MessageResponse constructor create********************************/
 
    public MessageResponse(String message){
 

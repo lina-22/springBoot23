@@ -15,6 +15,7 @@ public interface ProductService {
 
     public ProductModel update(ProductModel productModel);
 
-    public Optional<CategoryModel> isValidCategory(String id); // get the category type
     public  void delete(Long id);
+
+    public Optional<CategoryModel> isValidCategory(long id); // get the category type
 }

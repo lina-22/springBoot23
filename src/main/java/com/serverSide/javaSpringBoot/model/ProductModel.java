@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "products")
 public class ProductModel {
 
+
     public void addModel(Long id, String name, boolean is_featured, Double price, Double discount, String image, String description, String importCountry) {
         this.id = id;
         this.name = name;
@@ -19,34 +20,51 @@ public class ProductModel {
         this.importCountry = importCountry;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE })// this lines for delete the join table ondelete cascade use
+
+   //mamy to many relation indication start from here
+    @ManyToMany(fetch = FetchType.LAZY, cascade =  { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE })
     @JoinTable(
             name = "category_product",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id") // for many to many relation
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private final Set<CategoryModel> mCategories = new HashSet<>(); // final set for bring the category name at product table
 
-    public void addCategory(CategoryModel category) {  // for many to many relation
+    //mamy to many relation indication end here
 
+    //*************************//
+    private final Set<CategoryModel> mCategories = new HashSet<>();
+
+    public ProductModel() {
+
+    }
+
+    public void addCategory(CategoryModel category) {
         this.mCategories.add(category);
     }
+
+    public Set<CategoryModel> getCategories() {
+        return mCategories;
+    }
+
+    //*************************??//
+
+    //*************All column name start************//
     @Id
     @Column(name ="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO) // id auto increment
     private Long id;
 
     @Column(name="name", nullable = false)
     private  String name;
 
-    @Column(name= "is_featured", nullable = false, columnDefinition ="false")
-    private boolean is_featured;
+    @Column(name= "is_featured", nullable = false)
+    private boolean is_featured = false;
 
-    @Column(name= "price", nullable = false, columnDefinition ="0.0")
-    private Double price;
+    @Column(name= "price", nullable = false , columnDefinition = "Decimal(10,2) default '0.00'")// here datatype and default value included in the same line
+    private Double price = 0.0;
 
-    @Column(name="discount", nullable = false, columnDefinition ="0.0")
-    private Double discount;
+    @Column(name="discount", nullable = false,  columnDefinition = "Decimal(10,2) default '0.00'")
+    private Double discount = 0.0;
 
     @Column(name = "image", nullable = true)
     private String image;
@@ -58,86 +76,74 @@ public class ProductModel {
     @Column(name = "importCountry", nullable = true)
     private String importCountry;
 
+       //*************All column name end************//
+
+    //*************Getter and setter start************//
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-
         this.id = id;
     }
 
     public String getName() {
-
         return name;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
     public boolean isIs_featured() {
-        // is featured doennot support get and boolean so put the isIs ...
         return is_featured;
-    }
+    } // is_featured getId is boolean so dont have get featured
 
     public void setIs_featured(boolean is_featured) {
-
         this.is_featured = is_featured;
     }
 
     public Double getPrice() {
-
         return price;
     }
 
     public void setPrice(Double price) {
-
         this.price = price;
     }
 
     public Double getDiscount() {
-
         return discount;
     }
 
     public void setDiscount(Double discount) {
-
         this.discount = discount;
     }
 
     public String getImage() {
-
         return image;
     }
 
     public void setImage(String image) {
-
         this.image = image;
     }
 
     public String getDescription() {
-
         return description;
     }
 
     public void setDescription(String description) {
-
         this.description = description;
     }
 
 
     public String getImportCountry() {
-
         return importCountry;
     }
 
     public void setImportCountry(String importCountry) {
-
         this.importCountry = importCountry;
     }
-
 }
 
+         //*************Getter and setter end************//
 //id/name/is_featured/price/discount/image/description

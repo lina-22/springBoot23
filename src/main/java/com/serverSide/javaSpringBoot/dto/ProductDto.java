@@ -10,9 +10,7 @@ public class ProductDto {
 
     private String description;
 
-
-
-    private String categoryId;
+    private long category_id;
 
     //private String importCountry; This information want to hide from clientSide
 
@@ -72,12 +70,12 @@ public class ProductDto {
         this.description = description;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public long getCategoryId() {
+        return category_id;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryId(long category_id) {
+        this.category_id = category_id;
     }
 
 

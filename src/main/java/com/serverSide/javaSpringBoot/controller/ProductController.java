@@ -21,12 +21,12 @@ class ProductController {
     ProductService mProductService;
 
     @PostMapping("create")
-    ResponseEntity<?> create(@RequestBody ProductDto dto) {
-        MessageResponse validation = ProductManager.validation(dto);
-        if (!validation.isSuccess()) {
+    ResponseEntity<?> create(@RequestBody ProductDto dto) { // ResponseEntity ?? @RequestBody ??
+        MessageResponse validation = ProductManager.createValidation(dto);// here validation for the dto inf
+        if (!validation.isSuccess()) { //??
             return ResponseEntity.badRequest().body(validation);
         } else {
-            ProductModel productModel = new ProductModel();
+            ProductModel productModel = new ProductModel(); // why productModel and 24 line productDto
             productModel.setName(dto.getName());
             productModel.setIs_featured(dto.isIs_featured());
             productModel.setPrice(dto.getPrice());
@@ -35,8 +35,9 @@ class ProductController {
             if (!dto.getImage().isEmpty()) {
                 productModel.setImage(dto.getImage());
             }
+            System.out.println("test here :" + dto.getCategoryId());
             Optional<CategoryModel> isValidCategory = mProductService.isValidCategory(dto.getCategoryId());
-
+  // isValidCategory line ta explain
             isValidCategory.ifPresent((categoryModel -> {
                 productModel.addCategory(categoryModel);
             }));
@@ -61,7 +62,7 @@ class ProductController {
         return ResponseEntity.ok(mProductService.findById(id));
     }
 
-    @GetMapping("showAll")
+    @GetMapping("showAll")  // need to do pagination for showAll product
     ResponseEntity<?> showAll() {
         return ResponseEntity.ok(mProductService.findAll());//[]
     }
@@ -78,7 +79,8 @@ class ProductController {
             ProductModel productModel = new ProductModel();
             Optional<ProductModel> productData = mProductService.findById(dto.getId());
             productData.ifPresentOrElse((model) -> {
-                //(model)
+               // from java version 8 lambda expression is using and behind of this Consumer class is using hava parameter but runable don't have any parameter// new rRunable
+                //(model) inside of the ifPresent passed the model ? for get the data then it will show data and again ifPresentOrElse it took two lamda expression as parameter so one will show data and another one will empty
                 productModel.addModel(model.getId(), model.getName(), model.isIs_featured(), model.getPrice(),
                         model.getDiscount(), model.getImage(), model.getDescription(), "");
 
@@ -102,7 +104,7 @@ class ProductController {
                     productModel.setDescription(dto.getDescription());
                 }
 
-                if (!dto.getCategoryId().isEmpty()) {
+                if (dto.getCategoryId() != 0 ) {
                     mProductService.isValidCategory(dto.getCategoryId()).ifPresent(productModel::addCategory);
                 }
 
