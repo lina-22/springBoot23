@@ -9,13 +9,13 @@ import java.util.Optional;
 public interface ProductService {
 
     public ProductModel insert(ProductModel productModel);
-    public Optional<ProductModel> findById(Long id); // here i use optional because maybe find by id or not
+    public Optional<ProductModel> findById(long id); // here i use optional because maybe find by id or not
 
     public List<ProductModel> findAll();
 
     public ProductModel update(ProductModel productModel);
 
-    public  void delete(Long id);
+    public  void delete(long id);
 
     public Optional<CategoryModel> isValidCategory(long id); // get the category type
 }

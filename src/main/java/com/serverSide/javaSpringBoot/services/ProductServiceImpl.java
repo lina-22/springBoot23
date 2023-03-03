@@ -20,14 +20,11 @@ public class ProductServiceImpl implements ProductService{
     CategoryRepository mCategoryRepo;
 
     @Override
-    public ProductModel insert(ProductModel productModel){ // insert method productmodel variable and datatype ProductModel
-
-        return  mProductRepository.saveAndFlush(productModel); // save and flush?
-
+    public ProductModel insert(ProductModel productModel){
+        return  mProductRepository.saveAndFlush(productModel);
     }
     @Override
-    public Optional<ProductModel> findById(Long id) {
-
+    public Optional<ProductModel> findById(long id) {
         return mProductRepository.findById(id);
     }
 
@@ -45,7 +42,7 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public void delete(Long id) {
+    public void delete(long id) {
         mProductRepository.deleteById(id);
     }
 
