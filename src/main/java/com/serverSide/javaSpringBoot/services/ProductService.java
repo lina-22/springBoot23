@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    public ProductModel insert(ProductModel productModel);
+    public ProductModel create(ProductModel productModel);
     public Optional<ProductModel> findById(long id); // here i use optional because maybe find by id or not
 
     public List<ProductModel> findAll();

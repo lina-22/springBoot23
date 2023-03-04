@@ -10,7 +10,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class AvailableProductPKId implements Serializable {
+public class AvailableProductPKId implements Serializable { // serializable ??
 
     private long id;
     private long product_id;

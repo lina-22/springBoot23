@@ -5,23 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter // from  dependency lombok
+@Setter // from  dependency lombok
+@NoArgsConstructor // from  dependency lombok
+@AllArgsConstructor // from  dependency lombok
 @Table(name = "products")
 public class ProductModel {
 
-   //mamy to many relation indication start from here
-
-    //*************All column name start************//
     @Id
     @Column(name ="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO) // id auto increment
@@ -54,7 +49,7 @@ public class ProductModel {
             joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = { @JoinColumn(name = "category_id", referencedColumnName = "id")}
     )
-    @JsonIgnore
+    @JsonIgnore // for ignore the json
     private Set<CategoryModel> mCategories = new HashSet<>();
 
 

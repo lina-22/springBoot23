@@ -14,14 +14,17 @@ import java.util.Optional;
 @Component
 public class ProductServiceImpl implements ProductService{
 
+    // autowired dependency injection
+    // / productServiceIml class is depend on the productRepository
+    // so i no need to do create object by new for the productRepository class
     @Autowired
     ProductRepository mProductRepository;
     @Autowired
     CategoryRepository mCategoryRepo;
 
     @Override
-    public ProductModel insert(ProductModel productModel){
-        return  mProductRepository.saveAndFlush(productModel);
+    public ProductModel create(ProductModel productModel){
+        return  mProductRepository.saveAndFlush(productModel); //saveAndFlush ?
     }
     @Override
     public Optional<ProductModel> findById(long id) {
@@ -49,6 +52,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
+
         return mCategoryRepo.findById(Long.valueOf(id));
     }
 
