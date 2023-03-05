@@ -16,9 +16,9 @@ import java.util.List;
 @Service // ? for use the service
 @AllArgsConstructor
 public class ProductManager {
-    private ProductService productService;
+    private ProductService productService; // constructor ??
     public ProductDto createProduct(ProductDto productDto){
-        ProductModel productModel = new ProductModel();
+        ProductModel productModel = new ProductModel(); // new na koira autowired or all constructor dia product model use kora jaitho nayni??
         productModel.setName(productDto.getName());
         productModel.setDescription(productModel.getDescription());
         productModel.setDiscount(productModel.getDiscount());

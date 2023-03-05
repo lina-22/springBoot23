@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository mProductRepository;
     @Autowired
-    CategoryRepository mCategoryRepo;
+    CategoryRepository mCategoryRepository;
 
     @Override
     public ProductModel create(ProductModel productModel){
@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService{
     }
     @Override
     public Optional<ProductModel> findById(long id) {
+
         return mProductRepository.findById(id);
     }
 
@@ -53,7 +54,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
 
-        return mCategoryRepo.findById(Long.valueOf(id));
+        return mCategoryRepository.findById(Long.valueOf(id));
     }
 
 
