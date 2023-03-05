@@ -37,6 +37,5 @@ public class ReservationModel {
     @Column(name="expireDate", nullable = false)
     private Date expireDate;
 
-    @ManyToMany(mappedBy = "mReservation")
-    private Set<AvailableProductModel> mAvailableProducts = new HashSet<>();
+
 }

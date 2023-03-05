@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class CategoryModel {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "mCategories")
     private Set<ProductModel>mProducts = new HashSet<>();
 

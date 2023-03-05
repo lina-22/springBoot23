@@ -38,12 +38,4 @@ public class AvailableProductModel {
     @JoinColumn(name = "pa_fk", referencedColumnName = "id")
     private ProductModel productModel;*/
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE })
-    @JoinTable(
-            name = "product_line",
-            joinColumns = { @JoinColumn(name = "AvailableProduct_id", referencedColumnName = "id")},
-            inverseJoinColumns = { @JoinColumn(name = "reservation_id", referencedColumnName = "id")}
-    )
-    @JsonIgnore // for ignore the json
-    private Set<ReservationModel> mReservation = new HashSet<>();
 }

@@ -17,5 +17,5 @@ public interface CategoryService {
 
     public CategoryModel update(CategoryModel categoryModel);
 
-
+    List<CategoryModel> findAllById(List<Long>ids);
 }

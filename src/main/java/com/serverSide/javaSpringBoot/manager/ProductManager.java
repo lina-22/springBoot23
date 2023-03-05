@@ -1,15 +1,19 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
+import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.repository.ProductRepository;
 import com.serverSide.javaSpringBoot.response.MessageResponse;
+import com.serverSide.javaSpringBoot.services.CategoryService;
 import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 // after creation of dto the prductmanager has been created for handle the message response
@@ -17,46 +21,20 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductManager {
     private ProductService productService; // constructor ??
+    private CategoryService categoryService;
     public ProductDto createProduct(ProductDto productDto){
-        ProductModel productModel = new ProductModel(); // new na koira autowired or all constructor dia product model use kora jaitho nayni??
-        productModel.setName(productDto.getName());
-        productModel.setDescription(productModel.getDescription());
-        productModel.setDiscount(productModel.getDiscount());
-        productModel.set_featured(productModel.is_featured());
-        productModel.setPrice(productModel.getPrice());
-        productModel.setMCategories(productDto.getMCategories());
-        productModel.setImportCountry(productModel.getImportCountry());
 
-        ProductModel product = productService.create(productModel);
+        ProductModel  productToAdd= toProductModel(productDto);
+        ProductModel addedProduct =productService.create(productToAdd);
 
-        ProductDto addedProduct = new ProductDto();
-        addedProduct.setId(product.getId());
-        addedProduct.setDescription(product.getDescription());
-        addedProduct.setDiscount(product.getDiscount());
-        addedProduct.setImage(product.getImage());
-        addedProduct.setName(product.getName());
-        addedProduct.setPrice(product.getPrice());
-        addedProduct.set_featured(product.is_featured());
-        addedProduct.setMCategories(product.getMCategories());
-
-        return addedProduct;
+        return toProductDto(addedProduct);
     }
+
     public List<ProductDto> getAllProduct() {
         List<ProductDto>productDtoList = new ArrayList<>();
         List<ProductModel> productModelList = productService.findAll();
-        productModelList.forEach(data-> {
-            ProductDto productDto = new ProductDto();
-            productDto.setId(data.getId());
-            productDto.setDescription(data.getDescription());
-            productDto.setDiscount(data.getDiscount());
-            productDto.setImage(data.getImage());
-            productDto.setName(data.getName());
-            productDto.setPrice(data.getPrice());
-            productDto.set_featured(data.is_featured());
-            productDto.setMCategories(data.getMCategories());
-
-            productDtoList.add(productDto);
-
+        productModelList.forEach(data-> { // data lambda expression ar variable ar name??
+            productDtoList.add(toProductDto(data));
         });
         return productDtoList;
     }
@@ -71,5 +49,38 @@ public class ProductManager {
         //});
         //return productDto;
     //}
+
+
+
+
+    public ProductModel toProductModel(ProductDto productDto){
+        System.out.println("test : " + productDto.getMCategories().size() + " pooo" + productDto.getImportCountry());
+        ProductModel productModel = new ProductModel();
+        productModel.setName(productDto.getName());
+        productModel.setDescription(productDto.getDescription());
+        productModel.setDiscount(productDto.getDiscount());
+        productModel.set_featured(productDto.is_featured());
+        productModel.setPrice(productDto.getPrice());
+        productModel.setImportCountry(productDto.getImportCountry());
+
+
+        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
+        productModel.setMCategories(categoryModelSet);
+        return productModel;
+
+    }
+
+    public ProductDto toProductDto(ProductModel productModel){
+        ProductDto productDto = new ProductDto();
+        productDto.setId(productModel.getId());
+        productDto.setDescription(productModel.getDescription());
+        productDto.setDiscount(productModel.getDiscount());
+        productDto.setImage(productModel.getImage());
+        productDto.setName(productModel.getName());
+        productDto.setPrice(productModel.getPrice());
+        productDto.set_featured(productModel.is_featured());
+        productDto.setMCategories(productModel.getMCategories());
+        return productDto;
+    }
 
 }

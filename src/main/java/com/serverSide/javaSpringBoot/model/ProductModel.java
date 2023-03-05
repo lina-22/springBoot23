@@ -19,7 +19,7 @@ public class ProductModel {
 
     @Id
     @Column(name ="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO) // id auto increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // id auto increment
     private Long id;
 
     @Column(name="name", nullable = false)
@@ -43,7 +43,7 @@ public class ProductModel {
     @Column(name = "importCountry", nullable = true)
     private String importCountry;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE })
+    @ManyToMany(fetch = FetchType.LAZY, cascade =  {  CascadeType.ALL })
     @JoinTable(
             name = "category_product",
             joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id")},

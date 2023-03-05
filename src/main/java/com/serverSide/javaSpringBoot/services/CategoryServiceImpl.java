@@ -37,6 +37,12 @@ public class CategoryServiceImpl implements CategoryService{
         return  mCategoryRepository.save(categoryModel);
     }
 
+    @Override
+    public List<CategoryModel> findAllById(List<Long> ids) {
+        return mCategoryRepository.findAllById(ids);
+    }
+
+
 }
 
 
