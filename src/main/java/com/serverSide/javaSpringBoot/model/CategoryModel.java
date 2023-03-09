@@ -19,6 +19,7 @@ import java.util.Set;
 public class CategoryModel {
 
     @Id
+    @Column(name ="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,7 +27,7 @@ public class CategoryModel {
     private String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "mCategories")
+    @ManyToMany(mappedBy = "mCategories")   //
     private Set<ProductModel>mProducts = new HashSet<>();
 
 }

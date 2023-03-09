@@ -21,40 +21,46 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductManager {
     private ProductService productService; // constructor ??
-    private CategoryService categoryService;
-    public ProductDto createProduct(ProductDto productDto){
+    private CategoryService categoryService; // importer ou ??
+    public ProductDto createProduct(ProductDto productDto){   // createProduct ar return type ProductDto //
 
-        ProductModel  productToAdd= toProductModel(productDto);
-        ProductModel addedProduct =productService.create(productToAdd);
+        ProductModel  productToAdd= toProductModel(productDto); // ?? and why at 25 no lines there have ProductDto data type but at this line inside bracket no need to give the data type
+                                                                            // / because it is a value??
+        ProductModel addedProduct =productService.create(productToAdd); // call the create method from product service then (inside pass the product to add)
 
-        return toProductDto(addedProduct);
+        return toProductDto(addedProduct); // why toProductDto is return, normally return like 40 no line/
     }
 
     public List<ProductDto> getAllProduct() {
         List<ProductDto>productDtoList = new ArrayList<>();
         List<ProductModel> productModelList = productService.findAll();
         productModelList.forEach(data-> { // data lambda expression ar variable ar name??
-            productDtoList.add(toProductDto(data));
+            productDtoList.add(toProductDto(data)); // toProductDto refer from line no
         });
         return productDtoList;
     }
 
-    //public ProductDto getOneProduct() {
-      //  ProductDto productDto = new ProductDto;
-       //ProductModel productModel = productService.findById(long id);
-        //productModel.forEach(data-> {
-          //  productDto.setId(data.getId());
-            //productDto.add(productDto);
+    public ProductDto getProductById(long id){
+        return toProductDto(productService.findById(id).get());
+    }
 
-        //});
-        //return productDto;
-    //}
+    public ProductDto updateProduct(ProductDto productDto){
+        ProductModel productModel = toProductModel(productDto);
+        ProductModel productModel1 =  productService.update(productModel);
+        ProductDto productDto1 =  toProductDto(productModel1);
+        return productDto1;
+        //return toProductDto(productService.update(toProductModel(productDto)));
+    }
+
+    public void deleteProductById(long id){
+        productService.delete(id);
+    }
 
 
 
 
-    public ProductModel toProductModel(ProductDto productDto){
-        System.out.println("test : " + productDto.getMCategories().size() + " pooo" + productDto.getImportCountry());
+        public ProductModel toProductModel(ProductDto productDto){
+//      System.out.println("test : " + productDto.getMCategories().size() + " pooo" + productDto.getImportCountry());
         ProductModel productModel = new ProductModel();
         productModel.setName(productDto.getName());
         productModel.setDescription(productDto.getDescription());
@@ -65,12 +71,13 @@ public class ProductManager {
 
 
         Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
-        productModel.setMCategories(categoryModelSet);
+        productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??
+
         return productModel;
 
     }
 
-    public ProductDto toProductDto(ProductModel productModel){
+        public ProductDto toProductDto(ProductModel productModel){
         ProductDto productDto = new ProductDto();
         productDto.setId(productModel.getId());
         productDto.setDescription(productModel.getDescription());
@@ -79,8 +86,24 @@ public class ProductManager {
         productDto.setName(productModel.getName());
         productDto.setPrice(productModel.getPrice());
         productDto.set_featured(productModel.is_featured());
+
+
         productDto.setMCategories(productModel.getMCategories());
+
         return productDto;
     }
 
 }
+
+
+
+// *******************practice the dto to model data transfer****************
+//public ProductModel toProductModel(ProductDto productDto){
+//        ProductModel productModel = new ProductModel();
+//        productModel.setName(productDto.getName());
+//
+//
+//
+//}
+
+// *******************practice the dto to model data transfer****************

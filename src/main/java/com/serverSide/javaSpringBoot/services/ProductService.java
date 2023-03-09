@@ -6,6 +6,7 @@ import com.serverSide.javaSpringBoot.model.ProductModel;
 import java.util.List;
 import java.util.Optional;
 
+// here method are initialized not declare, at the productserviceimpl method where dereclare for the security purpose
 public interface ProductService {
     // at Java always need to mention method datatype **ProductModel create ** and also variable datatype (ProductModel productModel)
     public ProductModel create(ProductModel productModel);

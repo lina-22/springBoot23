@@ -26,5 +26,4 @@ public class ProductDto {
     private Set<CategoryModel> mCategories = new HashSet<>();
     private List<Long> categoryIds;
 
-
 }

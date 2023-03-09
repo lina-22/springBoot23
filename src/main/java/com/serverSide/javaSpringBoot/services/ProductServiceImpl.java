@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
 
-        return mCategoryRepository.findById(Long.valueOf(id));
+        return mCategoryRepository.findById(Long.valueOf(id)); // valueOf ??
     }
 
 

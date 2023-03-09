@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "products")
 public class ProductModel {
 
-    @Id
+    @Id // id will autogenerate at the Db by the @Id
     @Column(name ="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id auto increment
     private Long id;
@@ -43,7 +43,7 @@ public class ProductModel {
     @Column(name = "importCountry", nullable = true)
     private String importCountry;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  {  CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY, cascade =  {  CascadeType.ALL }) // CascadeTypeAll ??
     @JoinTable(
             name = "category_product",
             joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id")},
