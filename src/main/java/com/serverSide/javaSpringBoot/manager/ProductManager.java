@@ -10,10 +10,7 @@ import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 // after creation of dto the prductmanager has been created for handle the message response
@@ -45,11 +42,24 @@ public class ProductManager {
     }
 
     public ProductDto updateProduct(ProductDto productDto){
-        ProductModel productModel = toProductModel(productDto);
-        ProductModel productModel1 =  productService.update(productModel);
-        ProductDto productDto1 =  toProductDto(productModel1);
-        return productDto1;
-        //return toProductDto(productService.update(toProductModel(productDto)));
+       Optional<ProductModel> productModel =  productService.findById(productDto.getId());
+        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
+
+
+        if (productModel.isPresent()){
+            productModel.get().setName(productDto.getName());
+            productModel.get().setDescription(productDto.getDescription());
+            productModel.get().setDiscount(productDto.getDiscount());
+            productModel.get().set_featured(productDto.is_featured());
+            productModel.get().setPrice(productDto.getPrice());
+            productModel.get().setImportCountry(productDto.getImportCountry());
+            productModel.get().setMCategories(categoryModelSet);
+
+            ProductModel updatedProductModel =  productService.update(productModel.get());
+            return toProductDto(updatedProductModel);
+        }
+        return new ProductDto();
+
     }
 
     public void deleteProductById(long id){

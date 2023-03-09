@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductModel create(ProductModel productModel){
-        return  mProductRepository.saveAndFlush(productModel); //saveAndFlush ?
+        return  mProductRepository.save(productModel); //saveAndFlush ?
     }
     @Override
     public Optional<ProductModel> findById(long id) {
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductModel update(ProductModel productModel){
-
+        System.out.println("test here :" + productModel.toString());
         return  mProductRepository.save(productModel);
     }
 

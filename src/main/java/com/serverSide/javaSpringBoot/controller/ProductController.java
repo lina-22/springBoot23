@@ -42,7 +42,7 @@ class ProductController {
         return productManager.updateProduct(productDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteProductById(@PathVariable long id){
         try{
             return new ResponseEntity<>("Product with id + " + id + " has been deleted successfully.", HttpStatus.OK);
