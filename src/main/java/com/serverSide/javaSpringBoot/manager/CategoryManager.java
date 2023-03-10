@@ -1,41 +1,44 @@
 package com.serverSide.javaSpringBoot.manager;
-
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
-import com.serverSide.javaSpringBoot.response.MessageResponse;
+import com.serverSide.javaSpringBoot.model.CategoryModel;
+import com.serverSide.javaSpringBoot.services.CategoryService;
+import com.serverSide.javaSpringBoot.services.ProductService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class CategoryManager {
-    public static MessageResponse validation(CategoryDto dto){
-        if(dto.getName().isEmpty()){
-            return new MessageResponse(false, "Category name not provided");
-        }else {
-            return new MessageResponse("Successfully validated");
-        }
+
+    private CategoryService categoryService;
+
+    private ProductService productService;
+
+    public CategoryDto createCategory(CategoryDto categoryDto){
+        CategoryModel categoryToAdd = toCategoryModel(categoryDto);
+
+        CategoryModel addedCategory = categoryService.create(categoryToAdd);
+
+        return toCategoryDto(addedCategory);
+
     }
 
-    public static MessageResponse readValidation(CategoryDto dto){
-        if(dto.getId().isEmpty()){
-            return new MessageResponse(false, "Category id not provided");
-        }else {
-            return new MessageResponse("Successfully validated");
-        }
+    // ******************* the dto to model data transfer****************
+    public CategoryModel toCategoryModel( CategoryDto categoryDto){
+        CategoryModel categoryModel = new CategoryModel();
+        categoryModel.setName(categoryDto.getName());
+
+        return categoryModel;
     }
-    public static MessageResponse updatedValidation(CategoryDto dto){
-        if(dto.getId().isEmpty()){
-            return new MessageResponse(false, "Category id not provided");
-        }
-        if(dto.getName().isEmpty()){
-            return new MessageResponse(false, "Category name not provided");
-        }else {
-            return new MessageResponse("Successfully validated");
-        }
-    }
-    public static MessageResponse deletedValidation(CategoryDto dto){
-        if(dto.getId().isEmpty()){
-            return new MessageResponse(false, "Category id not provided");
-        }else {
-            return new MessageResponse("Successfully validated");
-        }
+
+    public CategoryDto toCategoryDto(CategoryModel categoryModel){
+        CategoryDto categoryDto = new CategoryDto();
+       categoryDto.setId(categoryModel.getId());
+         categoryDto.setName(categoryModel.getName());
+
+        return  categoryDto;
     }
 
 
+    // *******************the dto to model data transfer****************
 }

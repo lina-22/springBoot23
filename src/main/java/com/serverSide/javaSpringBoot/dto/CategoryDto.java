@@ -1,22 +1,24 @@
 package com.serverSide.javaSpringBoot.dto;
 
+import com.serverSide.javaSpringBoot.model.CategoryModel;
+import com.serverSide.javaSpringBoot.model.ProductModel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDto {
-    String id;
+    long id;
     String name;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    //private Set<ProductModel> mProducts = new HashSet<>();
+    //private List<Long> productIds;
 }

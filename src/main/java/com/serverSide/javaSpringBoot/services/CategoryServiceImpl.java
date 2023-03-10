@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService{
     CategoryRepository mCategoryRepository;
 
     @Override
-    public CategoryModel insert(CategoryModel categoryModel){
+    public CategoryModel create(CategoryModel categoryModel){
 
         return  mCategoryRepository.save(categoryModel);
     }
@@ -37,6 +37,10 @@ public class CategoryServiceImpl implements CategoryService{
         return  mCategoryRepository.save(categoryModel);
     }
 
+    @Override
+    public void delete(long id) {
+        mCategoryRepository.deleteById(id);
+    }
     @Override
     public List<CategoryModel> findAllById(List<Long> ids) {
         return mCategoryRepository.findAllById(ids);

@@ -10,12 +10,14 @@ import java.util.Optional;
 
 public interface CategoryService {
 
-    public CategoryModel insert(CategoryModel categoryModel);
+    public CategoryModel create(CategoryModel categoryModel);
     public Optional<CategoryModel> findById(Long id);
 
     public List<CategoryModel> findAll();
 
     public CategoryModel update(CategoryModel categoryModel);
+
+    public  void delete(long id);
 
     List<CategoryModel> findAllById(List<Long>ids);
 }

@@ -50,7 +50,11 @@ public class ProductModel {
             inverseJoinColumns = { @JoinColumn(name = "category_id", referencedColumnName = "id")}
     )
     @JsonIgnore // for ignore the json
+
     private Set<CategoryModel> mCategories = new HashSet<>();
+
+    @OneToMany(mappedBy = "productModel")
+    private Set<AvailableProductModel> availableProductModel;
 
 
 }
