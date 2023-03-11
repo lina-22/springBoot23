@@ -38,4 +38,8 @@ public class AvailableProductModel {
     private String size;
 
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "mAvailableProduct")
+    private Set<ReservationModel>mReservations = new HashSet<>();
+
 }

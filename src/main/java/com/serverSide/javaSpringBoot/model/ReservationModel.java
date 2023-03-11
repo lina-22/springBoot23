@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,5 +38,13 @@ public class ReservationModel {
     @Column(name="expireDate", nullable = false)
     private Date expireDate;
 
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "product_lines",
+            joinColumns = {@JoinColumn(name = "reservation_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "avl_product_id",referencedColumnName = "id"),
+                    @JoinColumn(name = "product_id",referencedColumnName = "pa_fk")}
+    )
+   @JsonIgnore
+    private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();
 }
