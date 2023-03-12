@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AvailableProductService {
 
-    public AvailableProductModel insert(AvailableProductModel availableProductModel);
+    public AvailableProductModel create(AvailableProductModel availableProductModel);
 
     public AvailableProductModel update(AvailableProductModel availableProductModel);
 

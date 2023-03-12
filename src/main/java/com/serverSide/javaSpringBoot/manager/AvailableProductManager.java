@@ -5,10 +5,18 @@ import com.serverSide.javaSpringBoot.dto.CategoryDto;
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.response.MessageResponse;
+import com.serverSide.javaSpringBoot.services.AvailableProductService;
 
 public class AvailableProductManager {
 
+    private AvailableProductService availableProductService;
+    public AvailableProductDto createAvailableProduct(AvailableProductDto  availableProductDto){
+        AvailableProductModel availableProductToAdd = toAvailableProductModel( availableProductDto);
+        AvailableProductModel addedAvailableProduct =  availableProductService.create( availableProductToAdd);
 
+        return toAvailableProductDto(addedAvailableProduct);
+
+    }
 
 
     // ******************* the dto to model data transfer****************
