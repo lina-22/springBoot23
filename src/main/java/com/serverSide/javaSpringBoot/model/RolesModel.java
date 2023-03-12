@@ -24,5 +24,6 @@ public class RolesModel {
     @Column(name="name", nullable = false)
     private  String name;
 
-
+    @OneToMany(mappedBy = "rolesModel")
+    private Set<UsersModel> userModel;
 }
