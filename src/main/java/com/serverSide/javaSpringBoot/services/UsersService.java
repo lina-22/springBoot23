@@ -17,5 +17,5 @@ public interface UsersService {
 
     public  void delete(long id);
 
-    //List<UsersModel> findAllById(List<Long>ids);
+    List<UsersModel> findAllById(List<Long>ids);
 }
