@@ -19,5 +19,5 @@ public interface CategoryService {
 
     public  void delete(long id);
 
-    List<CategoryModel> findAllById(List<Long>ids);
+    List<CategoryModel> findAllById(List<Long>ids); //
 }
