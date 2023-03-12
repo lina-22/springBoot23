@@ -1,13 +1,8 @@
 package com.serverSide.javaSpringBoot.controller;
-
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
-import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 @RestController
 @RequestMapping("/category")
 @AllArgsConstructor
