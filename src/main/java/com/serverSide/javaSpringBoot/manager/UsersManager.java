@@ -1,11 +1,16 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
+import com.serverSide.javaSpringBoot.dto.RolesDto;
 import com.serverSide.javaSpringBoot.dto.UsersDto;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
+import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.model.UsersModel;
 import com.serverSide.javaSpringBoot.services.ReservationService;
 import com.serverSide.javaSpringBoot.services.UsersService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersManager {
     private UsersService usersService;
@@ -16,6 +21,15 @@ public class UsersManager {
 //         ???
     }
 
+
+    public List<UsersDto> getAllUsers() {
+        List<UsersDto>usersDtoList = new ArrayList<>();
+        List<UsersModel> usersModelList = usersService.findAll();
+        usersModelList.forEach(data-> {
+            usersDtoList.add(toUsersDto(data));
+        });
+        return usersDtoList;
+    }
     // ******************* the dto to model data transfer****************
     public UsersModel toUsersModel(UsersDto usersDto){
         UsersModel usersModel = new UsersModel();
