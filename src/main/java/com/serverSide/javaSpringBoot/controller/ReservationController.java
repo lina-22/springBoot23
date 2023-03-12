@@ -15,44 +15,5 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-    @Autowired
-    ReservationService mReservationService;
-//   id/idUser/ reference/ status/ expireDate
-    @PostMapping("create")
-    ResponseEntity<?> create(@RequestBody ReservationDto dto){
-        MessageResponse validation = ReservationManager.validation(dto);
-        if(!validation.isSuccess()){
-            return ResponseEntity.badRequest().body(validation);
-        }else {
-            ReservationModel reservationModel = new ReservationModel();
-            reservationModel.setReference(dto.getReference());
-            reservationModel.setStatus(dto.getStatus());
-            reservationModel.setExpireDate(dto.getExpireDate());
-            ReservationModel isSaved =  mReservationService.insert(reservationModel);
-            return ResponseEntity.ok(isSaved);
-
-        }
-    }
-    @GetMapping("showOne")
-    ResponseEntity<?> read(@RequestBody ReservationDto dto){
-        MessageResponse validation = ReservationManager.validation(dto);
-        if(!validation.isSuccess()){
-            return ResponseEntity.badRequest().body(validation);
-        }else {
-            ReservationModel reservationModel = new ReservationModel();
-            reservationModel.setReference(dto.getReference());
-            reservationModel.setStatus(dto.getStatus());
-            reservationModel.setExpireDate(dto.getExpireDate());
-            ReservationModel isSaved =  mReservationService.insert(reservationModel);
-            return ResponseEntity.ok(isSaved);
-
-        }
-    }
-
-    @GetMapping("showAll")
-    ResponseEntity<?> showAll(){
-        return ResponseEntity.ok(mReservationService.findAll());
-    }
-
 
 }
