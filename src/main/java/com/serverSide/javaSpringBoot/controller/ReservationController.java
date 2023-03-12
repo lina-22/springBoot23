@@ -12,4 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class ReservationController {
 
+    private final ReservationManager reservationManager;
+    @PostMapping
+    public ReservationDto createReservation(@RequestBody ReservationDto reservationDto){
+        return reservationManager.createReservation(reservationDto);
+    }
 }
