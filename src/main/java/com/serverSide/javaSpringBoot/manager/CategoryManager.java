@@ -1,10 +1,15 @@
 package com.serverSide.javaSpringBoot.manager;
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
+import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
+import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.services.CategoryService;
 import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +28,15 @@ public class CategoryManager {
 
     }
 
+
+    public List<CategoryDto> getAllCategory() {
+        List<CategoryDto>categoryDtoList = new ArrayList<>();
+        List<CategoryModel> categoryModelList = categoryService.findAll();
+        categoryModelList.forEach(data-> {
+            categoryDtoList.add(toCategoryDto(data));
+        });
+        return categoryDtoList;
+    }
     // ******************* the dto to model data transfer****************
     public CategoryModel toCategoryModel( CategoryDto categoryDto){
         CategoryModel categoryModel = new CategoryModel();
