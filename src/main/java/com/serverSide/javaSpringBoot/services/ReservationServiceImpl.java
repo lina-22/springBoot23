@@ -15,7 +15,7 @@ public class ReservationServiceImpl implements ReservationService{
     ReservationRepository mReservationRepository;
 
     @Override
-    public ReservationModel insert(ReservationModel reservationModel){
+    public ReservationModel create(ReservationModel reservationModel){
 
         return  mReservationRepository.save(reservationModel);
     }
