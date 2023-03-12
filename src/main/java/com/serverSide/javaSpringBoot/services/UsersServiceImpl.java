@@ -28,9 +28,9 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersModel update(UsersModel UsersModel){
+    public UsersModel update(UsersModel usersModel){
 
-        return  mUsersRepository.save(UsersModel);
+        return  mUsersRepository.save(usersModel);
     }
 
     @Override
