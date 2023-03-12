@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/reservations")
 @AllArgsConstructor
 public class ReservationController {
 
     private final ReservationManager reservationManager;
-    @PostMapping
+ /*   @PostMapping
     public ReservationDto createReservation(@RequestBody ReservationDto reservationDto){
         return reservationManager.createReservation(reservationDto);
     }
@@ -21,5 +21,5 @@ public class ReservationController {
     @GetMapping
     public List<ReservationDto> getAllReservation(){
         return reservationManager.getAllReservation();
-    }
+    }*/
 }

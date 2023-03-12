@@ -1,8 +1,5 @@
 package com.serverSide.javaSpringBoot.controller;
-
-import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.UsersDto;
-import com.serverSide.javaSpringBoot.manager.ReservationManager;
 import com.serverSide.javaSpringBoot.manager.UsersManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

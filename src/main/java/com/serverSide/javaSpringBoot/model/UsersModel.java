@@ -8,13 +8,15 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+
+
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-@IdClass(ReservationModel.class)
 public class UsersModel {
 
     @Id

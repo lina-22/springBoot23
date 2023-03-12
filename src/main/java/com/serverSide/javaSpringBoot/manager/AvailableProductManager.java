@@ -6,14 +6,18 @@ import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.response.MessageResponse;
 import com.serverSide.javaSpringBoot.services.AvailableProductService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class AvailableProductManager {
 
     private AvailableProductService availableProductService;
-    public AvailableProductDto createAvailableProduct(AvailableProductDto  availableProductDto){
+   /* public AvailableProductDto createAvailableProduct(AvailableProductDto  availableProductDto){
         AvailableProductModel availableProductToAdd = toAvailableProductModel( availableProductDto);
         AvailableProductModel addedAvailableProduct =  availableProductService.create( availableProductToAdd);
 
@@ -29,7 +33,7 @@ public class AvailableProductManager {
             availableProductDtoList.add(toAvailableProductDto(data));
         });
         return availableProductDtoList;
-    }
+    }*/
 
     // ******************* the dto to model data transfer****************
     public AvailableProductModel toAvailableProductModel(AvailableProductDto availableProductDto){

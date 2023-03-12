@@ -1,17 +1,16 @@
 package com.serverSide.javaSpringBoot.manager;
 
-import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.RolesDto;
-import com.serverSide.javaSpringBoot.dto.UsersDto;
-import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.model.RolesModel;
-import com.serverSide.javaSpringBoot.model.UsersModel;
 import com.serverSide.javaSpringBoot.services.RolesService;
-import com.serverSide.javaSpringBoot.services.UsersService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class RolesManager {
 
     private RolesService rolesService;

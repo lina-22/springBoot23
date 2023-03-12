@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
+import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.repository.ProductRepository;
@@ -43,7 +44,7 @@ public class ProductManager {
 
     public ProductDto updateProduct(ProductDto productDto){
        Optional<ProductModel> productModel =  productService.findById(productDto.getId());
-        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
+       // Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
 
 
         if (productModel.isPresent()){
@@ -53,7 +54,7 @@ public class ProductManager {
             productModel.get().set_featured(productDto.is_featured());
             productModel.get().setPrice(productDto.getPrice());
             productModel.get().setImportCountry(productDto.getImportCountry());
-            productModel.get().setMCategories(categoryModelSet);
+         //   productModel.get().setMCategories(categoryModelSet);
 
             ProductModel updatedProductModel =  productService.update(productModel.get());
             return toProductDto(updatedProductModel);
@@ -70,7 +71,6 @@ public class ProductManager {
 
 
         public ProductModel toProductModel(ProductDto productDto){
-//      System.out.println("test : " + productDto.getMCategories().size() + " pooo" + productDto.getImportCountry());
         ProductModel productModel = new ProductModel();
         productModel.setName(productDto.getName());
         productModel.setDescription(productDto.getDescription());
@@ -78,7 +78,6 @@ public class ProductManager {
         productModel.set_featured(productDto.is_featured());
         productModel.setPrice(productDto.getPrice());
         productModel.setImportCountry(productDto.getImportCountry());
-
 
         Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
         productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??

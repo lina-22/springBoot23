@@ -23,12 +23,6 @@ public class ReservationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Id
-//    @Column(name ="idUser", nullable = false)
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long idUser;
-
-
     @Column(name="reference", nullable = false)
     private String reference;
 
@@ -45,14 +39,10 @@ public class ReservationModel {
             inverseJoinColumns = {@JoinColumn(name = "avl_product_id",referencedColumnName = "id"),
                     @JoinColumn(name = "product_id",referencedColumnName = "pa_fk")}
     )
-
-
    @JsonIgnore
     private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();
-
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UsersModel usersModel;
-
 }

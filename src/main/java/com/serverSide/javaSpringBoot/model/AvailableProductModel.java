@@ -23,8 +23,6 @@ public class AvailableProductModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @Column(name = "colour", nullable = true)
     private String colour;
 

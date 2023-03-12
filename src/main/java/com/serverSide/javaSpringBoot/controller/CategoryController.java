@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 @AllArgsConstructor
 class CategoryController {
     private final CategoryManager categoryManager;
@@ -21,6 +21,10 @@ class CategoryController {
     public List<CategoryDto> getAllCategory(){
         return categoryManager.getAllCategory();
     }
+    /*@GetMapping("/test")
+    public String getAllCategoryTest(){
+        return "tested ok";
+    }*/
 
 //    @GetMapping
 //    public List<CategoryDto> getAllCategory(){

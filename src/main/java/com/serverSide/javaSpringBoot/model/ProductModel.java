@@ -52,8 +52,8 @@ public class ProductModel {
     @JsonIgnore // for ignore the json
     private Set<CategoryModel> mCategories = new HashSet<>();
 
-    @OneToMany(mappedBy = "productModel")
-    private Set<AvailableProductModel> availableProductModel;
+    @OneToMany(mappedBy = "productModel", fetch = FetchType.LAZY)
+    private Set<AvailableProductModel> availableProductModel = new HashSet<>();
 
 
 }
