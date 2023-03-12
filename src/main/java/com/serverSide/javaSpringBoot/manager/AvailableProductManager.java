@@ -1,86 +1,37 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.AvailableProductDto;
+import com.serverSide.javaSpringBoot.dto.CategoryDto;
+import com.serverSide.javaSpringBoot.model.AvailableProductModel;
+import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.response.MessageResponse;
 
 public class AvailableProductManager {
 
-    public static MessageResponse validation(AvailableProductDto dto){
 
-        if(dto.getColour().isEmpty()){
-            return new MessageResponse(false, "Available Product not provided");
-        }
-        if(dto.getQuantity().isEmpty()){
-            return new MessageResponse(false, "Available Product quantity not provided");
-        }
-        if(dto.getSize().isEmpty()){
-            return new MessageResponse(false, "Available Product size not provided");
-        }else {
-            return new MessageResponse( "Product Successfully validated");
-        }
 
+
+    // ******************* the dto to model data transfer****************
+    public AvailableProductModel toAvailableProductModel(AvailableProductDto availableProductDto){
+        AvailableProductModel availableProductModel = new AvailableProductModel();
+        availableProductModel.setColour(availableProductDto.getColour());
+        availableProductModel.setQuantity(availableProductDto.getQuantity());
+        availableProductModel.setSize(availableProductDto.getSize());
+
+        return availableProductModel;
+    }
+
+    public AvailableProductDto toAvailableProductDto(AvailableProductModel availableProductModel){
+        AvailableProductDto availableProductDto = new AvailableProductDto();
+        availableProductDto.setId(availableProductModel.getId());
+        availableProductDto.setColour(availableProductModel.getColour());
+        availableProductDto.setQuantity(availableProductModel.getQuantity());
+        availableProductDto.setSize(availableProductModel.getSize());
+
+        return  availableProductDto;
     }
 
 
-//  idProduct primary and secondary also
-//    only one for readValidation
-        public static MessageResponse readValidation(AvailableProductDto dto){
-            if(dto.getId().toString().isEmpty()){
-                return new MessageResponse(false, "Product id not provided");
-            }
-
-            if(dto.getColour().isEmpty()){
-                return new MessageResponse(false, "Available Product not provided");
-            }
-            if(dto.getQuantity().isEmpty()){
-                return new MessageResponse(false, "Available Product quantity not provided");
-            }
-            if(dto.getSize().isEmpty()){
-                return new MessageResponse(false, "Available Product size not provided");
-            }else {
-                return new MessageResponse( "Product Successfully validated");
-            }
-
-        }
-
-
-    public static MessageResponse updatedValidation(AvailableProductDto dto){
-        if(dto.getId().toString().isEmpty()){
-            return new MessageResponse(false, "Product id not provided");
-        }
-
-        if(dto.getColour().isEmpty()){
-            return new MessageResponse(false, "Available Product not provided");
-        }
-        if(dto.getQuantity().isEmpty()){
-            return new MessageResponse(false, "Available Product quantity not provided");
-        }
-        if(dto.getSize().isEmpty()){
-            return new MessageResponse(false, "Available Product size not provided");
-        }else {
-            return new MessageResponse( "Product Successfully validated");
-        }
-
-    }
-
-
-    public static MessageResponse deletedValidation(AvailableProductDto dto){
-        if(dto.getId().toString().isEmpty()){
-            return new MessageResponse(false, "Product id not provided");
-        }
-
-        if(dto.getColour().isEmpty()){
-            return new MessageResponse(false, "Available Product not provided");
-        }
-        if(dto.getQuantity().isEmpty()){
-            return new MessageResponse(false, "Available Product quantity not provided");
-        }
-        if(dto.getSize().isEmpty()){
-            return new MessageResponse(false, "Available Product size not provided");
-        }else {
-            return new MessageResponse( "Product Successfully validated");
-        }
-
-    }
+    // *******************the dto to model data transfer****************
 
 }
