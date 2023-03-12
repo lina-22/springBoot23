@@ -4,9 +4,17 @@ import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.UsersDto;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.model.UsersModel;
+import com.serverSide.javaSpringBoot.services.ReservationService;
+import com.serverSide.javaSpringBoot.services.UsersService;
 
 public class UsersManager {
+    private UsersService usersService;
+    public UsersDto createUsers(UsersDto usersDto){
+        UsersModel usersToAdd = toUsersModel(usersDto);
+        UsersModel addedUsers = usersService.create(usersToAdd);
 
+        return toUsersDto(addedUsers);
+    }
 
     // ******************* the dto to model data transfer****************
     public UsersModel toUsersModel(UsersDto usersDto){
