@@ -2,11 +2,16 @@ package com.serverSide.javaSpringBoot.manager;
 
 
 import com.serverSide.javaSpringBoot.dto.AvailableProductDto;
+import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
+import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.response.MessageResponse;
 import com.serverSide.javaSpringBoot.services.ReservationService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservationManager {
 
@@ -16,6 +21,16 @@ public class ReservationManager {
        ReservationModel addedReservation = reservationService.create(reservationToAdd);
 
        return toReservationDto(addedReservation);
+    }
+
+
+    public List<ReservationDto> getAllReservation() {
+        List<ReservationDto>reservationDtoList = new ArrayList<>();
+        List<ReservationModel> reservationModelList = reservationService.findAll();
+        reservationModelList.forEach(data-> {
+            reservationDtoList.add(toReservationDto(data));
+        });
+        return reservationDtoList;
     }
 
     // ******************* the dto to model data transfer****************
