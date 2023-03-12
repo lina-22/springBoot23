@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -13,7 +14,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-public class Users {
+@IdClass(ReservationModel.class)
+public class UsersModel {
 
     @Id
     @Column
@@ -31,4 +33,11 @@ public class Users {
 
     @Column(name="password", nullable = false)
     private  String password;
+
+    @OneToMany(mappedBy = "usersModel")
+    private Set<ReservationModel> reservationModel;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private RolesModel rolesModel;
 }

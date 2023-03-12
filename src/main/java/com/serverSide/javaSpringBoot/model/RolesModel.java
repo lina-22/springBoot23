@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
-public class Roles {
+public class RolesModel {
 
     @Id
     @Column
@@ -22,4 +23,6 @@ public class Roles {
 
     @Column(name="name", nullable = false)
     private  String name;
+
+
 }

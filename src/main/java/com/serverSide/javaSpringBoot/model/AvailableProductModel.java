@@ -16,17 +16,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="AvailableProduct")
-@IdClass(AvailableProductPKId.class) // id object
+@IdClass(AvailableProductPKId.class) // id object ?
 public class AvailableProductModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "pa_fk", referencedColumnName = "id")
-    private ProductModel productModel;
+
 
     @Column(name = "colour", nullable = true)
     private String colour;
@@ -37,6 +34,10 @@ public class AvailableProductModel {
     @Column(name="size", nullable = true)
     private String size;
 
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "pa_fk", referencedColumnName = "id")
+    private ProductModel productModel;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
