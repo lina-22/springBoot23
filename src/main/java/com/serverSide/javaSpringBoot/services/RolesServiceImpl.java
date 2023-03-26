@@ -22,9 +22,9 @@ public class RolesServiceImpl implements RolesService{
         return  mRolesRepository.save(rolesModel);
     }
     @Override
-    public Optional<RolesModel> findById(Long id){
+    public Optional<RolesModel> findById(Long roles_id){
 
-        return mRolesRepository.findById(id);
+        return mRolesRepository.findById(roles_id);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class RolesServiceImpl implements RolesService{
     }
 
     @Override
-    public void delete(long id) {
-        mRolesRepository.deleteById(id);
+    public void delete(long roles_id) {
+        mRolesRepository.deleteById(roles_id);
     }
     @Override
     public List<RolesModel> findAllById(List<Long> ids) {

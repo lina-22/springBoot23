@@ -19,9 +19,9 @@ public class UsersServiceImpl implements UsersService {
         return  mUsersRepository.save(usersModel);
     }
     @Override
-    public Optional<UsersModel> findById(Long id){
+    public Optional<UsersModel> findById(Long users_id){
 
-        return mUsersRepository.findById(id);
+        return mUsersRepository.findById(users_id);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void delete(long id) {
-        mUsersRepository.deleteById(id);
+    public void delete(long users_id) {
+        mUsersRepository.deleteById(users_id);
     }
     @Override
     public List<UsersModel> findAllById(List<Long> ids) {

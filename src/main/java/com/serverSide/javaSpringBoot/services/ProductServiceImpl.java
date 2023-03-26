@@ -19,17 +19,17 @@ public class ProductServiceImpl implements ProductService{
     // so i no need to do create object by new for the productRepository class
     @Autowired
     ProductRepository mProductRepository;
-    @Autowired
-    CategoryRepository mCategoryRepository;
+    //@Autowired
+   // CategoryRepository mCategoryRepository;
 
     @Override
     public ProductModel create(ProductModel productModel){
         return  mProductRepository.save(productModel); //saveAndFlush ?
     }
     @Override
-    public Optional<ProductModel> findById(long id) {
+    public Optional<ProductModel> findById(long product_id) {
 
-        return mProductRepository.findById(id);
+        return mProductRepository.findById(product_id);
     }
 
     @Override
@@ -46,16 +46,16 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public void delete(long id) {
-        mProductRepository.deleteById(id);
+    public void delete(long product_id) {
+        mProductRepository.deleteById(product_id);
     }
 
 
-    @Override
-    public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
+    //@Override
+    //public Optional<CategoryModel> isValidCategory(long id) { // <CategoryModal> or Optional data type?
 
-        return mCategoryRepository.findById(Long.valueOf(id)); // valueOf ??
-    }
+      //  return mCategoryRepository.findById(Long.valueOf(id)); // valueOf ??
+    //}
 
 
 

@@ -21,9 +21,9 @@ public class CategoryServiceImpl implements CategoryService{
         return  mCategoryRepository.save(categoryModel);
     }
     @Override
-    public Optional<CategoryModel> findById(Long id){
+    public Optional<CategoryModel> findById(Long category_id){
 
-        return mCategoryRepository.findById(id);
+        return mCategoryRepository.findById(category_id);
     }
 
     @Override
@@ -38,13 +38,13 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void delete(long id) {
-        mCategoryRepository.deleteById(id);
+    public void delete(long category_id) {
+        mCategoryRepository.deleteById(category_id);
     }
-    @Override
-    public List<CategoryModel> findAllById(List<Long> ids) {
-        return mCategoryRepository.findAllById(ids);
-    }
+    //@Override
+    //public List<CategoryModel> findAllById(List<Long> ids) {
+      //  return mCategoryRepository.findAllById(ids);
+    //}
 
 
 }

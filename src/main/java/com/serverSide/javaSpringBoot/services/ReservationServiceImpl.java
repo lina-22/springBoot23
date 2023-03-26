@@ -20,9 +20,9 @@ public class ReservationServiceImpl implements ReservationService{
         return  mReservationRepository.save(reservationModel);
     }
     @Override
-    public Optional<ReservationModel> findById(Long id) {
+    public Optional<ReservationModel> findById(Long reservation_id) {
 
-        return mReservationRepository.findById(id);
+        return mReservationRepository.findById(reservation_id);
     }
 
     @Override
@@ -34,5 +34,10 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public ReservationModel update(ReservationModel reservationModel){
         return  mReservationRepository.save(reservationModel);
+    }
+
+    @Override
+    public void delete(long reservation_id) {
+        mReservationRepository.deleteById(reservation_id);
     }
 }
