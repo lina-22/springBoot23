@@ -42,6 +42,10 @@ public class ReservationModel {
     private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
     private UsersModel usersModel;
+
+    @ManyToOne
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
+    private PaymentModel paymentModel;
 }

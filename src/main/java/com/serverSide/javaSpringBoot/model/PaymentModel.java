@@ -30,6 +30,11 @@ public class PaymentModel {
     @Column(name = "date_payment", nullable = false)
     private Date date_payment;
 
-    @OneToMany(mappedBy = "materialModel", fetch = FetchType.LAZY)
-    private Set<AvailableProductModel> availableProductModel = new HashSet<>();
+    @OneToMany(mappedBy = "paymentModel", fetch = FetchType.LAZY)
+    private Set<ReservationModel> reservationModel = new HashSet<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    private UsersModel usersModel;
 }

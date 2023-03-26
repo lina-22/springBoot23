@@ -39,6 +39,13 @@ public class UsersModel {
     @OneToMany(mappedBy = "usersModel")
     private Set<ReservationModel> reservationModel;
 
+    @OneToMany(mappedBy = "usersModel")
+    private Set<PaymentModel> paymentModel;
+
+    @OneToMany(mappedBy = "usersModel")
+    private Set<Password_resetModel> password_resetModelModel;
+
+
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private RolesModel rolesModel;

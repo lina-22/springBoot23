@@ -8,9 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -18,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "password_reset")
-public class Password_reset {
+public class Password_resetModel {
     @Id
     @Column(name ="password_reset_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
