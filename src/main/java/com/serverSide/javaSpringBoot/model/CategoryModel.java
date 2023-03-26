@@ -23,11 +23,10 @@ public class CategoryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "category_value", nullable = false)
+    private String category_value;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "mCategories")   //
-    private Set<ProductModel>mProducts = new HashSet<>();
+    @OneToMany(mappedBy = "categoryModel", fetch = FetchType.LAZY)
+    private Set<AvailableProductModel> availableProductModel = new HashSet<>();
 
 }

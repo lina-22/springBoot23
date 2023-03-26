@@ -18,9 +18,9 @@ import java.util.Set;
 public class ProductModel {
 
     @Id // id will autogenerate at the Db by the @Id
-    @Column(name ="id", nullable = false)
+    @Column(name ="product_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id auto increment
-    private Long id;
+    private Long product_id;
 
     @Column(name="name", nullable = false)
     private  String name;
@@ -42,15 +42,6 @@ public class ProductModel {
 
     @Column(name = "importCountry", nullable = true)
     private String importCountry;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  {  CascadeType.ALL }) // CascadeTypeAll ??
-    @JoinTable(
-            name = "category_product",
-            joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id")},
-            inverseJoinColumns = { @JoinColumn(name = "category_id", referencedColumnName = "id")}
-    )
-    @JsonIgnore // for ignore the json
-    private Set<CategoryModel> mCategories = new HashSet<>();
 
     @OneToMany(mappedBy = "productModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

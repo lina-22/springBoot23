@@ -21,21 +21,23 @@ public class AvailableProductModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ap_id;
 
-    @Column(name = "colour", nullable = true)
-    private String colour;
+    @Column(name="ap_quantity", nullable = true)
+    private String ap_quantity;
 
-    @Column(name="quantity", nullable = true)
-    private String quantity;
-
-    @Column(name="size", nullable = true)
-    private String size;
+    @Column(name="sku_reference", nullable = true)
+    private String sku_reference;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "pa_fk", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private ProductModel productModel;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private CategoryModel categoryModel;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
