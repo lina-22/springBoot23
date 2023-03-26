@@ -35,9 +35,8 @@ public class ReservationModel {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "product_lines",
-            joinColumns = {@JoinColumn(name = "reservation_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "avl_product_id",referencedColumnName = "id"),
-                    @JoinColumn(name = "product_id",referencedColumnName = "pa_fk")}
+            joinColumns = {@JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ap_id",referencedColumnName = "ap_id")}
     )
    @JsonIgnore
     private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();

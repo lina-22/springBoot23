@@ -16,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="AvailableProduct")
-@IdClass(AvailableProductPKId.class) // id object ?
 public class AvailableProductModel {
 
     @Id
@@ -38,6 +37,24 @@ public class AvailableProductModel {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private CategoryModel categoryModel;
+
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "size_id", referencedColumnName = "size_id")
+    private SizeModel sizeModel;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "colour_id", referencedColumnName = "colour_id")
+    private ColourModel colourModel;
+
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "material_id", referencedColumnName = "material_id")
+    private MaterialModel materialModel;
+
 
     @JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
