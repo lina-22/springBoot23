@@ -19,7 +19,7 @@ public class ReservationServiceImpl implements ReservationService{
         return  mReservationRepository.save(reservationModel);
     }
     @Override
-    public Optional<ReservationModel> findById(Long reservation_id) {
+    public Optional<ReservationModel> findById(long reservation_id) {
 
         return mReservationRepository.findById(reservation_id);
     }

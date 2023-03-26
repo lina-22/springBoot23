@@ -19,7 +19,7 @@ public class RolesServiceImpl implements RolesService{
         return  mRolesRepository.save(rolesModel);
     }
     @Override
-    public Optional<RolesModel> findById(Long roles_id){
+    public Optional<RolesModel> findById(long roles_id){
 
         return mRolesRepository.findById(roles_id);
     }
@@ -40,10 +40,10 @@ public class RolesServiceImpl implements RolesService{
     public void delete(long roles_id) {
         mRolesRepository.deleteById(roles_id);
     }
-    @Override
-    public List<RolesModel> findAllById(List<Long> ids) {
-
-        return mRolesRepository.findAllById(ids);
-    }
+//    @Override
+//    public List<RolesModel> findAllById(List<long> ids) {
+//
+//        return mRolesRepository.findAllById(ids);
+//    }
 
 }

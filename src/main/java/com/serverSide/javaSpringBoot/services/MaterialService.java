@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MaterialService {
 
     public MaterialModel create(MaterialModel materialModel);
-    public Optional<MaterialModel> findById(Long material_id);
+    public Optional<MaterialModel> findById(long material_id);
 
     public List<MaterialModel> findAll();
 

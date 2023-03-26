@@ -17,7 +17,7 @@ public class Password_resetServiceImpl implements Password_resetService{
         return  password_resetRepository.save(password_resetModel);
     }
     @Override
-    public Optional<Password_resetModel> findById(Long password_resetModel){
+    public Optional<Password_resetModel> findById(long password_resetModel){
 
         return password_resetRepository.findById(password_resetModel);
     }

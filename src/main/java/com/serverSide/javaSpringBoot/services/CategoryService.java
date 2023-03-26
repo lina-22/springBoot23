@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CategoryService {
 
      CategoryModel create(CategoryModel categoryModel);
-     Optional<CategoryModel> findById(Long category_id);
+     Optional<CategoryModel> findById(long category_id);
 
      List<CategoryModel> findAll();
 

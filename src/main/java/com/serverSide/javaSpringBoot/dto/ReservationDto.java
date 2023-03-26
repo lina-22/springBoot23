@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Getter
@@ -13,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ReservationDto {
 
-    private Long id;
+    private long reservation_id;
     private  String reference;
     private  String status;
     private Date expireDate;

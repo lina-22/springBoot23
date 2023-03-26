@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface Password_resetService {
 
     public Password_resetModel create(Password_resetModel password_resetModel);
-    public Optional<Password_resetModel> findById(Long password_reset_id);
+    public Optional<Password_resetModel> findById(long password_reset_id);
 
     public List<Password_resetModel> findAll();
 

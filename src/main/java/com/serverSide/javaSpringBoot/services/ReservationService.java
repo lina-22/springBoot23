@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ReservationService {
 
     public ReservationModel create(ReservationModel reservationModel);
-    public Optional<ReservationModel> findById(Long reservation_id);
+    public Optional<ReservationModel> findById(long reservation_id);
 
     public List<ReservationModel> findAll();
 

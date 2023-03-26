@@ -17,7 +17,7 @@ public class PaymentServiceImpl implements PaymentService {
         return  paymentRepository.save(paymentModel);
     }
     @Override
-    public Optional<PaymentModel> findById(Long paymentModel){
+    public Optional<PaymentModel> findById(long paymentModel){
 
         return paymentRepository.findById(paymentModel);
     }

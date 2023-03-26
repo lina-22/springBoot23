@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface PaymentService {
 
     public PaymentModel create(PaymentModel paymentModel);
-    public Optional<PaymentModel> findById(Long payment_id);
+    public Optional<PaymentModel> findById(long payment_id);
 
     public List<PaymentModel> findAll();
 

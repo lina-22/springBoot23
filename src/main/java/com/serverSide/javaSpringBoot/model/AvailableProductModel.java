@@ -20,7 +20,7 @@ public class AvailableProductModel {
     @Id
     @Column(name="ap_id", nullable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ap_id;
+    private long ap_id;
 
     @Column(name="ap_quantity", nullable = true)
     private String ap_quantity;

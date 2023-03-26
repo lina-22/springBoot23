@@ -25,7 +25,7 @@ public class AvailableProductServiceImpl implements AvailableProductService {
     };
 
     @Override
-    public Optional<AvailableProductModel> findById(Long ap_id){
+    public Optional<AvailableProductModel> findById(long ap_id){
         return mAvailableProductRepository.findById(ap_id);
     };
 

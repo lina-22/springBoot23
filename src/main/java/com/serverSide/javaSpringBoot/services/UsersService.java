@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface UsersService {
 
     public UsersModel create(UsersModel usersModel);
-    public Optional<UsersModel> findById(Long users_id);
+    public Optional<UsersModel> findById(long users_id);
 
     public List<UsersModel> findAll();
 

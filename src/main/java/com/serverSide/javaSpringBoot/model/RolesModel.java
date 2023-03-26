@@ -18,7 +18,7 @@ public class RolesModel {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long role_id;
+    private long role_id;
 
     @Column(name="name", nullable = false)
     private  String name;

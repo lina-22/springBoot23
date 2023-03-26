@@ -17,7 +17,7 @@ public class SizeServiceImpl implements SizeService{
         return  sizeRepository.save(sizeModel);
     }
     @Override
-    public Optional<SizeModel> findById(Long category_id){
+    public Optional<SizeModel> findById(long category_id){
 
         return sizeRepository.findById(category_id);
     }

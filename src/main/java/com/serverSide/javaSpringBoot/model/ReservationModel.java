@@ -20,7 +20,7 @@ public class ReservationModel {
     @Id
     @Column(name ="reservation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reservation_id;
+    private long reservation_id;
 
     @Column(name="reference", nullable = false)
     private String reference;

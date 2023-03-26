@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Optional<CategoryModel> findById(Long category_id) {
+    public Optional<CategoryModel> findById(long category_id) {
         return Optional.empty();
     }
 

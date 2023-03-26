@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface RolesService {
 
     public RolesModel create(RolesModel rolesModel);
-    public Optional<RolesModel> findById(Long roles_id);
+    public Optional<RolesModel> findById(long roles_id);
 
     public List<RolesModel> findAll();
 
@@ -15,5 +15,5 @@ public interface RolesService {
 
     public  void delete(long roles_id);
 
-    List<RolesModel> findAllById(List<Long>ids);
+//    List<RolesModel> findAllById(List<Long>ids);
 }

@@ -11,7 +11,7 @@ public interface AvailableProductService {
 
     public AvailableProductModel update(AvailableProductModel availableProductModel);
 
-    public Optional<AvailableProductModel> findById(Long ap_id);
+    public Optional<AvailableProductModel> findById(long ap_id);
 
     public List<AvailableProductModel> findAll();
 

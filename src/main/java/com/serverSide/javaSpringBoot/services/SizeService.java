@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface SizeService {
 
     public SizeModel create(SizeModel sizeModel);
-    public Optional<SizeModel> findById(Long size_id);
+    public Optional<SizeModel> findById(long size_id);
 
     public List<SizeModel> findAll();
 

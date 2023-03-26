@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductDto {
 
-    private Long id;
+    private long product_id;
     private  String name;
     private boolean is_featured = false;
     private Double price = 0.0;
@@ -23,7 +23,7 @@ public class ProductDto {
     private String image;
     private String description;
     private String importCountry;
-    private Set<CategoryModel> mCategories = new HashSet<>();
-    private List<Long> categoryIds;
+//    private Set<CategoryModel> mCategories = new HashSet<>();
+//    private List<Long> categoryIds;
 
 }

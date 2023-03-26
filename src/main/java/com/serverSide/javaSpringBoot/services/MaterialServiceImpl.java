@@ -16,7 +16,7 @@ public class MaterialServiceImpl implements MaterialService{
         return  materialRepository.save(materialModel);
     }
     @Override
-    public Optional<MaterialModel> findById(Long material_id){
+    public Optional<MaterialModel> findById(long material_id){
 
         return materialRepository.findById(material_id);
     }
