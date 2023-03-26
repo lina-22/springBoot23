@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -45,8 +46,8 @@ public class UsersModel {
     @OneToMany(mappedBy = "usersModel")
     private Set<Password_resetModel> password_resetModelModel;
 
+    @ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    private Set<RolesModel> rolesModel = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private RolesModel rolesModel;
 }

@@ -19,9 +19,9 @@ import java.util.Set;
 public class CategoryModel {
 
     @Id
-    @Column(name ="id", nullable = false)
+    @Column(name ="category_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long category_id;
 
     @Column(name = "category_value", nullable = false)
     private String category_value;

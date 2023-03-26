@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersController {
     private final UsersManager usersManager;
-    @PostMapping
+  /*  @PostMapping
     public UsersDto createUsers(@RequestBody UsersDto usersDto){
 
         return usersManager.createUsers(usersDto);
@@ -20,5 +20,5 @@ public class UsersController {
     @GetMapping
     public List<UsersDto> getAllUsers(){
         return usersManager.getAllUsers();
-    }
+    }*/
 }

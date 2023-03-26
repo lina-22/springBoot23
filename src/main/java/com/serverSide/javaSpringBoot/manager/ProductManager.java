@@ -20,7 +20,7 @@ import java.util.*;
 public class ProductManager {
     private ProductService productService; // constructor ??
     private CategoryService categoryService; // importer ou ??
-    public ProductDto createProduct(ProductDto productDto){   // createProduct ar return type ProductDto //
+   /* public ProductDto createProduct(ProductDto productDto){   // createProduct ar return type ProductDto //
 
         ProductModel  productToAdd= toProductModel(productDto); // ?? and why at 25 no lines there have ProductDto data type but at this line inside bracket no need to give the data type
                                                                             // / because it is a value??
@@ -67,10 +67,10 @@ public class ProductManager {
         productService.delete(id);
     }
 
+*/
 
 
-
-        public ProductModel toProductModel(ProductDto productDto){
+     /*   public ProductModel toProductModel(ProductDto productDto){
         ProductModel productModel = new ProductModel();
         productModel.setName(productDto.getName());
         productModel.setDescription(productDto.getDescription());
@@ -100,7 +100,7 @@ public class ProductManager {
         productDto.setMCategories(productModel.getMCategories());
 
         return productDto;
-    }
+    }*/
 
 }
 

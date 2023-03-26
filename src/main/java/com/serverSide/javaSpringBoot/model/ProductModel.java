@@ -43,7 +43,8 @@ public class ProductModel {
     @Column(name = "importCountry", nullable = true)
     private String importCountry;
 
-    @OneToMany(mappedBy = "productModel", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 class CategoryController {
     private final CategoryManager categoryManager;
-    @PostMapping
+   /* @PostMapping
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto){
         return categoryManager.createCategory(categoryDto);
     }
@@ -20,7 +20,7 @@ class CategoryController {
     @GetMapping
     public List<CategoryDto> getAllCategory(){
         return categoryManager.getAllCategory();
-    }
+    }*/
     /*@GetMapping("/test")
     public String getAllCategoryTest(){
         return "tested ok";

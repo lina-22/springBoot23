@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UsersManager {
     private UsersService usersService;
-    public UsersDto createUsers(UsersDto usersDto){
+   /* public UsersDto createUsers(UsersDto usersDto){
         UsersModel usersToAdd = toUsersModel(usersDto);
         UsersModel addedUsers = usersService.create(usersToAdd);
         return toUsersDto(addedUsers);
@@ -37,9 +37,9 @@ public class UsersManager {
         usersModel.setPassword(usersDto.getPassword());
 
         return usersModel;
-    }
+    }*/
 
-    public UsersDto toUsersDto(UsersModel usersModel){
+  /*  public UsersDto toUsersDto(UsersModel usersModel){
         UsersDto usersDto = new UsersDto();
         usersDto.setId(usersModel.getId());
         usersDto.setFirst_name(usersModel.getFirst_name());
@@ -48,7 +48,7 @@ public class UsersManager {
         usersDto.setPassword(usersModel.getPassword());
 
         return  usersDto;
-    }
+    }*/
 
 
     // *******************the dto to model data transfer****************

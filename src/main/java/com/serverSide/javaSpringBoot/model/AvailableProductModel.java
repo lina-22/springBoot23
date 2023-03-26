@@ -19,6 +19,7 @@ import java.util.Set;
 public class AvailableProductModel {
 
     @Id
+    @Column(name="ap_id", nullable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ap_id;
 
@@ -28,33 +29,28 @@ public class AvailableProductModel {
     @Column(name="sku_reference", nullable = true)
     private String sku_reference;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private ProductModel productModel;
 
-    @Id
+    /*@ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")*/
+ /*   @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    private Set<ProductModel> productModel = new HashSet<>();
+*/
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private CategoryModel categoryModel;
 
-
-    @Id
     @ManyToOne
     @JoinColumn(name = "size_id", referencedColumnName = "size_id")
     private SizeModel sizeModel;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "colour_id", referencedColumnName = "colour_id")
     private ColourModel colourModel;
 
-
-    @Id
     @ManyToOne
     @JoinColumn(name = "material_id", referencedColumnName = "material_id")
     private MaterialModel materialModel;
-
 
     @JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")

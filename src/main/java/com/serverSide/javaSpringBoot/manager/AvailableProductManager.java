@@ -36,7 +36,7 @@ public class AvailableProductManager {
     }*/
 
     // ******************* the dto to model data transfer****************
-    public AvailableProductModel toAvailableProductModel(AvailableProductDto availableProductDto){
+    /*public AvailableProductModel toAvailableProductModel(AvailableProductDto availableProductDto){
         AvailableProductModel availableProductModel = new AvailableProductModel();
         availableProductModel.setColour(availableProductDto.getColour());
         availableProductModel.setQuantity(availableProductDto.getQuantity());
@@ -53,7 +53,7 @@ public class AvailableProductManager {
         availableProductDto.setSize(availableProductModel.getSize());
 
         return  availableProductDto;
-    }
+    }*/
 
 
     // *******************the dto to model data transfer****************

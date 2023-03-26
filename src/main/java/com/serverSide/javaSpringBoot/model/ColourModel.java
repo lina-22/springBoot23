@@ -27,4 +27,5 @@ public class ColourModel {
 
     @OneToMany(mappedBy = "colourModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();
+
 }

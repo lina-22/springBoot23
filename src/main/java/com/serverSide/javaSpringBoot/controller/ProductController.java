@@ -21,7 +21,7 @@ class ProductController {
     // requestbody comes from responseEntity(requestbody+requestparam) responseEntity bring some  meta information
     // i will pass/create the data from client side by using productDto, so at the parameter i need to pass the pruductdto where i stored the data
     // here line no 25 createProduct is a variable and line no 26 createProduct is a method from productManager and inside i pass the productDto object??
-    @PostMapping      // createProduct method call from ProductManager datatype also same
+  /*  @PostMapping      // createProduct method call from ProductManager datatype also same
     public ProductDto createProduct(@RequestBody ProductDto productDto){
         return productManager.createProduct(productDto);
     }
@@ -50,7 +50,7 @@ class ProductController {
             return new ResponseEntity<>("Product with " + id + " not found", HttpStatus.NOT_FOUND);
         }
 
-    }
+    }*/
 
 
 }

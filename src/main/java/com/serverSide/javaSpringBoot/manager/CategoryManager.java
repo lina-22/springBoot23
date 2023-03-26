@@ -19,7 +19,7 @@ public class CategoryManager {
 
     private ProductService productService;
 
-    public CategoryDto createCategory(CategoryDto categoryDto){
+  /*  public CategoryDto createCategory(CategoryDto categoryDto){
         CategoryModel categoryToAdd = toCategoryModel(categoryDto);
 
         CategoryModel addedCategory = categoryService.create(categoryToAdd);
@@ -36,9 +36,9 @@ public class CategoryManager {
             categoryDtoList.add(toCategoryDto(data));
         });
         return categoryDtoList;
-    }
+    }*/
     // ******************* the dto to model data transfer****************
-    public CategoryModel toCategoryModel( CategoryDto categoryDto){
+/*    public CategoryModel toCategoryModel( CategoryDto categoryDto){
         CategoryModel categoryModel = new CategoryModel();
         categoryModel.setName(categoryDto.getName());
 
@@ -51,7 +51,7 @@ public class CategoryManager {
          categoryDto.setName(categoryModel.getName());
 
         return  categoryDto;
-    }
+    }*/
 
 
     // *******************the dto to model data transfer****************

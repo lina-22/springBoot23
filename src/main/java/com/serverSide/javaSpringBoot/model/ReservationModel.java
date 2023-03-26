@@ -19,9 +19,9 @@ import java.util.Set;
 @Table(name = "reservations")
 public class ReservationModel {
     @Id
-    @Column(name ="id", nullable = false)
+    @Column(name ="reservation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long reservation_id;
 
     @Column(name="reference", nullable = false)
     private String reference;
@@ -29,10 +29,10 @@ public class ReservationModel {
     @Column(name="status", nullable = false)
     private String status;
 
-    @Column(name="expireDate", nullable = false)
+    @Column(name="expire_date", nullable = false)
     private Date expireDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
     @JoinTable(
             name = "product_lines",
             joinColumns = {@JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")},

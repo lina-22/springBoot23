@@ -47,7 +47,7 @@ public class ReservationManager {
         return reservationModel;
     }
 
-    public ReservationDto toReservationDto(ReservationModel reservationModel){
+   /* public ReservationDto toReservationDto(ReservationModel reservationModel){
         ReservationDto reservationDto = new ReservationDto();
         reservationDto.setId(reservationModel.getId());
         reservationDto.setReference(reservationModel.getReference());
@@ -55,7 +55,7 @@ public class ReservationManager {
         reservationDto.setExpireDate(reservationModel.getExpireDate());
 
         return  reservationDto;
-    }
+    }*/
 
 
     // *******************the dto to model data transfer****************
