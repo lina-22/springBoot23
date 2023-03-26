@@ -20,9 +20,9 @@ import java.util.Set;
 public class UsersModel {
 
     @Id
-    @Column
+    @Column(name ="users_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long users_id;
 
     @Column(name="first_name", nullable = false)
     private  String first_name;

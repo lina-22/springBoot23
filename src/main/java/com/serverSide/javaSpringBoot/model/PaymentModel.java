@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,15 +16,19 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "materials")
-public class MaterialModel {
-    @Id
-    @Column(name ="material_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long material_id;
+@Table(name = "payments")
+public class PaymentModel {
 
-    @Column(name = "material_value", nullable = false)
-    private String material_value;
+    @Id
+    @Column(name ="payment_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long payment_id;
+
+    @Column(name = "amount", nullable = false)
+    private BigDecimal amount;
+
+    @Column(name = "date_payment", nullable = false)
+    private Date date_payment;
 
     @OneToMany(mappedBy = "materialModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

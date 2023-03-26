@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "reservation")
+@Table(name = "reservations")
 public class ReservationModel {
     @Id
     @Column(name ="id", nullable = false)
