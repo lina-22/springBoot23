@@ -21,7 +21,7 @@ public class Password_resetModel {
     private long password_reset_id;
 
     @Column(name = "token", nullable = false)
-    private BigDecimal token;
+    private String token;
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")

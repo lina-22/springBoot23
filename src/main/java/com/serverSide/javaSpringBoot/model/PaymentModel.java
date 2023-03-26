@@ -24,10 +24,14 @@ public class PaymentModel {
     private long payment_id;
 
     @Column(name = "amount", nullable = false)
-    private BigDecimal amount;
+    private int amount;
 
     @Column(name = "date_payment", nullable = false)
     private Date date_payment;
+
+    @Column(name = "details", nullable = false)
+    private String details;
+
 
     @OneToMany(mappedBy = "paymentModel", fetch = FetchType.LAZY)
     private Set<ReservationModel> reservationModel = new HashSet<>();
