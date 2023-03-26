@@ -1,8 +1,6 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.SizeModel;
-
 import java.util.List;
 import java.util.Optional;
 

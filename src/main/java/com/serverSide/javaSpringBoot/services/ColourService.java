@@ -1,6 +1,5 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ColourModel;
 
 import java.util.List;

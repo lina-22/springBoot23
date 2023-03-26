@@ -1,11 +1,8 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.SizeModel;
-import com.serverSide.javaSpringBoot.repository.CategoryRepository;
 import com.serverSide.javaSpringBoot.repository.SizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.Optional;
 

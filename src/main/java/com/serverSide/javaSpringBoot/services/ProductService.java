@@ -1,6 +1,4 @@
 package com.serverSide.javaSpringBoot.services;
-
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ProductModel;
 
 import java.util.List;

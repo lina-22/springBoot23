@@ -1,11 +1,7 @@
 package com.serverSide.javaSpringBoot.services;
-
-import com.serverSide.javaSpringBoot.model.Password_resetModel;
 import com.serverSide.javaSpringBoot.model.PaymentModel;
-import com.serverSide.javaSpringBoot.repository.Password_resetRepository;
 import com.serverSide.javaSpringBoot.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.Optional;
 

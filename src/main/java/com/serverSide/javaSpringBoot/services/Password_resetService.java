@@ -1,6 +1,5 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.Password_resetModel;
 
 import java.util.List;
@@ -17,5 +16,4 @@ public interface Password_resetService {
 
     public  void delete(long password_reset_id);
 
-    //List<CategoryModel> findAllById(List<Long>ids); //
 }
