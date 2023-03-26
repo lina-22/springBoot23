@@ -1,7 +1,15 @@
 package com.serverSide.javaSpringBoot.dto;
 
-import javax.persistence.Column;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ColourDto {
    long colour_id;
    String colour_value;
