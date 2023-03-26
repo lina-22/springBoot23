@@ -5,15 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AvailableProductDto {
 
-    long id;
-    String colour;
-    String quantity;
-    String size;
+    long ap_id;
+    String ap_quantity;
+    String sku_reference;
 
 }
