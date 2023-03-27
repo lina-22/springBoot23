@@ -6,6 +6,9 @@ import com.serverSide.javaSpringBoot.services.SizeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SizeManager {
@@ -18,6 +21,15 @@ public class SizeManager {
         return toSizeDto(addedSize);
     }
 
+
+    public List<SizeDto> getAllSize(){
+        List<SizeDto>sizeDtoList = new ArrayList<>();
+        List<SizeModel>sizeModelList = sizeService.findAll();
+        sizeModelList.forEach(data->{
+            sizeDtoList.add(toSizeDto(data));
+        });
+        return sizeDtoList;
+    }
     // ******************* the dto to model data transfer****************
 
     public SizeModel toSizeModel(SizeDto sizeDto){

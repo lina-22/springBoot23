@@ -29,12 +29,6 @@ public class AvailableProductModel {
     private String sku_reference;
 
 
-    /*@ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")*/
- /*   @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private Set<ProductModel> productModel = new HashSet<>();
-*/
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private CategoryModel categoryModel;
@@ -54,5 +48,13 @@ public class AvailableProductModel {
     @JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
     private Set<ReservationModel>mReservations = new HashSet<>();
+
+
+    /*@ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")*/
+ /*   @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    private Set<ProductModel> productModel = new HashSet<>();
+*/
 
 }

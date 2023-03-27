@@ -35,7 +35,6 @@ public class CategoryManager {
    public CategoryModel toCategoryModel( CategoryDto categoryDto){
         CategoryModel categoryModel = new CategoryModel();
         categoryModel.setCategory_value(categoryDto.getCategory_value());
-
         return categoryModel;
     }
 
@@ -43,7 +42,6 @@ public class CategoryManager {
          CategoryDto categoryDto = new CategoryDto();
          categoryDto.setCategory_id(categoryModel.getCategory_id());
          categoryDto.setCategory_value(categoryModel.getCategory_value());
-
         return  categoryDto;
     }
 

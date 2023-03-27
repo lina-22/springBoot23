@@ -3,13 +3,12 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.SizeManager;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/size")
+@RequestMapping("/sizes")
 @AllArgsConstructor
 public class SizeController {
 
@@ -17,6 +16,17 @@ public class SizeController {
 
     @PostMapping
     public SizeDto createSize(@RequestBody SizeDto sizeDto){
+
         return sizeManager.createSize(sizeDto);
+    }
+
+    @GetMapping
+    public List<SizeDto>getAllSize(){
+        return sizeManager.getAllSize();
+    }
+
+    @GetMapping("/test")
+    public String getAllTest(){
+        return "testing................";
     }
 }

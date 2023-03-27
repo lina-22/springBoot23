@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 class CategoryController {
     private final CategoryManager categoryManager;
-    @PostMapping
+    @PostMapping("/addcat")
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto){
         return categoryManager.createCategory(categoryDto);
     }
