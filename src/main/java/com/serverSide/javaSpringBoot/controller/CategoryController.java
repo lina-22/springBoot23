@@ -1,8 +1,10 @@
 package com.serverSide.javaSpringBoot.controller;
+
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
 import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -16,18 +18,13 @@ class CategoryController {
         return categoryManager.createCategory(categoryDto);
     }
 
-    @GetMapping
-    public List<CategoryDto> getAllCategory(){
-
-        return categoryManager.getAllCategory();
-    }
 
 
-
-    /*@GetMapping("/test")
+  @GetMapping("/test")
     public String getAllCategoryTest(){
         return "tested ok";
-    }*/
+    }
+
 
 //    @GetMapping
 //    public List<CategoryDto> getAllCategory(){
@@ -45,3 +42,7 @@ class CategoryController {
 //    }
 }
 
+   /*@GetMapping("/test")
+    public String getAllCategoryTest(){
+        return "tested ok";
+    }*/

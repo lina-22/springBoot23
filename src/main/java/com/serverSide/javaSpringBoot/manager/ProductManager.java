@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ProductModel;
-import com.serverSide.javaSpringBoot.services.CategoryService;
 import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
