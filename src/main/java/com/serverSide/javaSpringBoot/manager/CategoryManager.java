@@ -1,8 +1,6 @@
 package com.serverSide.javaSpringBoot.manager;
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
-import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
-import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.services.CategoryService;
 import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
@@ -17,13 +15,12 @@ public class CategoryManager {
 
     private CategoryService categoryService;
 
-    private ProductService productService;
 
-  /*  public CategoryDto createCategory(CategoryDto categoryDto){
+   public CategoryDto createCategory(CategoryDto categoryDto){
         CategoryModel categoryToAdd = toCategoryModel(categoryDto);
 
         CategoryModel addedCategory = categoryService.create(categoryToAdd);
-
+//        System.out.println("hello"+addedCategory);
         return toCategoryDto(addedCategory);
 
     }
@@ -36,22 +33,22 @@ public class CategoryManager {
             categoryDtoList.add(toCategoryDto(data));
         });
         return categoryDtoList;
-    }*/
+    }
     // ******************* the dto to model data transfer****************
-/*    public CategoryModel toCategoryModel( CategoryDto categoryDto){
+   public CategoryModel toCategoryModel( CategoryDto categoryDto){
         CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName(categoryDto.getName());
+        categoryModel.setCategory_value(categoryDto.getCategory_value());
 
         return categoryModel;
     }
 
     public CategoryDto toCategoryDto(CategoryModel categoryModel){
         CategoryDto categoryDto = new CategoryDto();
-       categoryDto.setId(categoryModel.getId());
-         categoryDto.setName(categoryModel.getName());
+       categoryDto.setCategory_id(categoryModel.getCategory_id());
+         categoryDto.setCategory_value(categoryModel.getCategory_value());
 
         return  categoryDto;
-    }*/
+    }
 
 
     // *******************the dto to model data transfer****************

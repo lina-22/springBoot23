@@ -1,6 +1,5 @@
 package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
-import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 class CategoryController {
     private final CategoryManager categoryManager;
-   /* @PostMapping
+    @PostMapping
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto){
         return categoryManager.createCategory(categoryDto);
     }
 
     @GetMapping
     public List<CategoryDto> getAllCategory(){
+
         return categoryManager.getAllCategory();
-    }*/
+    }
+
+
+
     /*@GetMapping("/test")
     public String getAllCategoryTest(){
         return "tested ok";
