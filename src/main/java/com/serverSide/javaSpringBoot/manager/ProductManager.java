@@ -1,11 +1,8 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
-import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.model.ProductModel;
-import com.serverSide.javaSpringBoot.repository.ProductRepository;
-import com.serverSide.javaSpringBoot.response.MessageResponse;
 import com.serverSide.javaSpringBoot.services.CategoryService;
 import com.serverSide.javaSpringBoot.services.ProductService;
 import lombok.AllArgsConstructor;
@@ -15,35 +12,33 @@ import java.util.*;
 
 
 // after creation of dto the prductmanager has been created for handle the message response
-@Service // ? for use the service
+@Service
 @AllArgsConstructor
 public class ProductManager {
-    private ProductService productService; // constructor ??
-    private CategoryService categoryService; // importer ou ??
-   /* public ProductDto createProduct(ProductDto productDto){   // createProduct ar return type ProductDto //
+    private ProductService productService;
+    public ProductDto createProduct(ProductDto productDto){
 
-        ProductModel  productToAdd= toProductModel(productDto); // ?? and why at 25 no lines there have ProductDto data type but at this line inside bracket no need to give the data type
-                                                                            // / because it is a value??
-        ProductModel addedProduct =productService.create(productToAdd); // call the create method from product service then (inside pass the product to add)
+        ProductModel  productToAdd= toProductModel(productDto);
+        ProductModel addedProduct =productService.create(productToAdd);
 
-        return toProductDto(addedProduct); // why toProductDto is return, normally return like 40 no line/
+        return toProductDto(addedProduct);
     }
 
     public List<ProductDto> getAllProduct() {
         List<ProductDto>productDtoList = new ArrayList<>();
         List<ProductModel> productModelList = productService.findAll();
-        productModelList.forEach(data-> { // data lambda expression ar variable ar name??
-            productDtoList.add(toProductDto(data)); // toProductDto refer from line no
+        productModelList.forEach(data-> {
+            productDtoList.add(toProductDto(data));
         });
         return productDtoList;
     }
 
-    public ProductDto getProductById(long id){
-        return toProductDto(productService.findById(id).get());
+    public ProductDto getProductById(long product_id){
+        return toProductDto(productService.findById(product_id).get());
     }
 
     public ProductDto updateProduct(ProductDto productDto){
-       Optional<ProductModel> productModel =  productService.findById(productDto.getId());
+       Optional<ProductModel> productModel =  productService.findById(productDto.getProduct_id());
        // Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
 
 
@@ -63,14 +58,13 @@ public class ProductManager {
 
     }
 
-    public void deleteProductById(long id){
-        productService.delete(id);
+    public void deleteProductById(long product_id){
+        productService.delete(product_id);
     }
 
-*/
 
-
-     /*   public ProductModel toProductModel(ProductDto productDto){
+    // ******************* dto to model data transfer****************
+        public ProductModel toProductModel(ProductDto productDto){
         ProductModel productModel = new ProductModel();
         productModel.setName(productDto.getName());
         productModel.setDescription(productDto.getDescription());
@@ -79,16 +73,18 @@ public class ProductManager {
         productModel.setPrice(productDto.getPrice());
         productModel.setImportCountry(productDto.getImportCountry());
 
-        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
-        productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??
+//        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
+//        productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??
 
         return productModel;
 
     }
 
+
+    // *******************get the dto with id ****************
         public ProductDto toProductDto(ProductModel productModel){
         ProductDto productDto = new ProductDto();
-        productDto.setId(productModel.getId());
+        productDto.setProduct_id(productModel.getProduct_id());
         productDto.setDescription(productModel.getDescription());
         productDto.setDiscount(productModel.getDiscount());
         productDto.setImage(productModel.getImage());
@@ -97,22 +93,10 @@ public class ProductManager {
         productDto.set_featured(productModel.is_featured());
 
 
-        productDto.setMCategories(productModel.getMCategories());
+//        productDto.setMCategories(productModel.getMCategories());
 
         return productDto;
-    }*/
-
+    }
 }
 
 
-
-// *******************practice the dto to model data transfer****************
-//public ProductModel toProductModel(ProductDto productDto){
-//        ProductModel productModel = new ProductModel();
-//        productModel.setName(productDto.getName());
-//
-//
-//
-//}
-
-// *******************practice the dto to model data transfer****************
