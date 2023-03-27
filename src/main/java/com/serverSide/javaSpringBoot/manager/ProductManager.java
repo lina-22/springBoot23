@@ -59,6 +59,7 @@ public class ProductManager {
     }
 
     public void deleteProductById(long product_id){
+
         productService.delete(product_id);
     }
 

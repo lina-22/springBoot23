@@ -24,7 +24,8 @@ class ProductController {
 
     @GetMapping
     public List<ProductDto>getAllProduct(){
-        return productManager.getAllProduct();
+
+       return productManager.getAllProduct();
     }
 
     @GetMapping(path= "/product_id")

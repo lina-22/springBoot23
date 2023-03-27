@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -30,8 +31,28 @@ public class RolesManager {
 
     }
 
+    public RolesDto findById(long roles_id){
+
+        return toRolesDto(rolesService.findById(roles_id).get());
+    }
 
 
+    public RolesDto updateRoles(RolesDto rolesDto){
+        Optional<RolesModel> rolesModel = rolesService.findById(rolesDto.getRole_id());
+
+        if(rolesModel.isPresent()){
+            rolesModel.get().setName(rolesDto.getName());
+
+            RolesModel updateRolesModel = rolesService.update(rolesModel.get());
+            return toRolesDto(updateRolesModel);
+        }
+        return new RolesDto();
+    }
+
+
+    public void deleteProductById(long roles_id){
+        rolesService.delete(roles_id);
+    }
     // ******************* the dto to model data transfer****************
     public RolesModel toRolesModel(RolesDto rolesDto){
         RolesModel rolesModel = new RolesModel();
