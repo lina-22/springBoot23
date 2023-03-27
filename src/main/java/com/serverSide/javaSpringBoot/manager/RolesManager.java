@@ -13,40 +13,43 @@ import java.util.List;
 @AllArgsConstructor
 public class RolesManager {
 
-  /*  private RolesService rolesService;
+   private RolesService rolesService;
     public RolesDto createRoles(RolesDto rolesDto){
         RolesModel rolesToAdd = toRolesModel(rolesDto);
         RolesModel addedRoles = rolesService.create(rolesToAdd);
-
         return toRolesDto(addedRoles);
-    }*/
+    }
 
-
-
-  /*  public List<RolesDto> getAllRoles() {
+    public List<RolesDto> getAllRoles() {
         List<RolesDto>rolesDtoList = new ArrayList<>();
         List<RolesModel> rolesModelList = rolesService.findAll();
         rolesModelList.forEach(data-> {
             rolesDtoList.add(toRolesDto(data));
         });
         return rolesDtoList;
-    }*/
+
+    }
+
+
+
     // ******************* the dto to model data transfer****************
     public RolesModel toRolesModel(RolesDto rolesDto){
         RolesModel rolesModel = new RolesModel();
         rolesModel.setName(rolesDto.getName());
-
         return rolesModel;
     }
 
-   /* public RolesDto toRolesDto(RolesModel rolesModel){
+  public RolesDto toRolesDto(RolesModel rolesModel){
         RolesDto rolesDto = new RolesDto();
-        rolesDto.setId(rolesModel.getId());
+        rolesDto.setRole_id(rolesModel.getRole_id());
         rolesDto.setName(rolesModel.getName());
 
         return  rolesDto;
-    }*/
+    }
 
 
-    // *******************the dto to model data transfer****************
+    // *******************end the dto to model data transfer****************
 }
+
+
+

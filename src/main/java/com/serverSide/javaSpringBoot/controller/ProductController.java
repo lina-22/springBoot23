@@ -27,7 +27,7 @@ class ProductController {
         return productManager.getAllProduct();
     }
 
-    @GetMapping(path= "/id")
+    @GetMapping(path= "/product_id")
     public ProductDto getProductById(@PathVariable long product_id){
         return productManager.getProductById(product_id);
     }
@@ -37,7 +37,7 @@ class ProductController {
         return productManager.updateProduct(productDto);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/{product_id}")
     public ResponseEntity<String> deleteProductById(@PathVariable long product_id){
         try{
             return new ResponseEntity<>("Product with id + " + product_id + " has been deleted successfully.", HttpStatus.OK);
