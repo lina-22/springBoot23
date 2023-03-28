@@ -1,12 +1,15 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ColourDto;
+import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.model.ColourModel;
+import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.services.ColourService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +31,17 @@ public class ColourManager {
             colourDtoList.add(toColourDto(data));
         });
         return colourDtoList;
+    }
+
+    public ColourDto updateColour(ColourDto colourDto){
+        Optional<ColourModel> colourModel =  colourService.findById(colourDto.getColour_id());
+        if (colourModel.isPresent()){
+            colourModel.get().setColour_value(colourDto.getColour_value());
+            ColourModel updatedColourModel =  colourService.update(colourModel.get());
+            return toColourDto(updatedColourModel);
+        }
+        return new ColourDto();
+
     }
     // ******************* the dto to model data transfer****************
 

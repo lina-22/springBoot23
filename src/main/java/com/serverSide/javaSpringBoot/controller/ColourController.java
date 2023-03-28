@@ -2,6 +2,7 @@ package com.serverSide.javaSpringBoot.controller;
 
 
 import com.serverSide.javaSpringBoot.dto.ColourDto;
+import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.manager.ColourManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class ColourController {
        return colourManager.getAllColour();
     }
 
+    @PutMapping
+    public ColourDto updateColourById(@RequestBody ColourDto colourDto){
+        return colourManager.updateColour(colourDto);
+    }
     @GetMapping("/test")
     public String getAllTest(){
         return "testing................";
