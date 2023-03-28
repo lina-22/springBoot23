@@ -3,6 +3,7 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.SizeManager;
+import com.serverSide.javaSpringBoot.model.SizeModel;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,16 @@ public class SizeController {
     public SizeDto updateSizeById(@RequestBody SizeDto sizeDto){
         return sizeManager.updateSize(sizeDto);
     }
+
+
+    @DeleteMapping(path ="/{size_id}")
+    public SizeDto deleteSize(@PathVariable long size_id){
+        SizeDto dSize = sizeManager.getSizeById(size_id);
+        sizeManager.deleteSize( size_id);
+        return  dSize;
+
+    }
+
 
     @GetMapping("/test")
     public String getAllTest(){

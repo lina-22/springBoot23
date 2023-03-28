@@ -37,12 +37,12 @@ public class RolesController {
         return  rolesManager.updateRoles(rolesDto);
     }
 
-    @DeleteMapping(path = "/{roles_id}")
-    public ResponseEntity<String> deleteRolesById(@PathVariable long roles_id){
+    @DeleteMapping(path = "/{role_id}")
+    public ResponseEntity<String> deleteRoleById(@PathVariable long role_id){
         try{
-            return new ResponseEntity<>("Roles with id + " + roles_id + " has been deleted successfully.", HttpStatus.OK);
+            return new ResponseEntity<>("Roles with id + " + role_id + " has been deleted successfully.", HttpStatus.OK);
         }catch (Exception excp){
-            return new ResponseEntity<>("Roles with " + roles_id + " not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Roles with " + role_id + " not found", HttpStatus.NOT_FOUND);
         }
 
     }
