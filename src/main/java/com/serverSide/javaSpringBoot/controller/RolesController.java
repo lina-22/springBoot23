@@ -26,9 +26,9 @@ public class RolesController {
         return rolesManager.getAllRoles();
     }
 
-    @GetMapping(path="/id")
-    public RolesDto getRolesById(@PathVariable long roles_id){
-        return rolesManager.findById(roles_id);
+    @GetMapping(path="/{role_id}")
+    public RolesDto getRolesById(@PathVariable long role_id){
+        return rolesManager.getRoleById(role_id);
     }
 
     @PutMapping

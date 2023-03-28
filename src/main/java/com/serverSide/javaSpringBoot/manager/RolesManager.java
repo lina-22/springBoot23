@@ -33,7 +33,7 @@ public class RolesManager {
 
     }
 
-    public RolesDto findById(long roles_id){
+    public RolesDto getRoleById(long roles_id){
 
         return toRolesDto(rolesService.findById(roles_id).get());
     }
@@ -50,7 +50,8 @@ public class RolesManager {
 
     }
 
-    public void deleteProductById(long roles_id){
+    public void deleteRoleById(long roles_id){
+
         rolesService.delete(roles_id);
     }
     // ******************* the dto to model data transfer****************
