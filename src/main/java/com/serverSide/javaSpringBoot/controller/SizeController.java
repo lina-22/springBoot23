@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.controller;
 
+import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.SizeManager;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,11 @@ public class SizeController {
     @GetMapping
     public List<SizeDto>getAllSize(){
         return sizeManager.getAllSize();
+    }
+
+    @PutMapping
+    public SizeDto updateSizeById(@RequestBody SizeDto sizeDto){
+        return sizeManager.updateSize(sizeDto);
     }
 
     @GetMapping("/test")

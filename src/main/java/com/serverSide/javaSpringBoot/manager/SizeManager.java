@@ -1,6 +1,8 @@
 package com.serverSide.javaSpringBoot.manager;
 
+import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
+import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.model.SizeModel;
 import com.serverSide.javaSpringBoot.services.SizeService;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +32,17 @@ public class SizeManager {
             sizeDtoList.add(toSizeDto(data));
         });
         return sizeDtoList;
+    }
+
+    public SizeDto updateSize(SizeDto sizeDto){
+        Optional<SizeModel> sizeModel =  sizeService.findById(sizeDto.getSize_id());
+        if (sizeModel.isPresent()){
+            sizeModel.get().setSize_value(sizeDto.getSize_value());
+            SizeModel updatedSizeModel =  sizeService.update(sizeModel.get());
+            return toSizeDto(updatedSizeModel);
+        }
+        return new SizeDto();
+
     }
     // ******************* the dto to model data transfer****************
 
