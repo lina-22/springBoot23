@@ -34,6 +34,10 @@ public class SizeManager {
         return sizeDtoList;
     }
 
+    public SizeDto getSizeById(long size_id){
+        return toSizeDto(sizeService.findById(size_id).get());
+    }
+
     public SizeDto updateSize(SizeDto sizeDto){
         Optional<SizeModel> sizeModel =  sizeService.findById(sizeDto.getSize_id());
         if (sizeModel.isPresent()){

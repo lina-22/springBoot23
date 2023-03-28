@@ -26,6 +26,12 @@ public class SizeController {
         return sizeManager.getAllSize();
     }
 
+
+    @GetMapping(path = "/{size_id}")
+    public SizeDto getSizeById(@PathVariable long size_id){
+        return sizeManager.getSizeById(size_id);
+    }
+
     @PutMapping
     public SizeDto updateSizeById(@RequestBody SizeDto sizeDto){
         return sizeManager.updateSize(sizeDto);

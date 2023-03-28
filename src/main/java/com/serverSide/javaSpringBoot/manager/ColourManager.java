@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ColourDto;
-import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.model.ColourModel;
-import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.services.ColourService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,11 @@ public class ColourManager {
         });
         return colourDtoList;
     }
+
+    public ColourDto getColourById(long colour_id){
+        return toColourDto(colourService.findById(colour_id).get());
+    }
+
 
     public ColourDto updateColour(ColourDto colourDto){
         Optional<ColourModel> colourModel =  colourService.findById(colourDto.getColour_id());
