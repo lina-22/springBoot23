@@ -2,6 +2,7 @@ package com.serverSide.javaSpringBoot.controller;
 
 
 import com.serverSide.javaSpringBoot.dto.MaterialDto;
+import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.MaterialManager;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,10 @@ public class MaterialController {
     public List<MaterialDto> getAllMaterial(){
 
         return materialManager.getAllMaterial();
+    }
+
+    @PutMapping
+    public MaterialDto updateMaterialById(@RequestBody MaterialDto materialDto){
+        return materialManager.updateMaterial(materialDto);
     }
 }

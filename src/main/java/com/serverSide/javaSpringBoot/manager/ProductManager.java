@@ -67,33 +67,29 @@ public class ProductManager {
         ProductModel productModel = new ProductModel();
         productModel.setName(productDto.getName());
         productModel.setDescription(productDto.getDescription());
+        productModel.setPrice(productDto.getPrice());
         productModel.setDiscount(productDto.getDiscount());
         productModel.set_featured(productDto.is_featured());
-        productModel.setPrice(productDto.getPrice());
         productModel.setImportCountry(productDto.getImportCountry());
-
 //        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
 //        productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??
-
         return productModel;
 
     }
-
 
     // *******************get the dto with id ****************
         public ProductDto toProductDto(ProductModel productModel){
         ProductDto productDto = new ProductDto();
         productDto.setProduct_id(productModel.getProduct_id());
-        productDto.setDescription(productModel.getDescription());
-        productDto.setDiscount(productModel.getDiscount());
-        productDto.setImage(productModel.getImage());
         productDto.setName(productModel.getName());
+        productDto.setDescription(productModel.getDescription());
         productDto.setPrice(productModel.getPrice());
+        productDto.setDiscount(productModel.getDiscount());
         productDto.set_featured(productModel.is_featured());
-
+        productDto.setImage(productModel.getImage());
+        productDto.setImportCountry(productModel.getImportCountry());
 
 //        productDto.setMCategories(productModel.getMCategories());
-
         return productDto;
     }
 }

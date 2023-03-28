@@ -1,13 +1,16 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.MaterialDto;
+import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.model.MaterialModel;
+import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.services.MaterialService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +31,18 @@ public class MaterialManager {
             materialDtoList.add(toMaterialDto(data));
         });
         return materialDtoList;
+    }
+
+
+    public MaterialDto updateMaterial(MaterialDto materialDto){
+        Optional<MaterialModel> materialModel =  materialService.findById(materialDto.getMaterial_id());
+        if (materialModel.isPresent()){
+            materialModel.get().setMaterial_value(materialDto.getMaterial_value());
+            MaterialModel updatedMaterialModel =  materialService.update(materialModel.get());
+            return toMaterialDto(updatedMaterialModel);
+        }
+        return new MaterialDto();
+
     }
     // ******************* the dto to model data transfer****************
 
