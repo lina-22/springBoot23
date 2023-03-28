@@ -3,14 +3,18 @@ package com.serverSide.javaSpringBoot.services;
 import com.serverSide.javaSpringBoot.model.ColourModel;
 import com.serverSide.javaSpringBoot.repository.ColourRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
 
 
-@AllArgsConstructor
+@Component
 public class ColourServiceImpl implements ColourService {
 
-    private ColourRepository colourRepository;
+    @Autowired
+    ColourRepository colourRepository;
 
     @Override
     public ColourModel create(ColourModel colourModel) {
