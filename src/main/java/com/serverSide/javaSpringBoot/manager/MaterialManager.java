@@ -34,6 +34,10 @@ public class MaterialManager {
     }
 
 
+    public MaterialDto getMaterialById(long material_id){
+        return toMaterialDto(materialService.findById(material_id).get());
+    }
+
     public MaterialDto updateMaterial(MaterialDto materialDto){
         Optional<MaterialModel> materialModel =  materialService.findById(materialDto.getMaterial_id());
         if (materialModel.isPresent()){

@@ -28,6 +28,11 @@ public class MaterialController {
         return materialManager.getAllMaterial();
     }
 
+    @GetMapping(path= "/{material_id}")
+    public MaterialDto getMaterialById(@PathVariable long material_id){
+        return materialManager.getMaterialById(material_id);
+    }
+
     @PutMapping
     public MaterialDto updateMaterialById(@RequestBody MaterialDto materialDto){
         return materialManager.updateMaterial(materialDto);
