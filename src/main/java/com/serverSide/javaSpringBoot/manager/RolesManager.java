@@ -1,6 +1,8 @@
 package com.serverSide.javaSpringBoot.manager;
 
+import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.RolesDto;
+import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.services.RolesService;
 import lombok.AllArgsConstructor;
@@ -38,17 +40,15 @@ public class RolesManager {
 
 
     public RolesDto updateRoles(RolesDto rolesDto){
-        Optional<RolesModel> rolesModel = rolesService.findById(rolesDto.getRole_id());
-
-        if(rolesModel.isPresent()){
+        Optional<RolesModel> rolesModel =  rolesService.findById(rolesDto.getRole_id());
+        if (rolesModel.isPresent()){
             rolesModel.get().setName(rolesDto.getName());
-
-            RolesModel updateRolesModel = rolesService.update(rolesModel.get());
-            return toRolesDto(updateRolesModel);
+            RolesModel updatedRolesModel =  rolesService.update(rolesModel.get());
+            return toRolesDto(updatedRolesModel);
         }
         return new RolesDto();
-    }
 
+    }
 
     public void deleteProductById(long roles_id){
         rolesService.delete(roles_id);
