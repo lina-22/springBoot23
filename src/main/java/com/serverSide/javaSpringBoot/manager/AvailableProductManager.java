@@ -1,16 +1,13 @@
 package com.serverSide.javaSpringBoot.manager;
 
-import com.serverSide.javaSpringBoot.dto.AvailableProductDto;
-import com.serverSide.javaSpringBoot.dto.CategoryDto;
+import com.serverSide.javaSpringBoot.dto.AvailableProductDtoRes;
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
-import com.serverSide.javaSpringBoot.model.CategoryModel;
-import com.serverSide.javaSpringBoot.response.MessageResponse;
 import com.serverSide.javaSpringBoot.services.AvailableProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -57,5 +54,30 @@ public class AvailableProductManager {
 
 
     // *******************the dto to model data transfer****************
+    public AvailableProductDtoRes toDto(AvailableProductModel availableProductModel){
 
+        AvailableProductDtoRes availableProductDtoRes = new AvailableProductDtoRes();
+
+        availableProductDtoRes.setId(availableProductModel.getApId());
+        availableProductDtoRes.setQty(availableProductModel.getApQuantity());
+        availableProductDtoRes.setSkuReference(availableProductModel.getSkuReference());
+        availableProductDtoRes.setSize(availableProductModel.getSizeModel().getSizeValue());
+        availableProductDtoRes.setCategory(availableProductModel.getCategoryModel().getCategoryValue());
+        availableProductDtoRes.setColour(availableProductModel.getColourModel().getColourValue());
+        availableProductDtoRes.setMaterial(availableProductModel.getMaterialModel().getMaterialValue());
+
+        return availableProductDtoRes;
+    }
+
+    public Set<AvailableProductDtoRes> toDtos(Set<AvailableProductModel>availableProductModels){
+
+        //Set<AvailableProductModel>availableProductDtoSet = new HashSet<>(availableProductModels);
+
+        Set<AvailableProductDtoRes> availableProductDtoRespons = new HashSet<>();
+
+        availableProductModels.forEach(data->{
+          availableProductDtoRespons.add(toDto(data));
+        });
+        return availableProductDtoRespons;
+    }
 }

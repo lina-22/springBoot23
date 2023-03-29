@@ -1,10 +1,7 @@
 package com.serverSide.javaSpringBoot.controller;
-import com.serverSide.javaSpringBoot.dto.AvailableProductDto;
 import com.serverSide.javaSpringBoot.manager.AvailableProductManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/availableproduct")

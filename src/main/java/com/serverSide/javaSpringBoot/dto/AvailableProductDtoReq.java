@@ -9,15 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AvailableProductDto {
+public class AvailableProductDtoReq {
 
-    private long apId;
-    private int apQuantity;
+    private long id;
+    private int qty;
     private String skuReference;
     private long categoryId;
     private long colourId;
     private long materialId;
     private long sizeId;
-
 
 }

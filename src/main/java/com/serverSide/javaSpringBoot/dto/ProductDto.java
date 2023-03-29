@@ -1,11 +1,7 @@
 package com.serverSide.javaSpringBoot.dto;
 
-import com.serverSide.javaSpringBoot.model.CategoryModel;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -23,7 +19,8 @@ public class ProductDto {
     private String image;
     private String description;
     private String importCountry;
-    private Set<AvailableProductDto> availableProductDtos;
+    private Set<AvailableProductDtoRes> availableProductDtoRes;
+    private Set<AvailableProductDtoReq> availableProductDtoReq;
 
 
 

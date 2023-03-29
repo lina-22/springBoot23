@@ -15,7 +15,6 @@ public class PaymentController {
 
     @PostMapping
     public PaymentDto createPayment(@RequestBody PaymentDto paymentDto){
-
         return paymentManager.createPayment(paymentDto);
     }
 

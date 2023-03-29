@@ -20,14 +20,15 @@ public class ProductManager {
     private SizeService sizeService;
     private AvailableProductService availableProductService;
 
+    private AvailableProductManager availableProductManager;
+
     public ProductDto createProduct(ProductDto productDto){
-        System.out.println("tes prod name :" + productDto.getName() );
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
-        productDto.getAvailableProductDtos().forEach(data->{
+        productDto.getAvailableProductDtoReq().forEach(data->{
+
             AvailableProductModel availableProductModel = new AvailableProductModel();
+
             Optional<CategoryModel> categoryModel = categoryService.findById(data.getCategoryId());
-            List<CategoryModel>categoryModels= categoryService.findAll();
-            System.out.println("cat test :" + categoryModels.toString());
 
             if (categoryModel.isPresent()) {
                 availableProductModel.setCategoryModel(categoryModel.get());
@@ -47,8 +48,9 @@ public class ProductManager {
             if (materialModel.isPresent()) {
                 availableProductModel.setMaterialModel(materialModel.get());
             }
+
             availableProductModel.setSkuReference(data.getSkuReference());
-            availableProductModel.setApQuantity(data.getApQuantity());
+            availableProductModel.setApQuantity(data.getQty());
 
             availableProductModels.add(availableProductModel);
 
@@ -141,7 +143,8 @@ public class ProductManager {
         productDto.set_featured(productModel.is_featured());
         productDto.setImage(productModel.getImage());
         productDto.setImportCountry(productModel.getImportCountry());
-
+        productDto.setAvailableProductDtoRes(availableProductManager
+                .toDtos(productModel.getAvailableProductModel()));
         return productDto;
     }
 }
