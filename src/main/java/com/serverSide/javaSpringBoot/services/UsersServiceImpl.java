@@ -10,39 +10,39 @@ import java.util.Optional;
 public class UsersServiceImpl implements UsersService {
 
     @Autowired
-    UsersRepository mUsersRepository;
+    UsersRepository usersRepository;
 
     @Override
     public UsersModel create(UsersModel usersModel){
 
-        return  mUsersRepository.save(usersModel);
+        return usersRepository.save(usersModel);
     }
     @Override
     public Optional<UsersModel> findById(long users_id){
 
-        return mUsersRepository.findById(users_id);
+        return usersRepository.findById(users_id);
     }
 
     @Override
     public List<UsersModel> findAll(){
 
-        return mUsersRepository.findAll();
+        return usersRepository.findAll();
     }
 
     @Override
     public UsersModel update(UsersModel usersModel){
 
-        return  mUsersRepository.save(usersModel);
+        return  usersRepository.save(usersModel);
     }
 
     @Override
     public void delete(long users_id) {
-        mUsersRepository.deleteById(users_id);
+        usersRepository.deleteById(users_id);
     }
     @Override
     public List<UsersModel> findAllById(List<Long> ids) {
 
-        return mUsersRepository.findAllById(ids);
+        return usersRepository.findAllById(ids);
     }
 
 }
