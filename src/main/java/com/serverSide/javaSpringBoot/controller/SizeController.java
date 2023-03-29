@@ -39,13 +39,13 @@ public class SizeController {
     }
 
 
-    @DeleteMapping(path ="/{size_id}")
-    public SizeDto deleteSize(@PathVariable long size_id){
-        SizeDto dSize = sizeManager.getSizeById(size_id);
-        sizeManager.deleteSize( size_id);
-        return  dSize;
-
-    }
+//    @DeleteMapping(path ="/{size_id}")
+//    public SizeDto deleteSize(@PathVariable long size_id){
+//        SizeDto dSize = sizeManager.getSizeById(size_id);
+//        sizeManager.deleteSize( size_id);
+//        return  dSize;
+//
+//    }
 
 
     @GetMapping("/test")

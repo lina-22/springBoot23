@@ -4,16 +4,19 @@ import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface AvailableProductService {
 
-    public AvailableProductModel create(AvailableProductModel availableProductModel);
+     AvailableProductModel create(AvailableProductModel availableProductModel);
 
-    public AvailableProductModel update(AvailableProductModel availableProductModel);
+    Set<AvailableProductModel> saveAll(List<AvailableProductModel> availableProductModels);
 
-    public Optional<AvailableProductModel> findById(long ap_id);
+     AvailableProductModel update(AvailableProductModel availableProductModel);
 
-    public List<AvailableProductModel> findAll();
+     Optional<AvailableProductModel> findById(long ap_id);
 
-    public  void delete(long ap_id);
+     List<AvailableProductModel> findAll();
+
+      void delete(long ap_id);
 }

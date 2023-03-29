@@ -6,6 +6,9 @@ import com.serverSide.javaSpringBoot.services.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CategoryManager {
@@ -32,16 +35,16 @@ public class CategoryManager {
 //        return categoryDtoList;
 //    }
     // ******************* the dto to model data transfer****************
-   public CategoryModel toCategoryModel( CategoryDto categoryDto){
+   public CategoryModel toCategoryModel(CategoryDto categoryDto){
         CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setCategory_value(categoryDto.getCategory_value());
+        categoryModel.setCategoryValue(categoryDto.getCategory_value());
         return categoryModel;
     }
 
     public CategoryDto toCategoryDto(CategoryModel categoryModel){
          CategoryDto categoryDto = new CategoryDto();
-         categoryDto.setCategory_id(categoryModel.getCategory_id());
-         categoryDto.setCategory_value(categoryModel.getCategory_value());
+         categoryDto.setCategory_id(categoryModel.getCategoryId());
+         categoryDto.setCategory_value(categoryModel.getCategoryValue());
         return  categoryDto;
     }
 

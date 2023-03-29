@@ -11,8 +11,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AvailableProductDto {
 
-    long ap_id;
-    String ap_quantity;
-    String sku_reference;
+    private long apId;
+    private int apQuantity;
+    private String skuReference;
+    private long categoryId;
+    private long colourId;
+    private long materialId;
+    private long sizeId;
+
 
 }

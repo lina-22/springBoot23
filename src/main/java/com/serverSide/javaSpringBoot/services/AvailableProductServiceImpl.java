@@ -5,8 +5,10 @@ import com.serverSide.javaSpringBoot.repository.AvailableProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 public class AvailableProductServiceImpl implements AvailableProductService {
@@ -17,7 +19,17 @@ public class AvailableProductServiceImpl implements AvailableProductService {
     @Override
     public AvailableProductModel create(AvailableProductModel availableProductModel){
         return mAvailableProductRepository.save(availableProductModel);
-    };
+    }
+
+    @Override
+    public Set<AvailableProductModel> saveAll(List<AvailableProductModel> availableProductModels) {
+        mAvailableProductRepository.saveAll(availableProductModels);
+        List<AvailableProductModel> savedAvailables = mAvailableProductRepository.saveAllAndFlush(availableProductModels);
+        Set<AvailableProductModel>availableProductModelSet = new HashSet<>(savedAvailables);
+        return  availableProductModelSet;
+    }
+
+    ;
 
     @Override
     public AvailableProductModel update(AvailableProductModel availableProductModel){

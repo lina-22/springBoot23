@@ -19,27 +19,27 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryModel create(CategoryModel categoryModel) {
-        return null;
+        return mCategoryRepository.save(categoryModel);
     }
 
     @Override
     public Optional<CategoryModel> findById(long category_id) {
-        return Optional.empty();
+        return mCategoryRepository.findById(category_id);
     }
 
     @Override
     public List<CategoryModel> findAll() {
-        return null;
+        return mCategoryRepository.findAll();
     }
 
     @Override
     public CategoryModel update(CategoryModel categoryModel) {
-        return null;
+        return mCategoryRepository.saveAndFlush(categoryModel);
     }
 
     @Override
     public void delete(long category_id) {
-
+        mCategoryRepository.deleteById(category_id);
     }
 }
 

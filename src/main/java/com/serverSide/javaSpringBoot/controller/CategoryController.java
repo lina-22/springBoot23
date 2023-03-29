@@ -13,12 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 class CategoryController {
     private final CategoryManager categoryManager;
-    @PostMapping("/addcat")
+    @PostMapping
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto){
         return categoryManager.createCategory(categoryDto);
     }
 
-
+//    @GetMapping
+//    public List<CategoryDto> getAllCategory(){
+//        return categoryManager.getAllCategory();
+//    }
 
   @GetMapping("/test")
     public String getAllCategoryTest(){

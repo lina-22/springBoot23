@@ -19,12 +19,21 @@ public class CategoryModel {
     @Id
     @Column(name ="category_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long category_id;
+    private long categoryId;
 
     @Column(name = "category_value", nullable = false)
-    private String category_value;
+    private String categoryValue;
 
     @OneToMany(mappedBy = "categoryModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "CategoryModel{" +
+                "category_id=" + categoryId +
+                ", category_value='" + categoryValue + '\'' +
+                ", availableProductModel=" + availableProductModel +
+                '}';
+    }
 
 }

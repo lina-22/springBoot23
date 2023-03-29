@@ -1,8 +1,8 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
-import com.serverSide.javaSpringBoot.model.ProductModel;
-import com.serverSide.javaSpringBoot.services.ProductService;
+import com.serverSide.javaSpringBoot.model.*;
+import com.serverSide.javaSpringBoot.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,62 @@ import java.util.*;
 @AllArgsConstructor
 public class ProductManager {
     private ProductService productService;
-    public ProductDto createProduct(ProductDto productDto){
+    private CategoryService categoryService;
+    private ColourService colourService;
+    private MaterialService materialService;
+    private SizeService sizeService;
+    private AvailableProductService availableProductService;
 
-        ProductModel  productToAdd= toProductModel(productDto);
-        ProductModel addedProduct =productService.create(productToAdd);
+    public ProductDto createProduct(ProductDto productDto){
+        System.out.println("tes prod name :" + productDto.getName() );
+        List<AvailableProductModel>availableProductModels = new ArrayList<>();
+        productDto.getAvailableProductDtos().forEach(data->{
+            AvailableProductModel availableProductModel = new AvailableProductModel();
+            Optional<CategoryModel> categoryModel = categoryService.findById(data.getCategoryId());
+            List<CategoryModel>categoryModels= categoryService.findAll();
+            System.out.println("cat test :" + categoryModels.toString());
+
+            if (categoryModel.isPresent()) {
+                availableProductModel.setCategoryModel(categoryModel.get());
+            }
+
+            Optional<ColourModel> colourModel = colourService.findById(data.getColourId());
+            if (colourModel.isPresent()) {
+                availableProductModel.setColourModel(colourModel.get());
+            }
+
+            Optional<SizeModel> sizeModel = sizeService.findById(data.getSizeId());
+            if (sizeModel.isPresent()) {
+                availableProductModel.setSizeModel(sizeModel.get());
+            }
+
+            Optional<MaterialModel> materialModel = materialService.findById(data.getMaterialId());
+            if (materialModel.isPresent()) {
+                availableProductModel.setMaterialModel(materialModel.get());
+            }
+            availableProductModel.setSkuReference(data.getSkuReference());
+            availableProductModel.setApQuantity(data.getApQuantity());
+
+            availableProductModels.add(availableProductModel);
+
+        });
+
+        Set<AvailableProductModel> availableProductModelSet = availableProductService.saveAll(availableProductModels);
+
+        ProductModel productModelToSave = new ProductModel();
+        productModelToSave.setPrice(productDto.getPrice());
+        productModelToSave.setDescription(productDto.getDescription());
+        productModelToSave.setDiscount(productDto.getDiscount());
+        productModelToSave.setName(productDto.getName());
+        productModelToSave.setImage(productDto.getImage());
+        productModelToSave.setImportCountry(productDto.getImportCountry());
+        productModelToSave.set_featured(productDto.is_featured());
+        productModelToSave.setAvailableProductModel(availableProductModelSet);
+
+        ProductModel addedProduct = productService.create(productModelToSave);
+        //System.out.println("test here product save : "+ addedProduct.toString());
+      //  ProductModel  productToAdd= toProductModel(productDto);
+
 
         return toProductDto(addedProduct);
     }
@@ -36,7 +88,7 @@ public class ProductManager {
     }
 
     public ProductDto updateProduct(ProductDto productDto){
-       Optional<ProductModel> productModel =  productService.findById(productDto.getProduct_id());
+       Optional<ProductModel> productModel =  productService.findById(productDto.getProductId());
        // Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
 
 
@@ -79,8 +131,9 @@ public class ProductManager {
 
     // *******************get the dto with id ****************
         public ProductDto toProductDto(ProductModel productModel){
+
         ProductDto productDto = new ProductDto();
-        productDto.setProduct_id(productModel.getProduct_id());
+        productDto.setProductId(productModel.getProduct_id());
         productDto.setName(productModel.getName());
         productDto.setDescription(productModel.getDescription());
         productDto.setPrice(productModel.getPrice());
@@ -89,7 +142,6 @@ public class ProductManager {
         productDto.setImage(productModel.getImage());
         productDto.setImportCountry(productModel.getImportCountry());
 
-//        productDto.setMCategories(productModel.getMCategories());
         return productDto;
     }
 }

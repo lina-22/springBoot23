@@ -20,13 +20,13 @@ public class AvailableProductModel {
     @Id
     @Column(name="ap_id", nullable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ap_id;
+    private long apId;
 
     @Column(name="ap_quantity", nullable = true)
-    private String ap_quantity;
+    private int apQuantity;
 
     @Column(name="sku_reference", nullable = true)
-    private String sku_reference;
+    private String skuReference;
 
 
     @ManyToOne
@@ -57,4 +57,17 @@ public class AvailableProductModel {
     private Set<ProductModel> productModel = new HashSet<>();
 */
 
+    @Override
+    public String toString() {
+        return "AvailableProductModel{" +
+                "apId=" + apId +
+                ", apQuantity=" + apQuantity +
+                ", skuReference='" + skuReference + '\'' +
+                ", categoryModel=" + categoryModel +
+                ", sizeModel=" + sizeModel +
+                ", colourModel=" + colourModel +
+                ", materialModel=" + materialModel +
+                ", mReservations=" + mReservations +
+                '}';
+    }
 }
