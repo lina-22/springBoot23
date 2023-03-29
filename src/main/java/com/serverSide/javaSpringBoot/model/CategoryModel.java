@@ -30,8 +30,8 @@ public class CategoryModel {
     @Override
     public String toString() {
         return "CategoryModel{" +
-                "category_id=" + categoryId +
-                ", category_value='" + categoryValue + '\'' +
+                "categoryId=" + categoryId +
+                ", categoryValue='" + categoryValue + '\'' +
                 ", availableProductModel=" + availableProductModel +
                 '}';
     }

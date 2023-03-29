@@ -37,9 +37,9 @@ public class ColourManager {
 
 
     public ColourDto updateColour(ColourDto colourDto){
-        Optional<ColourModel> colourModel =  colourService.findById(colourDto.getColour_id());
+        Optional<ColourModel> colourModel =  colourService.findById(colourDto.getColourId());
         if (colourModel.isPresent()){
-            colourModel.get().setColour_value(colourDto.getColour_value());
+            colourModel.get().setColourValue(colourDto.getColourValue());
             ColourModel updatedColourModel =  colourService.update(colourModel.get());
             return toColourDto(updatedColourModel);
         }
@@ -50,14 +50,14 @@ public class ColourManager {
 
     public ColourModel toColourModel(ColourDto colourDto){
         ColourModel colourModel = new ColourModel();
-        colourModel.setColour_value(colourDto.getColour_value());
+        colourModel.setColourValue(colourDto.getColourValue());
         return colourModel;
     }
 
     public ColourDto toColourDto(ColourModel colourModel){
         ColourDto colourDto = new ColourDto();
-        colourDto.setColour_id(colourModel.getColour_id());
-        colourDto.setColour_value(colourModel.getColour_value());
+        colourDto.setColourId(colourModel.getColourId());
+        colourDto.setColourValue(colourModel.getColourValue());
         return  colourDto;
     }
 }

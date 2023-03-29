@@ -18,7 +18,7 @@ public class Password_resetModel {
     @Id
     @Column(name ="password_reset_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long password_reset_id;
+    private long passwordResetId;
 
     @Column(name = "token", nullable = false)
     private String token;

@@ -133,7 +133,7 @@ public class ProductManager {
         public ProductDto toProductDto(ProductModel productModel){
 
         ProductDto productDto = new ProductDto();
-        productDto.setProductId(productModel.getProduct_id());
+        productDto.setProductId(productModel.getProductId());
         productDto.setName(productModel.getName());
         productDto.setDescription(productModel.getDescription());
         productDto.setPrice(productModel.getPrice());

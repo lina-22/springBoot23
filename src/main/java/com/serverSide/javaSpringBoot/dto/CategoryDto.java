@@ -10,8 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDto {
-    long category_id;
-    String category_value;
+    private long categoryId;
+    private String categoryValue;
 
     //private Set<ProductModel> mProducts = new HashSet<>();
     //private List<Long> productIds;

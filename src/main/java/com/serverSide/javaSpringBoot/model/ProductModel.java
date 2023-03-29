@@ -19,7 +19,7 @@ public class ProductModel {
     @Id // id will autogenerate at the Db by the @Id
     @Column(name ="product_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id auto increment
-    private long product_id;
+    private long productId;
 
     @Column(name="name", nullable = false)
     private  String name;
@@ -49,7 +49,7 @@ public class ProductModel {
     @Override
     public String toString() {
         return "ProductModel{" +
-                "product_id=" + product_id +
+                "productId=" + productId +
                 ", name='" + name + '\'' +
                 ", is_featured=" + is_featured +
                 ", price=" + price +

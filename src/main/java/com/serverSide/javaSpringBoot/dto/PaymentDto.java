@@ -12,8 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentDto {
-    long payment_id;
-    int amount;
-    Date date_payment;
-    String details;
+    private long paymentId;
+    private int amount;
+    private Date datePayment;
+    private String details;
 }

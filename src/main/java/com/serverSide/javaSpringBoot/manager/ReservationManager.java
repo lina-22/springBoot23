@@ -1,26 +1,21 @@
 package com.serverSide.javaSpringBoot.manager;
 
-
-import com.serverSide.javaSpringBoot.dto.AvailableProductDto;
-import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
-import com.serverSide.javaSpringBoot.model.AvailableProductModel;
-import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
-import com.serverSide.javaSpringBoot.response.MessageResponse;
 import com.serverSide.javaSpringBoot.services.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ReservationManager {
 
     private ReservationService reservationService;
-/*    public ReservationDto createReservation(ReservationDto reservationDto){
+      public ReservationDto createReservation(ReservationDto reservationDto){
        ReservationModel reservationToAdd = toReservationModel(reservationDto);
        ReservationModel addedReservation = reservationService.create(reservationToAdd);
 
@@ -35,7 +30,25 @@ public class ReservationManager {
             reservationDtoList.add(toReservationDto(data));
         });
         return reservationDtoList;
-    }*/
+    }
+
+    public ReservationDto getReservationById(long reservationId){
+
+        return toReservationDto(reservationService.findById(reservationId).get());
+    }
+
+    public ReservationDto updateReservation(ReservationDto reservationDto){
+        Optional<ReservationModel> reservationModel =  reservationService.findById(reservationDto.getReservationId());
+        if (reservationModel.isPresent()){
+            reservationModel.get().setReference(reservationDto.getReference());
+            reservationModel.get().setStatus(reservationDto.getReference());
+            reservationModel.get().setExpireDate(reservationDto.getExpireDate());
+            ReservationModel updatedReservationModel =  reservationService.update(reservationModel.get());
+            return toReservationDto(updatedReservationModel);
+        }
+        return new ReservationDto();
+
+    }
 
     // ******************* the dto to model data transfer****************
     public ReservationModel toReservationModel(ReservationDto reservationDto){
@@ -47,15 +60,15 @@ public class ReservationManager {
         return reservationModel;
     }
 
-   /* public ReservationDto toReservationDto(ReservationModel reservationModel){
+       public ReservationDto toReservationDto(ReservationModel reservationModel){
         ReservationDto reservationDto = new ReservationDto();
-        reservationDto.setId(reservationModel.getId());
+        reservationDto.setReservationId(reservationModel.getReservationId());
         reservationDto.setReference(reservationModel.getReference());
         reservationDto.setStatus(reservationModel.getStatus());
         reservationDto.setExpireDate(reservationModel.getExpireDate());
 
         return  reservationDto;
-    }*/
+    }
 
 
     // *******************the dto to model data transfer****************

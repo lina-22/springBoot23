@@ -1,8 +1,6 @@
 package com.serverSide.javaSpringBoot.manager;
 
-import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.RolesDto;
-import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.services.RolesService;
 import lombok.AllArgsConstructor;
@@ -33,14 +31,14 @@ public class RolesManager {
 
     }
 
-    public RolesDto getRoleById(long roles_id){
+    public RolesDto getRoleById(long roleId){
 
-        return toRolesDto(rolesService.findById(roles_id).get());
+        return toRolesDto(rolesService.findById(roleId).get());
     }
 
 
     public RolesDto updateRoles(RolesDto rolesDto){
-        Optional<RolesModel> rolesModel =  rolesService.findById(rolesDto.getRole_id());
+        Optional<RolesModel> rolesModel =  rolesService.findById(rolesDto.getRoleId());
         if (rolesModel.isPresent()){
             rolesModel.get().setName(rolesDto.getName());
             RolesModel updatedRolesModel =  rolesService.update(rolesModel.get());
@@ -50,9 +48,9 @@ public class RolesManager {
 
     }
 
-    public void deleteRoleById(long role_id){
+    public void deleteRoleById(long roleId){
 
-        rolesService.delete(role_id);
+        rolesService.delete(roleId);
     }
     // ******************* the dto to model data transfer****************
     public RolesModel toRolesModel(RolesDto rolesDto){
@@ -63,7 +61,7 @@ public class RolesManager {
 
   public RolesDto toRolesDto(RolesModel rolesModel){
         RolesDto rolesDto = new RolesDto();
-        rolesDto.setRole_id(rolesModel.getRole_id());
+        rolesDto.setRoleId(rolesModel.getRoleId());
         rolesDto.setName(rolesModel.getName());
 
         return  rolesDto;

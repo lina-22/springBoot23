@@ -5,7 +5,6 @@ import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 @RestController
@@ -18,10 +17,22 @@ class CategoryController {
         return categoryManager.createCategory(categoryDto);
     }
 
-//    @GetMapping
-//    public List<CategoryDto> getAllCategory(){
-//        return categoryManager.getAllCategory();
-//    }
+    @GetMapping
+    public List<CategoryDto> getAllCategory(){
+        return categoryManager.getAllCategory();
+    }
+
+    @GetMapping(path = "/{category_id}")
+    public CategoryDto getCategoryById(@PathVariable long category_id){
+
+        return categoryManager.getCategoryById(category_id);
+    }
+
+    @PutMapping
+    public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto){
+
+        return categoryManager.updateCategory(categoryDto);
+    }
 
   @GetMapping("/test")
     public String getAllCategoryTest(){
@@ -29,23 +40,4 @@ class CategoryController {
     }
 
 
-//    @GetMapping
-//    public List<CategoryDto> getAllCategory(){
-//        return categoryManager.getAllCategory();
-//    }
-//
-//    @GetMapping(path= "/id")
-//    public CategoryDto getCategoryById(@PathVariable long id){
-//        return categoryManager.getProductById(id);
-//    }
-//
-//    @PutMapping
-//    public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto){
-//        return categoryManager.updateCategory(categoryDto);
-//    }
 }
-
-   /*@GetMapping("/test")
-    public String getAllCategoryTest(){
-        return "tested ok";
-    }*/

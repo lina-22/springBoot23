@@ -21,13 +21,13 @@ public class PaymentModel {
     @Id
     @Column(name ="payment_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long payment_id;
+    private long paymentId;
 
     @Column(name = "amount", nullable = false)
     private int amount;
 
     @Column(name = "date_payment", nullable = false)
-    private Date date_payment;
+    private Date datePayment;
 
     @Column(name = "details", nullable = false)
     private String details;

@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.controller;
 
-import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.SizeManager;
-import com.serverSide.javaSpringBoot.model.SizeModel;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +33,7 @@ public class SizeController {
 
     @PutMapping
     public SizeDto updateSizeById(@RequestBody SizeDto sizeDto){
+
         return sizeManager.updateSize(sizeDto);
     }
 

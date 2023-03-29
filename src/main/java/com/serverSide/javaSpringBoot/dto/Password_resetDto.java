@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Password_resetDto {
 
-    long password_reset_id;
-    String token;
+    private long passwordResetId;
+    private String token;
 }

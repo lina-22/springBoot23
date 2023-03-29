@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ReservationDto {
 
-    private long reservation_id;
+    private long reservationId;
     private  String reference;
     private  String status;
     private Date expireDate;

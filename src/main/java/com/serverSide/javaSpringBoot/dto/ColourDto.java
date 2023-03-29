@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ColourDto {
-   long colour_id;
-   String colour_value;
+   private long colourId;
+   private String colourValue;
 }

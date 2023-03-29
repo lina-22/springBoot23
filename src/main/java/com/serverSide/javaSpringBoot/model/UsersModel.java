@@ -21,13 +21,13 @@ public class UsersModel {
     @Id
     @Column(name ="users_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long users_id;
+    private long usersId;
 
     @Column(name="first_name", nullable = false)
-    private  String first_name;
+    private  String firstName;
 
     @Column(name="last_name", nullable = false)
-    private  String last_name;
+    private  String lastName;
 
     @Column(name="email", nullable = false)
     private  String email;

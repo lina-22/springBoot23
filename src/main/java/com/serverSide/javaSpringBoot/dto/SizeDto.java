@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SizeDto {
 
-   long size_id;
-   String size_value;
+   private long sizeId;
+   private String sizeValue;
 }

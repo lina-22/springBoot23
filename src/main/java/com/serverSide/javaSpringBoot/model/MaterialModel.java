@@ -18,10 +18,10 @@ public class MaterialModel {
     @Id
     @Column(name ="material_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long material_id;
+    private long materialId;
 
     @Column(name = "material_value", nullable = false)
-    private String material_value;
+    private String materialValue;
 
     @OneToMany(mappedBy = "materialModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

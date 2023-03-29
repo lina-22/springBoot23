@@ -1,5 +1,4 @@
 package com.serverSide.javaSpringBoot.controller;
-import com.serverSide.javaSpringBoot.dto.CategoryDto;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.manager.ReservationManager;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.List;
 public class ReservationController {
 
     private final ReservationManager reservationManager;
- /*   @PostMapping
+    @PostMapping
     public ReservationDto createReservation(@RequestBody ReservationDto reservationDto){
         return reservationManager.createReservation(reservationDto);
     }
@@ -21,5 +20,18 @@ public class ReservationController {
     @GetMapping
     public List<ReservationDto> getAllReservation(){
         return reservationManager.getAllReservation();
-    }*/
+    }
+
+    @GetMapping(path = "/{reservation_id}")
+    public ReservationDto getReservationById(@PathVariable long reservation_id){
+
+        return reservationManager.getReservationById(reservation_id);
+    }
+
+    @PutMapping
+    public ReservationDto updateReservationById(@RequestBody ReservationDto reservationDto){
+
+        return reservationManager.updateReservation(reservationDto);
+    }
+
 }

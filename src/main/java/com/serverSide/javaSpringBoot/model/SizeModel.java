@@ -19,10 +19,10 @@ public class SizeModel {
     @Id
     @Column(name ="size_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long size_id;
+    private long sizeId;
 
     @Column(name = "size_value", nullable = false)
-    private String size_value;
+    private String sizeValue;
 
     @OneToMany(mappedBy = "sizeModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.MaterialDto;
-import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.model.MaterialModel;
-import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.services.MaterialService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,9 +37,9 @@ public class MaterialManager {
     }
 
     public MaterialDto updateMaterial(MaterialDto materialDto){
-        Optional<MaterialModel> materialModel =  materialService.findById(materialDto.getMaterial_id());
+        Optional<MaterialModel> materialModel =  materialService.findById(materialDto.getMaterialId());
         if (materialModel.isPresent()){
-            materialModel.get().setMaterial_value(materialDto.getMaterial_value());
+            materialModel.get().setMaterialValue(materialDto.getMaterialValue());
             MaterialModel updatedMaterialModel =  materialService.update(materialModel.get());
             return toMaterialDto(updatedMaterialModel);
         }
@@ -52,14 +50,14 @@ public class MaterialManager {
 
     public MaterialModel toMaterialModel(MaterialDto materialDto){
         MaterialModel materialModel = new MaterialModel();
-        materialModel.setMaterial_value(materialDto.getMaterial_value());
+        materialModel.setMaterialValue(materialDto.getMaterialValue());
         return materialModel;
     }
 
     public MaterialDto toMaterialDto(MaterialModel materialModel){
         MaterialDto materialDto = new MaterialDto();
-        materialDto.setMaterial_id(materialModel.getMaterial_id());
-        materialDto.setMaterial_value(materialModel.getMaterial_value());
+        materialDto.setMaterialId(materialModel.getMaterialId());
+        materialDto.setMaterialValue(materialModel.getMaterialValue());
         return  materialDto;
     }
 }

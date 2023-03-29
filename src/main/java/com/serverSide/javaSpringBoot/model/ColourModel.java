@@ -19,10 +19,10 @@ public class ColourModel {
     @Id
     @Column(name ="colour_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long colour_id;
+    private long colourId;
 
     @Column(name = "colour_value", nullable = false)
-    private String colour_value;
+    private String colourValue;
 
     @OneToMany(mappedBy = "colourModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MaterialDto {
-    long material_id;
-    String material_value;
+    private long materialId;
+    private String materialValue;
 }

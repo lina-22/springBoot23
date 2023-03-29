@@ -1,8 +1,6 @@
 package com.serverSide.javaSpringBoot.manager;
 
-import com.serverSide.javaSpringBoot.dto.MaterialDto;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
-import com.serverSide.javaSpringBoot.model.MaterialModel;
 import com.serverSide.javaSpringBoot.model.SizeModel;
 import com.serverSide.javaSpringBoot.services.SizeService;
 import lombok.AllArgsConstructor;
@@ -35,13 +33,14 @@ public class SizeManager {
     }
 
     public SizeDto getSizeById(long size_id){
+
         return toSizeDto(sizeService.findById(size_id).get());
     }
 
     public SizeDto updateSize(SizeDto sizeDto){
-        Optional<SizeModel> sizeModel =  sizeService.findById(sizeDto.getSize_id());
+        Optional<SizeModel> sizeModel =  sizeService.findById(sizeDto.getSizeId());
         if (sizeModel.isPresent()){
-            sizeModel.get().setSize_value(sizeDto.getSize_value());
+            sizeModel.get().setSizeValue(sizeDto.getSizeValue());
             SizeModel updatedSizeModel =  sizeService.update(sizeModel.get());
             return toSizeDto(updatedSizeModel);
         }
@@ -56,14 +55,14 @@ public class SizeManager {
 
     public SizeModel toSizeModel(SizeDto sizeDto){
            SizeModel sizeModel = new SizeModel();
-           sizeModel.setSize_value(sizeDto.getSize_value());
+           sizeModel.setSizeValue(sizeDto.getSizeValue());
            return sizeModel;
     }
 
     public SizeDto toSizeDto(SizeModel sizeModel){
         SizeDto sizeDto = new SizeDto();
-        sizeDto.setSize_id(sizeModel.getSize_id());
-        sizeDto.setSize_value(sizeModel.getSize_value());
+        sizeDto.setSizeId(sizeModel.getSizeId());
+        sizeDto.setSizeValue(sizeModel.getSizeValue());
         return  sizeDto;
     }
 }
