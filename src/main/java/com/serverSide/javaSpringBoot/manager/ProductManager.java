@@ -23,6 +23,7 @@ public class ProductManager {
     private AvailableProductManager availableProductManager;
 
     public ProductDto createProduct(ProductDto productDto){
+
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
         productDto.getAvailableProductDtoReq().forEach(data->{
 
