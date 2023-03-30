@@ -48,9 +48,9 @@ public class RolesManager {
 
     }
 
-    public void deleteRoleById(long roleId){
+    public void deleteRoleById(long role_id){
 
-        rolesService.delete(roleId);
+        rolesService.delete(role_id);
     }
     // ******************* the dto to model data transfer****************
     public RolesModel toRolesModel(RolesDto rolesDto){

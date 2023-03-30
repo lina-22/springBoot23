@@ -40,6 +40,7 @@ public class RolesController {
     @DeleteMapping(path = "/{role_id}")
     public ResponseEntity<String> deleteRoleById(@PathVariable long role_id){
         try{
+            rolesManager.deleteRoleById(role_id);
             return new ResponseEntity<>("Roles with id + " + role_id + " has been deleted successfully.", HttpStatus.OK);
         }catch (Exception excp){
             return new ResponseEntity<>("Roles with " + role_id + " not found", HttpStatus.NOT_FOUND);
