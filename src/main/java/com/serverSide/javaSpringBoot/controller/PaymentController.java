@@ -3,6 +3,8 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.PaymentDto;
 import com.serverSide.javaSpringBoot.manager.PaymentManager;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,4 +38,16 @@ public class PaymentController {
 
         return paymentManager.updatePayment(paymentDto);
 }
+
+    @DeleteMapping(path = "/{payment_id}")
+    public ResponseEntity<String> deleteProductById(@PathVariable long payment_id){
+        try{
+            paymentManager.deleteProductById(payment_id);
+            return new ResponseEntity<>("Payment with id + " + payment_id + " has been deleted successfully.", HttpStatus.OK);
+        }catch (Exception excp){
+            System.out.println(excp.getMessage());
+            return new ResponseEntity<>("Payment with " + payment_id + " not found", HttpStatus.NOT_FOUND);
+        }
+
+    }
 }

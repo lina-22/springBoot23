@@ -51,6 +51,10 @@ public class PaymentManager {
 
     }
 
+    public void deleteProductById(long payment_id){
+
+        paymentService.delete(payment_id);
+    }
     // ******************* the dto to model data transfer****************
     public PaymentModel toPaymentModel(PaymentDto paymentDto){
         PaymentModel paymentModel = new PaymentModel();
