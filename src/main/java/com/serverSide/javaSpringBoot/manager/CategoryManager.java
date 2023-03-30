@@ -55,6 +55,10 @@ public class CategoryManager {
 
     }
 
+    public void deleteCategoryById(long category_id){
+
+        categoryService.delete(category_id);
+    }
 
     // ******************* the dto to model data transfer****************
    public CategoryModel toCategoryModel(CategoryDto categoryDto){

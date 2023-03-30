@@ -49,6 +49,7 @@ public class SizeManager {
     }
 
     public void deleteSizeById(long size_id){
+
         sizeService.delete(size_id);
     }
     // ******************* the dto to model data transfer****************

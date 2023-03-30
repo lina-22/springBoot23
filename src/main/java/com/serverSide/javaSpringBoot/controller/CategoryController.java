@@ -3,6 +3,8 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.CategoryDto;
 import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,17 @@ class CategoryController {
     public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto){
 
         return categoryManager.updateCategory(categoryDto);
+    }
+
+    @DeleteMapping(path ="/{category_id}")
+    public ResponseEntity<String> deleteCategoryById(@PathVariable long category_id){
+        try{
+            categoryManager.deleteCategoryById(category_id);
+            return new ResponseEntity<>("Category with id+ " + category_id + "has been deleted successfully.", HttpStatus.OK);
+        }catch (Exception excp){
+            System.out.println(excp.getMessage());
+            return new ResponseEntity<>("Category with " + category_id + " not found", HttpStatus.NOT_FOUND);
+        }
     }
 
   @GetMapping("/test")
