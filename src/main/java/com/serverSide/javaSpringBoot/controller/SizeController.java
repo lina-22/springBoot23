@@ -3,6 +3,8 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.SizeDto;
 import com.serverSide.javaSpringBoot.manager.SizeManager;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,13 +40,16 @@ public class SizeController {
     }
 
 
-//    @DeleteMapping(path ="/{size_id}")
-//    public SizeDto deleteSize(@PathVariable long size_id){
-//        SizeDto dSize = sizeManager.getSizeById(size_id);
-//        sizeManager.deleteSize( size_id);
-//        return  dSize;
-//
-//    }
+    @DeleteMapping(path ="/{size_id}")
+    public ResponseEntity<String> deleteSizeById(@PathVariable long size_id){
+        try{
+            sizeManager.deleteSizeById(size_id);
+            return new ResponseEntity<>("Size with id+ " + size_id + "has been deleted successfully.", HttpStatus.OK);
+        }catch (Exception excp){
+            System.out.println(excp.getMessage());
+            return new ResponseEntity<>("Size with " + size_id + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
 
 
     @GetMapping("/test")
