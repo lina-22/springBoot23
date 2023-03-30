@@ -2,6 +2,8 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.manager.ReservationManager;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,18 @@ public class ReservationController {
     public ReservationDto updateReservationById(@RequestBody ReservationDto reservationDto){
 
         return reservationManager.updateReservation(reservationDto);
+    }
+
+    @DeleteMapping(path = "/{reservation_id}")
+    public ResponseEntity<String> deleteReservationById(@PathVariable long reservation_id){
+        try{
+            reservationManager.deleteReservationById(reservation_id);
+            return new ResponseEntity<>("Reservation with id + " + reservation_id + " has been deleted successfully.", HttpStatus.OK);
+        }catch (Exception excp){
+            System.out.println(excp.getMessage());
+            return new ResponseEntity<>("Reservation with " + reservation_id + " not found", HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

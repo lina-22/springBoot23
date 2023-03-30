@@ -50,6 +50,10 @@ public class ReservationManager {
 
     }
 
+    public void deleteReservationById(long reservation_id){
+
+        reservationService.delete(reservation_id);
+    }
     // ******************* the dto to model data transfer****************
     public ReservationModel toReservationModel(ReservationDto reservationDto){
         ReservationModel reservationModel = new ReservationModel();

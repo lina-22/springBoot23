@@ -46,6 +46,11 @@ public class MaterialManager {
         return new MaterialDto();
 
     }
+
+    public void deleteMaterialById(long material_id){
+
+        materialService.delete(material_id);
+    }
     // ******************* the dto to model data transfer****************
 
     public MaterialModel toMaterialModel(MaterialDto materialDto){
