@@ -46,6 +46,11 @@ public class ColourManager {
         return new ColourDto();
 
     }
+
+    public void deleteColourById(long colour_id){
+
+        colourService.delete(colour_id);
+    }
     // ******************* the dto to model data transfer****************
 
     public ColourModel toColourModel(ColourDto colourDto){
