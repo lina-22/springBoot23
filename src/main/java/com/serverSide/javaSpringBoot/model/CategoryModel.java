@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class CategoryModel {
 
     @Column(name = "category_value", nullable = false)
     private String categoryValue;
+
 
     @OneToMany(mappedBy = "categoryModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();

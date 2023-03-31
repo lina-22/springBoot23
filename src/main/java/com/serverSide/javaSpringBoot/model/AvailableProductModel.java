@@ -29,19 +29,24 @@ public class AvailableProductModel {
     private String skuReference;
 
 
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private CategoryModel categoryModel;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "size_id", referencedColumnName = "size_id")
     private SizeModel sizeModel;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "colour_id", referencedColumnName = "colour_id")
     private ColourModel colourModel;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "material_id", referencedColumnName = "material_id")
     private MaterialModel materialModel;
 

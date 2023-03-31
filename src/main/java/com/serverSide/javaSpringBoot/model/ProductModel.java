@@ -1,17 +1,13 @@
 package com.serverSide.javaSpringBoot.model;
-
-
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-
 @Entity
-@Getter // from  dependency lombok
-@Setter // from  dependency lombok
-@NoArgsConstructor // from  dependency lombok
-@AllArgsConstructor // from  dependency lombok
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Table(name = "products")
 public class ProductModel {

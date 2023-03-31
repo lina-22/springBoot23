@@ -4,12 +4,10 @@ import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.model.*;
 import com.serverSide.javaSpringBoot.services.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
-
-// after creation of dto the prductmanager has been created for handle the message response
 @Service
 @AllArgsConstructor
 public class ProductManager {
@@ -70,9 +68,6 @@ public class ProductManager {
         productModelToSave.setAvailableProductModel(availableProductModelSet);
 
         ProductModel addedProduct = productService.create(productModelToSave);
-        //System.out.println("test here product save : "+ addedProduct.toString());
-      //  ProductModel  productToAdd= toProductModel(productDto);
-
 
         return toProductDto(addedProduct);
     }
@@ -84,6 +79,10 @@ public class ProductManager {
             productDtoList.add(toProductDto(data));
         });
         return productDtoList;
+    }
+
+    public Page getAllProductPaginated(int pageNumber, int size){
+        return productService.findAllPaginated(pageNumber, size);
     }
 
     public ProductDto getProductById(long product_id){

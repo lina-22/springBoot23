@@ -3,6 +3,7 @@ package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.manager.ProductManager;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +22,15 @@ class ProductController {
         return productManager.createProduct(productDto);
     }
 
-
     @GetMapping
     public List<ProductDto>getAllProduct(){
-
        return productManager.getAllProduct();
+    }
+    @GetMapping(path= "/{pageNumber}/{size}")
+    public Page getProductPaginated(@PathVariable int pageNumber, @PathVariable int size){
+
+
+       return productManager.getAllProductPaginated(pageNumber, size);
     }
 
     @GetMapping(path= "/{product_id}")
