@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -25,5 +24,5 @@ public class Password_resetModel {
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private UsersModel usersModel;
+    private UserModel userModel;
 }

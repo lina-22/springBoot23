@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface AvailableProductService {
 
-     AvailableProductModel create(AvailableProductModel availableProductModel);
+     AvailableProductModel createAndUpdate(AvailableProductModel availableProductModel);
 
     Set<AvailableProductModel> saveAll(List<AvailableProductModel> availableProductModels);
 

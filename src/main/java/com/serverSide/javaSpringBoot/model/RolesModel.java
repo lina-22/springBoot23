@@ -1,18 +1,16 @@
 package com.serverSide.javaSpringBoot.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
+@Data
 public class RolesModel {
 
     @Id
@@ -23,6 +21,8 @@ public class RolesModel {
     @Column(name="name", nullable = false)
     private  String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "rolesModel")
-    private Set<UsersModel> userModel;
+    private Set<UserModel> userModel;
+
 }

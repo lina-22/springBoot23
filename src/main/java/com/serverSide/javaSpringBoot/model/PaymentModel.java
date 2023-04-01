@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,5 +38,5 @@ public class PaymentModel {
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private UsersModel usersModel;
+    private UserModel userModel;
 }

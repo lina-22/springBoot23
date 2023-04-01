@@ -12,27 +12,27 @@ public class RolesServiceImpl implements RolesService{
 
     @Autowired
     RolesRepository mRolesRepository;
-
     @Override
     public RolesModel create(RolesModel rolesModel){
-
         return  mRolesRepository.save(rolesModel);
     }
     @Override
     public Optional<RolesModel> findById(long roles_id){
-
         return mRolesRepository.findById(roles_id);
+    }
+    @Override
+    public RolesModel findByName(String name) {
+        RolesModel rolesModel =  mRolesRepository.findByName(name);
+        System.out.println("test here..." + rolesModel.toString());
+        return rolesModel;
     }
 
     @Override
     public List<RolesModel> findAll(){
-
         return mRolesRepository.findAll();
     }
-
     @Override
     public RolesModel update(RolesModel rolesModel){
-
         return  mRolesRepository.save(rolesModel);
     }
 

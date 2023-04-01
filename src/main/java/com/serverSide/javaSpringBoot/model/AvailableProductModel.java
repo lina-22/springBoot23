@@ -29,7 +29,6 @@ public class AvailableProductModel {
     private String skuReference;
 
 
-
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")

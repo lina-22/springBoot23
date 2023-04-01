@@ -17,7 +17,7 @@ public class AvailableProductServiceImpl implements AvailableProductService {
     AvailableProductRepository mAvailableProductRepository;
 
     @Override
-    public AvailableProductModel create(AvailableProductModel availableProductModel){
+    public AvailableProductModel createAndUpdate(AvailableProductModel availableProductModel){
         return mAvailableProductRepository.save(availableProductModel);
     }
 

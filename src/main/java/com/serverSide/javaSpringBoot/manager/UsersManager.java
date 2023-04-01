@@ -1,74 +1,80 @@
 package com.serverSide.javaSpringBoot.manager;
 
-import com.serverSide.javaSpringBoot.dto.UsersDto;
-import com.serverSide.javaSpringBoot.model.UsersModel;
+import com.serverSide.javaSpringBoot.dto.UserDto;
+import com.serverSide.javaSpringBoot.model.RolesModel;
+import com.serverSide.javaSpringBoot.model.UserModel;
+import com.serverSide.javaSpringBoot.services.RolesService;
 import com.serverSide.javaSpringBoot.services.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class UsersManager {
     private UsersService usersService;
-   public UsersDto createUsers(UsersDto usersDto){
-        UsersModel usersToAdd = toUsersModel(usersDto);
-        UsersModel addedUsers = usersService.create(usersToAdd);
+    private RolesService rolesService;
+
+    public UserDto createUser(UserDto userDto) {
+        UserModel usersToAdd = toUserModel(userDto);
+        UserModel addedUsers = usersService.create(usersToAdd);
         return toUsersDto(addedUsers);
 
     }
 
 
-    public List<UsersDto> getAllUsers() {
-        List<UsersDto>usersDtoList = new ArrayList<>();
-        List<UsersModel> usersModelList = usersService.findAll();
-        usersModelList.forEach(data-> {
-            usersDtoList.add(toUsersDto(data));
-        });
-        return usersDtoList;
-    }
+//    public List<UsersDto> getAllUsers() {
+//        List<UsersDto>usersDtoList = new ArrayList<>();
+//        List<UsersModel> usersModelList = usersService.findAll();
+//        usersModelList.forEach(data-> {
+//            usersDtoList.add(toUsersDto(data));
+//        });
+//        return usersDtoList;
+//    }
 
-    public UsersDto getUsersById(long users_id){
+    public UserDto getUsersById(long users_id) {
 
         return toUsersDto(usersService.findById(users_id).get());
     }
 
-    public UsersDto updateUsers(UsersDto usersDto){
-        Optional<UsersModel> usersModel =  usersService.findById(usersDto.getUsersId());
-        if (usersModel.isPresent()){
-            usersModel.get().setFirstName(usersDto.getFirstName());
-            usersModel.get().setLastName(usersDto.getLastName());
-            usersModel.get().setEmail(usersDto.getEmail());
-            usersModel.get().setPassword(usersDto.getPassword());
-            UsersModel updatedUsersModel =  usersService.update(usersModel.get());
-            return toUsersDto(updatedUsersModel);
+    public UserDto updateUsers(UserDto userDto) {
+        Optional<UserModel> usersModel = usersService.findById(userDto.getUserId());
+        if (usersModel.isPresent()) {
+            usersModel.get().setFirstName(userDto.getFirstName());
+            usersModel.get().setLastName(userDto.getLastName());
+            usersModel.get().setEmail(userDto.getEmail());
+            usersModel.get().setPassword(userDto.getPassword());
+            UserModel updatedUserModel = usersService.update(usersModel.get());
+            return toUsersDto(updatedUserModel);
         }
-        return new UsersDto();
+        return new UserDto();
 
     }
+
     // ******************* the dto to model data transfer****************
-    public UsersModel toUsersModel(UsersDto usersDto){
-        UsersModel usersModel = new UsersModel();
-        usersModel.setFirstName(usersDto.getFirstName());
-        usersModel.setLastName(usersDto.getLastName());
-        usersModel.setEmail(usersDto.getEmail());
-        usersModel.setPassword(usersDto.getPassword());
+    public UserModel toUserModel(UserDto userDto) {
+        UserModel userModel = new UserModel();
+        userModel.setFirstName(userDto.getFirstName());
+        userModel.setLastName(userDto.getLastName());
+        userModel.setEmail(userDto.getEmail());
+        userModel.setPassword(userDto.getPassword());
 
-        return usersModel;
+        RolesModel rolesModel = rolesService.findByName(userDto.getRole());
+        userModel.setRolesModel(rolesModel);
+
+        return userModel;
     }
 
-      public UsersDto toUsersDto(UsersModel usersModel){
-        UsersDto usersDto = new UsersDto();
-        usersDto.setUsersId(usersModel.getUsersId());
-        usersDto.setFirstName(usersModel.getFirstName());
-        usersDto.setLastName(usersModel.getLastName());
-        usersDto.setEmail(usersModel.getEmail());
-        usersDto.setPassword(usersModel.getPassword());
-
-        return  usersDto;
+    public UserDto toUsersDto(UserModel userModel) {
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userModel.getUserId());
+        userDto.setFirstName(userModel.getFirstName());
+        userDto.setLastName(userModel.getLastName());
+        userDto.setEmail(userModel.getEmail());
+        userDto.setPassword(userModel.getPassword());
+        userDto.setRole(userModel.getRolesModel().getName());
+        return userDto;
     }
 
 

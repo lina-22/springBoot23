@@ -19,7 +19,7 @@ class ProductController {
     private final ProductManager productManager;
    @PostMapping
     public ProductDto createProduct(@RequestBody ProductDto productDto){
-        return productManager.createProduct(productDto);
+        return productManager.createAndUpdateProduct(productDto);
     }
 
     @GetMapping
@@ -28,7 +28,6 @@ class ProductController {
     }
     @GetMapping(path= "/{pageNumber}/{size}")
     public Page getProductPaginated(@PathVariable int pageNumber, @PathVariable int size){
-
 
        return productManager.getAllProductPaginated(pageNumber, size);
     }
@@ -40,7 +39,7 @@ class ProductController {
 
     @PutMapping
     public ProductDto updateProductById(@RequestBody ProductDto productDto){
-        return productManager.updateProduct(productDto);
+        return productManager.createAndUpdateProduct(productDto);
     }
 
     @DeleteMapping(path = "/{product_id}")

@@ -20,15 +20,17 @@ public class ProductManager {
 
     private AvailableProductManager availableProductManager;
 
-    public ProductDto createProduct(ProductDto productDto){
+    public ProductDto createAndUpdateProduct(ProductDto productDto){
 
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
         productDto.getAvailableProductDtoReq().forEach(data->{
 
             AvailableProductModel availableProductModel = new AvailableProductModel();
-
+            if(data.getId() != 0) {
+                System.out.println("test avl p id : " + data.getId());
+                availableProductModel.setApId(data.getId());
+            }
             Optional<CategoryModel> categoryModel = categoryService.findById(data.getCategoryId());
-
             if (categoryModel.isPresent()) {
                 availableProductModel.setCategoryModel(categoryModel.get());
             }
@@ -58,6 +60,10 @@ public class ProductManager {
         Set<AvailableProductModel> availableProductModelSet = availableProductService.saveAll(availableProductModels);
 
         ProductModel productModelToSave = new ProductModel();
+        if(productDto.getProductId() != 0) {
+            System.out.println("test prd id : " + productDto.getProductId());
+            productModelToSave.setProductId(productDto.getProductId());
+        }
         productModelToSave.setPrice(productDto.getPrice());
         productModelToSave.setDescription(productDto.getDescription());
         productModelToSave.setDiscount(productDto.getDiscount());
@@ -67,7 +73,7 @@ public class ProductManager {
         productModelToSave.set_featured(productDto.is_featured());
         productModelToSave.setAvailableProductModel(availableProductModelSet);
 
-        ProductModel addedProduct = productService.create(productModelToSave);
+        ProductModel addedProduct = productService.createAndUpdate(productModelToSave);
 
         return toProductDto(addedProduct);
     }

@@ -17,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "reservations")
 public class ReservationModel {
+
     @Id
     @Column(name ="reservation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,9 +41,9 @@ public class ReservationModel {
    @JsonIgnore
     private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();
 
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private UsersModel usersModel;
+    private UsersModel usersModel;*/
 
     @ManyToOne
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
