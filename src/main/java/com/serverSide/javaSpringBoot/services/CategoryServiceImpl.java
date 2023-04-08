@@ -19,16 +19,19 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryModel create(CategoryModel categoryModel) {
+
         return mCategoryRepository.save(categoryModel);
     }
 
     @Override
     public Optional<CategoryModel> findById(long category_id) {
+
         return mCategoryRepository.findById(category_id);
     }
 
     @Override
     public List<CategoryModel> findAll() {
+
         return mCategoryRepository.findAll();
     }
 
@@ -39,6 +42,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void delete(long category_id) {
+
         mCategoryRepository.deleteById(category_id);
     }
 }
