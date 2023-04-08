@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -46,5 +48,8 @@ public class SupplierModel {
 
     @Column(name="fax", nullable = false)
     private  String fax;
+
+    @OneToMany(mappedBy = "supplierModel", fetch = FetchType.LAZY)
+    private Set<ProductModel> ProductModel = new HashSet<>();
 
 }

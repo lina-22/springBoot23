@@ -1,4 +1,5 @@
 package com.serverSide.javaSpringBoot.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
@@ -45,6 +46,11 @@ public class ProductModel {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
     private Set<RatingModel> ratingModels  = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
+    private SupplierModel supplierModel;
 
     @Override
     public String toString() {
