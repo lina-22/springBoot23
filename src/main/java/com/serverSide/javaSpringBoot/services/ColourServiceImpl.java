@@ -38,6 +38,7 @@ public class ColourServiceImpl implements ColourService {
 
     @Override
     public void delete(long colour_id) {
+
         colourRepository.deleteById(colour_id);
     }
 
