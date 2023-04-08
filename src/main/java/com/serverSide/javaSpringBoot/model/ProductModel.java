@@ -42,6 +42,10 @@ public class ProductModel {
     @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
+    private Set<RatingModel> ratingModels  = new HashSet<>();
+
     @Override
     public String toString() {
         return "ProductModel{" +
