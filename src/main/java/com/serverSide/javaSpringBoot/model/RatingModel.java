@@ -15,8 +15,9 @@ import javax.persistence.*;
 public class RatingModel {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @Column(name ="rating_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ratingId;
 
     @Column
     private int rate;
