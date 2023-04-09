@@ -67,6 +67,7 @@ public class CategoryManager {
         return categoryModel;
     }
 
+    // *******************the dto to model data transfer****************
     public CategoryDto toCategoryDto(CategoryModel categoryModel){
          CategoryDto categoryDto = new CategoryDto();
          categoryDto.setCategoryId(categoryModel.getCategoryId());

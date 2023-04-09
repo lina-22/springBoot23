@@ -18,7 +18,7 @@ public class InvoiceModel {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long invoiceId;
 
     @Column
     private Date createDate;
