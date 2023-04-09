@@ -51,7 +51,7 @@ public class PaymentManager {
 
     }
 
-    public void deleteProductById(long payment_id){
+    public void deletePaymentById(long payment_id){
 
         paymentService.delete(payment_id);
     }

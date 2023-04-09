@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvoiceDto {
-    private long id;
+    private long InvoiceId;
     private Date createDate;
     private Date updateDate;
     private String reference;
