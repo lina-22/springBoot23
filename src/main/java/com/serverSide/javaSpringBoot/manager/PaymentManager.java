@@ -18,9 +18,22 @@ public class PaymentManager {
     private PaymentService paymentService;
 
     public PaymentDto createPayment(PaymentDto paymentDto){
-        PaymentModel paymentToAdd = toPaymentModel(paymentDto);
-        PaymentModel addedPayment = paymentService.create(paymentToAdd);
-        return toPaymentDto(addedPayment);
+
+      //  PaymentModel paymentToAdd = toPaymentModel(paymentDto);
+
+        PaymentModel paymentModel = new PaymentModel();
+        paymentModel.setAmount(paymentDto.getAmount());
+        paymentModel.setDetails(paymentDto.getDetails());
+        paymentModel.setDatePayment(paymentDto.getDatePayment());
+        PaymentModel addedPayment = paymentService.create(paymentModel);
+
+        PaymentDto savedPaymentDto = new PaymentDto();
+        savedPaymentDto.setPaymentId(addedPayment.getPaymentId());
+        savedPaymentDto.setAmount(addedPayment.getAmount());
+        savedPaymentDto.setDetails(addedPayment.getDetails());
+        savedPaymentDto.setDatePayment(addedPayment.getDatePayment());
+
+        return  savedPaymentDto;
     }
 
 
@@ -28,14 +41,27 @@ public class PaymentManager {
         List<PaymentDto>paymentDtoList = new ArrayList<>();
         List<PaymentModel>paymentModelList = paymentService.findAll();
         paymentModelList.forEach(data->{
-            paymentDtoList.add(toPaymentDto(data));
+
+            PaymentDto paymentDto = new PaymentDto();
+            paymentDto.setPaymentId(data.getPaymentId());
+            paymentDto.setAmount(data.getAmount());
+            paymentDto.setDetails(data.getDetails());
+            paymentDto.setDatePayment(data.getDatePayment());
+
+            paymentDtoList.add(paymentDto);
         });
         return paymentDtoList;
     }
 
     public PaymentDto getPaymentById(long payment_id){
-
-        return toPaymentDto(paymentService.findById(payment_id).get());
+PaymentModel paymentModel = paymentService.findById(payment_id).get();
+PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
+        PaymentDto paymentDto = new PaymentDto();
+        paymentDto.setPaymentId(paymentModel1.getPaymentId());
+        paymentDto.setAmount(paymentModel1.getAmount());
+        paymentDto.setDetails(paymentModel1.getDetails());
+        paymentDto.setDatePayment(paymentModel1.getDatePayment());
+        return paymentDto;
     }
 
     public PaymentDto updatePayment(PaymentDto paymentDto){
