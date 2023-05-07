@@ -1,11 +1,14 @@
 package com.serverSide.javaSpringBoot.manager;
 
+import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
 import com.serverSide.javaSpringBoot.dto.UserDto;
 import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.model.UserModel;
 import com.serverSide.javaSpringBoot.services.RolesService;
 import com.serverSide.javaSpringBoot.services.UsersService;
+import com.serverSide.javaSpringBoot.services.securityService.UsersSecurityService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +17,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UsersManager {
     private UsersService usersService;
+    private UsersSecurityService usersSecurityService;
     private RolesService rolesService;
+
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public BaseResponseDto registerUser(UserDto userDto) {
+        UserModel usersToAdd = toUserModel(userDto);
+        BaseResponseDto responseDto = usersSecurityService.register(usersToAdd);
+        return responseDto;
+    }
+
 
     public UserDto createUser(UserDto userDto) {
         UserModel usersToAdd = toUserModel(userDto);
@@ -58,7 +71,7 @@ public class UsersManager {
         userModel.setFirstName(userDto.getFirstName());
         userModel.setLastName(userDto.getLastName());
         userModel.setEmail(userDto.getEmail());
-        userModel.setPassword(userDto.getPassword());
+        userModel.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         RolesModel rolesModel = rolesService.findByName(userDto.getRole());
         userModel.setRolesModel(rolesModel);

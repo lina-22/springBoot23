@@ -2,11 +2,9 @@ package com.serverSide.javaSpringBoot.model;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity

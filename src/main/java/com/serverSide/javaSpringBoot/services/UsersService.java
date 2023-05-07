@@ -1,5 +1,7 @@
 package com.serverSide.javaSpringBoot.services;
 
+import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
+import com.serverSide.javaSpringBoot.dto.UserDto;
 import com.serverSide.javaSpringBoot.model.UserModel;
 import java.util.List;
 import java.util.Optional;
@@ -13,5 +15,6 @@ public interface UsersService {
     public UserModel update(UserModel userModel);
 
     public  void delete(long users_id);
+
 
 }
