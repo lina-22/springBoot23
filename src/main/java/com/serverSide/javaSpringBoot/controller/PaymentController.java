@@ -12,13 +12,13 @@ import java.util.List;
 @RequestMapping("/payments")
 @AllArgsConstructor
 public class PaymentController {
-    private final PaymentManager paymentManager;
-    @PostMapping
-    public PaymentDto createPayment(@RequestBody PaymentDto paymentDto){
+    /*private final PaymentManager paymentManager;
+    @PostMapping*/
+   /* public PaymentDto createPayment(@RequestBody PaymentDto paymentDto){
         return paymentManager.createPayment(paymentDto);
-    }
+    }*/
 
-    @GetMapping
+   /* @GetMapping
     public List<PaymentDto> getAllPayment(){
         return paymentManager.getAllPayment();
     }
@@ -43,5 +43,5 @@ public class PaymentController {
             return new ResponseEntity<>("Payment with " + payment_id + " not found", HttpStatus.NOT_FOUND);
         }
 
-    }
+    }*/
 }

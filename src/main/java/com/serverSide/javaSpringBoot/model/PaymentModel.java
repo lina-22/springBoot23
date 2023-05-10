@@ -15,7 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "payments")
-public class PaymentModel {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class PaymentModel {
 
     @Id
     @Column(name ="payment_id", nullable = false)

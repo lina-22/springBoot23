@@ -15,13 +15,13 @@ import java.util.Optional;
 public class PaymentManager {
 
 
-    private PaymentService paymentService;
+//    private PaymentService paymentService;
 
-    public PaymentDto createPayment(PaymentDto paymentDto){
+    //public PaymentDto createPayment(PaymentDto paymentDto){
 
       //  PaymentModel paymentToAdd = toPaymentModel(paymentDto);
 
-        PaymentModel paymentModel = new PaymentModel();
+  /*      PaymentModel paymentModel = new PaymentModel();
         paymentModel.setAmount(paymentDto.getAmount());
         paymentModel.setDetails(paymentDto.getDetails());
         paymentModel.setDatePayment(paymentDto.getDatePayment());
@@ -35,9 +35,9 @@ public class PaymentManager {
 
         return  savedPaymentDto;
     }
+*/
 
-
-    public List<PaymentDto> getAllPayment(){
+  /*  public List<PaymentDto> getAllPayment(){
         List<PaymentDto>paymentDtoList = new ArrayList<>();
         List<PaymentModel>paymentModelList = paymentService.findAll();
         paymentModelList.forEach(data->{
@@ -52,8 +52,8 @@ public class PaymentManager {
         });
         return paymentDtoList;
     }
-
-    public PaymentDto getPaymentById(long payment_id){
+*/
+  /*  public PaymentDto getPaymentById(long payment_id){
 PaymentModel paymentModel = paymentService.findById(payment_id).get();
 PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
         PaymentDto paymentDto = new PaymentDto();
@@ -63,8 +63,8 @@ PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
         paymentDto.setDatePayment(paymentModel1.getDatePayment());
         return paymentDto;
     }
-
-    public PaymentDto updatePayment(PaymentDto paymentDto){
+*/
+  /*  public PaymentDto updatePayment(PaymentDto paymentDto){
         Optional<PaymentModel> paymentModel =  paymentService.findById(paymentDto.getPaymentId());
         if (paymentModel.isPresent()){
             paymentModel.get().setAmount(paymentDto.getAmount());
@@ -76,13 +76,13 @@ PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
         return new PaymentDto();
 
     }
-
-    public void deletePaymentById(long payment_id){
+*/
+  /*  public void deletePaymentById(long payment_id){
 
         paymentService.delete(payment_id);
-    }
+    }*/
     // ******************* the dto to model data transfer****************
-    public PaymentModel toPaymentModel(PaymentDto paymentDto){
+    /*public PaymentModel toPaymentModel(PaymentDto paymentDto){
         PaymentModel paymentModel = new PaymentModel();
         paymentModel.setAmount(paymentDto.getAmount());
         paymentModel.setDetails(paymentDto.getDetails());
@@ -97,5 +97,5 @@ PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
         paymentDto.setDetails(paymentModel.getDetails());
         paymentDto.setDatePayment(paymentModel.getDatePayment());
         return  paymentDto;
-    }
+    }*/
 }

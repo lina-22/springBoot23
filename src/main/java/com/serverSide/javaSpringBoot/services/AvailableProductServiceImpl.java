@@ -27,9 +27,7 @@ public class AvailableProductServiceImpl implements AvailableProductService {
         List<AvailableProductModel> savedAvailables = mAvailableProductRepository.saveAllAndFlush(availableProductModels);
         Set<AvailableProductModel>availableProductModelSet = new HashSet<>(savedAvailables);
         return  availableProductModelSet;
-    }
-
-    ;
+    };
 
     @Override
     public AvailableProductModel update(AvailableProductModel availableProductModel){

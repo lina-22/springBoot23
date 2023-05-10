@@ -1,3 +1,4 @@
+/*
 package com.serverSide.javaSpringBoot.services;
 import com.serverSide.javaSpringBoot.model.PaymentModel;
 import com.serverSide.javaSpringBoot.repository.PaymentRepository;
@@ -33,6 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentModel update(PaymentModel paymentModel){
+
         return  paymentRepository.save(paymentModel);
     }
 
@@ -41,3 +43,4 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.deleteById(paymentModel);
     }
 }
+*/
