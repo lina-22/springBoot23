@@ -8,11 +8,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaypalPaymentDto extends PaymentModel {
-
-    private String account_number;
+    private String accountEmail;
+    private BigDecimal amount;
+    private Date paymentDate;
+    private String details;
+    private List<Long> reservationIds;
+    private long userId;
 }
 

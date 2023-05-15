@@ -7,12 +7,14 @@ import java.util.Optional;
 
 public interface ReservationService {
 
-    public ReservationModel create(ReservationModel reservationModel);
-    public Optional<ReservationModel> findById(long reservation_id);
+     ReservationModel create(ReservationModel reservationModel);
+     Optional<ReservationModel> findById(long reservation_id);
 
-    public List<ReservationModel> findAll();
+     List<ReservationModel> findAll();
 
-    public ReservationModel update(ReservationModel reservationModel);
+    List<ReservationModel> findAllByIds(List<Long>ids);
 
-    public  void delete(long reservation_id);
+     ReservationModel update(ReservationModel reservationModel);
+
+      void delete(long reservation_id);
 }

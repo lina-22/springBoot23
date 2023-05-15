@@ -4,6 +4,8 @@ import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,12 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public List<ReservationModel> findAll() {
 
-        return mReservationRepository.findAll();
+        return (List<ReservationModel>) mReservationRepository.findAll();
+    }
+
+    @Override
+    public List<ReservationModel> findAllByIds(List<Long> ids) {
+        return (List<ReservationModel>) mReservationRepository.findAllById(ids);
     }
 
     @Override

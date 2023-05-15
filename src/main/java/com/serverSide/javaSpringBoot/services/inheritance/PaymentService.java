@@ -1,11 +1,10 @@
-package com.serverSide.javaSpringBoot.services;
+package com.serverSide.javaSpringBoot.services.inheritance;
 
 import com.serverSide.javaSpringBoot.model.PaymentModel;
 import java.util.List;
 import java.util.Optional;
 
 public interface PaymentService {
-
     public PaymentModel create(PaymentModel paymentModel);
     public Optional<PaymentModel> findById(long payment_id);
 

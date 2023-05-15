@@ -1,10 +1,12 @@
 package com.serverSide.javaSpringBoot.controller;
 
 import com.serverSide.javaSpringBoot.dto.PaymentDto;
+import com.serverSide.javaSpringBoot.dto.inheritance.PaypalPaymentDto;
 import com.serverSide.javaSpringBoot.manager.PaymentManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -12,6 +14,21 @@ import java.util.List;
 @RequestMapping("/payments")
 @AllArgsConstructor
 public class PaymentController {
+
+    private final PaymentManager paymentManager;
+
+    @PostMapping(value = "/paypal")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public PaypalPaymentDto createPaypalPayment(@RequestBody PaypalPaymentDto paymentDto){
+        return paymentManager.createPayPalPayment(paymentDto);
+    }
+
+    @GetMapping(value = "/paypal")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public String test(){
+        return "test ok...";
+    }
+
     /*private final PaymentManager paymentManager;
     @PostMapping*/
    /* public PaymentDto createPayment(@RequestBody PaymentDto paymentDto){

@@ -1,19 +1,61 @@
 package com.serverSide.javaSpringBoot.manager;
 
 
-import com.serverSide.javaSpringBoot.dto.PaymentDto;
-import com.serverSide.javaSpringBoot.model.PaymentModel;
-import com.serverSide.javaSpringBoot.services.PaymentService;
+import com.serverSide.javaSpringBoot.dto.inheritance.PaypalPaymentDto;
+import com.serverSide.javaSpringBoot.model.ReservationModel;
+import com.serverSide.javaSpringBoot.model.UserModel;
+import com.serverSide.javaSpringBoot.model.inheritance.PaypalPaymentModel;
+import com.serverSide.javaSpringBoot.services.ReservationService;
+import com.serverSide.javaSpringBoot.services.UsersService;
+import com.serverSide.javaSpringBoot.services.inheritance.PaypalPaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class PaymentManager {
 
+    private final UsersService usersService;
+    private final ReservationService reservationService;
+    private final PaypalPaymentService paypalPaymentService;
+
+    public PaypalPaymentDto createPayPalPayment(PaypalPaymentDto paypalPaymentDto){
+        Optional<UserModel> userModel = usersService.findById(paypalPaymentDto.getUserId());
+        List<ReservationModel> reservationModelSet =  reservationService.findAllByIds(paypalPaymentDto.getReservationIds());
+        Set<ReservationModel>reservationModels = new HashSet<>(reservationModelSet);
+
+        PaypalPaymentModel paypalPaymentModel = new PaypalPaymentModel();
+
+        paypalPaymentModel.setDatePayment(new Date(12/10/2023));
+
+        paypalPaymentModel.setAccount_email(paypalPaymentDto.getAccountEmail());
+
+        paypalPaymentModel.setAmount(paypalPaymentDto.getAmount());
+        paypalPaymentModel.setDetails(paypalPaymentDto.getDetails());
+        System.out.println("test here : " + paypalPaymentModel.toString() + " " +paypalPaymentDto.getAccountEmail());
+        paypalPaymentModel.setUserModel(userModel.get());
+        paypalPaymentModel.setReservationModel(reservationModels);
+
+        PaypalPaymentModel paymentModel = paypalPaymentService.createPaypalPayment(paypalPaymentModel);
+        return toDto(paymentModel);
+    }
+
+    PaypalPaymentDto toDto(PaypalPaymentModel paymentModel){
+        List<Long> reservationIds = new ArrayList<>();
+        paymentModel.getReservationModel().forEach(reservationModel -> {
+            reservationIds.add(reservationModel.getReservationId());
+        });
+        PaypalPaymentDto paypalPaymentDto = new PaypalPaymentDto();
+        paypalPaymentDto.setPaymentId(paymentModel.getPaymentId());
+        paypalPaymentDto.setAmount(paymentModel.getAmount());
+        paypalPaymentDto.setPaymentDate(paymentModel.getDatePayment());
+        paypalPaymentDto.setDetails(paymentModel.getDetails());
+        paypalPaymentDto.setReservationIds(reservationIds);
+        paypalPaymentDto.setUserId(paymentModel.getUserModel().getUserId());
+        return paypalPaymentDto;
+    }
 
 //    private PaymentService paymentService;
 
@@ -21,7 +63,10 @@ public class PaymentManager {
 
       //  PaymentModel paymentToAdd = toPaymentModel(paymentDto);
 
-  /*      PaymentModel paymentModel = new PaymentModel();
+  /*
+       PaymentModel paypalPayment = new PaypalPaymentModel(1L, 1014, new Date(12/12/2023), "test_details", null , null, "test@mail.com");
+        paymentRepository.save(paypalPayment);
+       PaymentModel paymentModel = new PaymentModel();
         paymentModel.setAmount(paymentDto.getAmount());
         paymentModel.setDetails(paymentDto.getDetails());
         paymentModel.setDatePayment(paymentDto.getDatePayment());

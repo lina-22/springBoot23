@@ -1,10 +1,13 @@
 package com.serverSide.javaSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +27,7 @@ public abstract class PaymentModel {
     private long paymentId;
 
     @Column(name = "amount", nullable = false)
-    private int amount;
+    private BigDecimal amount;
 
     @Column(name = "date_payment", nullable = false)
     private Date datePayment;
@@ -33,10 +36,12 @@ public abstract class PaymentModel {
     private String details;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "paymentModel", fetch = FetchType.LAZY)
     private Set<ReservationModel> reservationModel = new HashSet<>();
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "users_id")
     private UserModel userModel;

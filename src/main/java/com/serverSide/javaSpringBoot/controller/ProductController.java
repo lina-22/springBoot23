@@ -2,6 +2,9 @@ package com.serverSide.javaSpringBoot.controller;
 
 import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.manager.ProductManager;
+import com.serverSide.javaSpringBoot.model.PaymentModel;
+import com.serverSide.javaSpringBoot.model.inheritance.PaypalPaymentModel;
+import com.serverSide.javaSpringBoot.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,6 +22,7 @@ import java.util.List;
 class ProductController {
 
     private final ProductManager productManager;
+
    @PostMapping
     public ProductDto createProduct(@RequestBody ProductDto productDto){
         return productManager.createAndUpdateProduct(productDto);
@@ -30,7 +35,6 @@ class ProductController {
     }
     @GetMapping(path= "/{pageNumber}/{size}")
     public Page getProductPaginated(@PathVariable int pageNumber, @PathVariable int size){
-
        return productManager.getAllProductPaginated(pageNumber, size);
     }
 

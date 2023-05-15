@@ -14,7 +14,4 @@ public class StripePaymentModel extends PaymentModel {
     @Column(name = "account_email", nullable = false)
     private String account_email;
 
-    @Column(name = "expiration_date", nullable = false)
-    private Date expiration_date;
-
 }
