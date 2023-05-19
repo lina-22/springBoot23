@@ -1,18 +1,20 @@
 package com.serverSide.javaSpringBoot.controller;
+import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
 import com.serverSide.javaSpringBoot.dto.UserDto;
 import com.serverSide.javaSpringBoot.manager.UsersManager;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UsersController {
     private final UsersManager usersManager;
 
-    @PostMapping
-    public UserDto createUsers(@RequestBody UserDto userDto){
-        return usersManager.createUser(userDto);
+    @PostMapping("/register")
+    public ResponseEntity<BaseResponseDto> register(@RequestBody UserDto userDTO){
+        return ResponseEntity.ok(usersManager.registerUser(userDTO));
     }
 
 }

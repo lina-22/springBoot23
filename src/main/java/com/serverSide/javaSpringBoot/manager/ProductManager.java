@@ -6,6 +6,9 @@ import com.serverSide.javaSpringBoot.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -20,8 +23,12 @@ public class ProductManager {
 
     private AvailableProductManager availableProductManager;
 
-    public ProductDto createAndUpdateProduct(ProductDto productDto){
-
+    public ProductDto createAndUpdateProduct(ProductDto productDto, MultipartFile image){
+        try {
+            setImage(productDto, image);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
         productDto.getAvailableProductDtoReq().forEach(data->{
 
@@ -76,6 +83,11 @@ public class ProductManager {
         ProductModel addedProduct = productService.createAndUpdate(productModelToSave);
 
         return toProductDto(addedProduct);
+    }
+
+    private ProductDto setImage(ProductDto productDto, MultipartFile image) throws IOException {
+        productDto.setImage(image.getBytes());
+        return productDto;
     }
 
     public List<ProductDto> getAllProduct() {

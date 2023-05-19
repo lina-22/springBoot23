@@ -70,7 +70,8 @@ public class AppConfig {
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/account/**").permitAll()
+                .requestMatchers("/users/register").permitAll()
+                .requestMatchers("/products/**").permitAll()
                 .requestMatchers("/guest/**").permitAll()
                 .requestMatchers(   "/v2/api-docs",
                         "/v3/api-docs",

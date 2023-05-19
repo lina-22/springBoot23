@@ -26,7 +26,6 @@ public class MaterialController {
 
     @GetMapping
     public List<MaterialDto> getAllMaterial(){
-
         return materialManager.getAllMaterial();
     }
 

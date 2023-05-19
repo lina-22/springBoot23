@@ -16,7 +16,7 @@ public class ProductDto {
     private boolean is_featured = false;
     private Double price = 0.0;
     private Double discount = 0.0;
-    private String image;
+    private byte[] image;
     private String description;
     private String importCountry;
     private Set<AvailableProductDtoRes> availableProductDtoRes;

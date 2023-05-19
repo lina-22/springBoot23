@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -23,16 +24,18 @@ class ProductController {
 
     private final ProductManager productManager;
 
-   @PostMapping
-    public ProductDto createProduct(@RequestBody ProductDto productDto){
-        return productManager.createAndUpdateProduct(productDto);
+    @PostMapping
+    public ProductDto createProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
+        return productManager.createAndUpdateProduct(productDto, image);
     }
 
     @GetMapping
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<ProductDto>getAllProduct(){
-       return productManager.getAllProduct();
+
+        return productManager.getAllProduct();
     }
+
     @GetMapping(path= "/{pageNumber}/{size}")
     public Page getProductPaginated(@PathVariable int pageNumber, @PathVariable int size){
        return productManager.getAllProductPaginated(pageNumber, size);
@@ -44,8 +47,8 @@ class ProductController {
     }
 
     @PutMapping
-    public ProductDto updateProductById(@RequestBody ProductDto productDto){
-        return productManager.createAndUpdateProduct(productDto);
+    public ProductDto updateProductById(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
+        return productManager.createAndUpdateProduct(productDto,image);
     }
 
     @DeleteMapping(path = "/{product_id}")

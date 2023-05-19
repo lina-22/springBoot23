@@ -30,8 +30,8 @@ public class ProductModel {
     @Column(name="discount", columnDefinition = "Decimal(10,2) default '0.00'")
     private Double discount = 0.0;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "image", length = 50000000)
+    private byte[] image;
 
     @Column(name = "description")
     private String description;
