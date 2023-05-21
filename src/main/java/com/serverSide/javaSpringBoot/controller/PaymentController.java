@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.controller;
 
 import com.serverSide.javaSpringBoot.dto.PaymentDto;
+import com.serverSide.javaSpringBoot.dto.inheritance.CardPaymentDto;
 import com.serverSide.javaSpringBoot.dto.inheritance.PaypalPaymentDto;
 import com.serverSide.javaSpringBoot.manager.PaymentManager;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,18 @@ public class PaymentController {
     public PaypalPaymentDto createPaypalPayment(@RequestBody PaypalPaymentDto paymentDto){
         return paymentManager.createPayPalPayment(paymentDto);
     }
+
+//    @PostMapping(value = "/card")
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    public CardPaymentDto createCardPayment(@RequestBody CardPaymentDto paymentDto){
+//        return paymentManager.createCardPayment(paymentDto);
+//    }
+//
+//    @PostMapping(value = "/stripe")
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    public StripePaymentDto createStripePayment(@RequestBody StripePaymentDto paymentDto){
+//        return paymentManager.createStripePayment(paymentDto);
+//    }
 
     @GetMapping(value = "/paypal")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
