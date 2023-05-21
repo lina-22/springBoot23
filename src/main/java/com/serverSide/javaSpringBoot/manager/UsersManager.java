@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ *
+ */
 @Service
 @AllArgsConstructor
 public class UsersManager {
@@ -47,7 +50,6 @@ public class UsersManager {
 //    }
 
     public UserDto getUsersById(long users_id) {
-
         return toUsersDto(usersService.findById(users_id).get());
     }
 

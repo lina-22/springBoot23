@@ -22,6 +22,7 @@ public class PaymentManager {
     private final PaypalPaymentService paypalPaymentService;
 
     public PaypalPaymentDto createPayPalPayment(PaypalPaymentDto paypalPaymentDto){
+
         Optional<UserModel> userModel = usersService.findById(paypalPaymentDto.getUserId());
         List<ReservationModel> reservationModelSet =  reservationService.findAllByIds(paypalPaymentDto.getReservationIds());
         Set<ReservationModel>reservationModels = new HashSet<>(reservationModelSet);
