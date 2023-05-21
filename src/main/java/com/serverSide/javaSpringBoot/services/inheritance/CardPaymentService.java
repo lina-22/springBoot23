@@ -7,15 +7,15 @@ import java.util.Optional;
 
 public interface CardPaymentService {
 
-    public CardPaymentModel create(CardPaymentModel cardPaymentModel);
+    public CardPaymentModel createCardPayment (CardPaymentModel cardPaymentModel);
 
-    public Optional<CardPaymentModel> findById(long account_number);
-
-    public List<CardPaymentModel> findAll();
-
-    public CardPaymentModel update(CardPaymentModel cardPaymentModel);
-
-    public void delete(long account_number);
+//    public Optional<CardPaymentModel> findById(long account_number);
+//
+//    public List<CardPaymentModel> findAll();
+//
+//    public CardPaymentModel update(CardPaymentModel cardPaymentModel);
+//
+//    public void delete(long account_number);
 
 
 }

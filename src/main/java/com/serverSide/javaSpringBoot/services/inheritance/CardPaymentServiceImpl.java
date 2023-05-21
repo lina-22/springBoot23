@@ -1,44 +1,25 @@
-/*
+
 package com.serverSide.javaSpringBoot.services.inheritance;
 
 import com.serverSide.javaSpringBoot.model.inheritance.CardPaymentModel;
+import com.serverSide.javaSpringBoot.model.inheritance.PaypalPaymentModel;
 import com.serverSide.javaSpringBoot.repository.inheritance.CardPaymentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
 
+@Component
+@AllArgsConstructor
 public class CardPaymentServiceImpl implements CardPaymentService{
 
-    @Autowired
-    CardPaymentRepository cardPaymentRepository;
+   private final CardPaymentRepository paymentRepository;
 
-    @Override
-    public CardPaymentModel create(CardPaymentModel cardPaymentModel) {
-        return cardPaymentRepository.save(cardPaymentModel);
-    }
+   @Override
+    public CardPaymentModel createCardPayment(CardPaymentModel paymentModel){
+       return paymentRepository.save(paymentModel);
+   }
 
-    @Override
-    public Optional<CardPaymentModel> findById(long account_number) {
-        return null;
-//        cardPaymentRepository.findById(cardPaymentModel);
-    }
 
-  */
-/*  @Override
-    public List<CardPaymentModel> findAll() {
-        return cardPaymentRepository.findAll();
-    }
-*//*
-
-    @Override
-    public CardPaymentModel update(CardPaymentModel cardPaymentModel) {
-        return cardPaymentRepository.save(cardPaymentModel);
-    }
-
-    @Override
-    public void delete(long account_number) {
-//             cardPaymentRepository.deleteById(cardPaymentModel);
-    }
 }
-*/
+
