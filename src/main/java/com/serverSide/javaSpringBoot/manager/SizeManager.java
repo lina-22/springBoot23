@@ -36,7 +36,6 @@ public class SizeManager {
     }
 
     public SizeDto getSizeById(long size_id){
-
         return toSizeDto(sizeService.findById(size_id).get());
     }
 
@@ -52,7 +51,6 @@ public class SizeManager {
     }
 
     public void deleteSizeById(long size_id){
-
         sizeService.delete(size_id);
     }
     // ******************* the dto to model data transfer****************
