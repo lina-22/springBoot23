@@ -6,12 +6,12 @@ import java.util.Optional;
 
 public interface SizeService {
 
-    public SizeModel create(SizeModel sizeModel);
-    public Optional<SizeModel> findById(long size_id);
+     SizeModel create(SizeModel sizeModel);
+     Optional<SizeModel> findById(long size_id);
 
-    public List<SizeModel> findAll();
+     List<SizeModel> findAll();
 
-    public SizeModel update(SizeModel sizeModel);
+     SizeModel update(SizeModel sizeModel);
 
-    public  void delete(long size_id);
+      void delete(long size_id);
 }
