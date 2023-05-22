@@ -32,7 +32,6 @@ public class RolesManager {
     }
 
     public RolesDto getRoleById(long roleId){
-
         return toRolesDto(rolesService.findById(roleId).get());
     }
 
