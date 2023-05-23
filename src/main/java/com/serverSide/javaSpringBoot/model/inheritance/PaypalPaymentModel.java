@@ -24,7 +24,13 @@ public class PaypalPaymentModel extends PaymentModel {
     @Column(name = "account_email", nullable = false)
     private String account_email;
 
-    public PaypalPaymentModel(long l, BigDecimal i, Date date, String test_details, Set<ReservationModel> reservationModel, UserModel userModel, String s) {
+    public PaypalPaymentModel(long l,
+                              BigDecimal i,
+                              Date date,
+                              String test_details,
+                              Set<ReservationModel> reservationModel,
+                              UserModel userModel,
+                              String s) {
         super(l, i, date, test_details, reservationModel, userModel);
         this.account_email = s;
     }

@@ -8,13 +8,12 @@ import java.util.Optional;
 
 public interface UsersService {
 
-    public UserModel create(UserModel userModel);
-    public Optional<UserModel> findById(long users_id);
-    public List<UserModel> findAll();
+     UserModel create(UserModel userModel);
+     Optional<UserModel> findById(long users_id);
+     List<UserModel> findAll();
 
-    public UserModel update(UserModel userModel);
+     UserModel update(UserModel userModel);
 
-    public  void delete(long users_id);
-
+     void delete(long users_id);
 
 }

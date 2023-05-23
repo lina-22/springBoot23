@@ -13,7 +13,6 @@ import java.util.List;
 @RequestMapping("/sizes")
 @AllArgsConstructor
 public class SizeController {
-
     private final SizeManager sizeManager;
 
     @PostMapping
@@ -24,12 +23,13 @@ public class SizeController {
 
     @GetMapping
     public List<SizeDto>getAllSize(){
+
         return sizeManager.getAllSize();
     }
 
-
     @GetMapping(path = "/{size_id}")
     public SizeDto getSizeById(@PathVariable long size_id){
+
         return sizeManager.getSizeById(size_id);
     }
 

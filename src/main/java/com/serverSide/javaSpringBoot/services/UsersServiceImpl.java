@@ -16,6 +16,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UserModel create(UserModel userModel) {
+
         return usersRepository.save(userModel);
     }
 
@@ -27,16 +28,19 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<UserModel> findAll() {
+
         return usersRepository.findAll();
     }
 
     @Override
     public UserModel update(UserModel userModel) {
+
         return usersRepository.save(userModel);
     }
 
     @Override
     public void delete(long users_id) {
+
         usersRepository.deleteById(users_id);
     }
 

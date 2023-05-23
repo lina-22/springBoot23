@@ -10,10 +10,8 @@ import java.util.Optional;
 
 @Component
 public class SizeServiceImpl implements SizeService{
-
     @Autowired
     SizeRepository sizeRepository;
-
     @Override
     public SizeModel create(SizeModel sizeModel){
 
@@ -24,20 +22,19 @@ public class SizeServiceImpl implements SizeService{
 
         return sizeRepository.findById(category_id);
     }
-
     @Override
     public List<SizeModel> findAll(){
 
         return sizeRepository.findAll();
     }
-
     @Override
     public SizeModel update(SizeModel sizeModel){
+
         return  sizeRepository.save(sizeModel);
     }
-
     @Override
     public void delete(long category_id) {
+
         sizeRepository.deleteById(category_id);
     }
 }

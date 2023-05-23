@@ -10,8 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
-@Component
+
 //@RequiredArgsConstructor
+@Component
 public class   ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository mProductRepository;
