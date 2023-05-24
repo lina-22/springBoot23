@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class SizeServiceImpl implements SizeService{
+public class  SizeServiceImpl implements SizeService{
     @Autowired
     SizeRepository sizeRepository;
     @Override

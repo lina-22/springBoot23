@@ -18,21 +18,25 @@ public class ColourServiceImpl implements ColourService {
 
     @Override
     public ColourModel create(ColourModel colourModel) {
+
         return colourRepository.save(colourModel);
     }
 
     @Override
     public Optional<ColourModel> findById(long colour_id) {
+
         return colourRepository.findById(colour_id);
     }
 
     @Override
     public List<ColourModel> findAll() {
+
         return colourRepository.findAll();
     }
 
     @Override
     public ColourModel update(ColourModel colourModel) {
+
         return colourRepository.saveAndFlush(colourModel);
     }
 
