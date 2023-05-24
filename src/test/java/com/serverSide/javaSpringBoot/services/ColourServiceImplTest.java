@@ -1,8 +1,6 @@
 package com.serverSide.javaSpringBoot.services;
 
 import com.serverSide.javaSpringBoot.model.ColourModel;
-import com.serverSide.javaSpringBoot.model.ColourModel;
-import com.serverSide.javaSpringBoot.model.ColourModel;
 import com.serverSide.javaSpringBoot.repository.ColourRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
