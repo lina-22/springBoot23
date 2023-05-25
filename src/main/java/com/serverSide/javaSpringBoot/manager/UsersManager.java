@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -40,14 +42,14 @@ public class UsersManager {
     }
 
 
-//    public List<UsersDto> getAllUsers() {
-//        List<UsersDto>usersDtoList = new ArrayList<>();
-//        List<UsersModel> usersModelList = usersService.findAll();
-//        usersModelList.forEach(data-> {
-//            usersDtoList.add(toUsersDto(data));
-//        });
-//        return usersDtoList;
-//    }
+    public List<UserDto> getAllUsers() {
+        List<UserDto>usersDtoList = new ArrayList<>();
+        List<UserModel> usersModelList = usersService.findAll();
+        usersModelList.forEach(data-> {
+            usersDtoList.add(toUsersDto(data));
+        });
+        return usersDtoList;
+    }
 
     public UserDto getUsersById(long users_id) {
         return toUsersDto(usersService.findById(users_id).get());

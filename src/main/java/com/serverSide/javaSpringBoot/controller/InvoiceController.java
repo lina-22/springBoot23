@@ -22,6 +22,7 @@ public class InvoiceController {
 
     @GetMapping
     public List<InvoiceDto> getAllInvoice(){
+
         return invoiceManager.getAllInvoice();
     }
 

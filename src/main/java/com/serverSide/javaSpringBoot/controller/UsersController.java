@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -15,6 +17,11 @@ public class UsersController {
     @PostMapping("/register")
     public ResponseEntity<BaseResponseDto> register(@RequestBody UserDto userDTO){
         return ResponseEntity.ok(usersManager.registerUser(userDTO));
+    }
+
+    @GetMapping
+    public List<UserDto> getAllUser(){
+        return usersManager.getAllUsers();
     }
 
 }
