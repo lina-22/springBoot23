@@ -2,10 +2,14 @@ package com.serverSide.javaSpringBoot.services;
 
 import com.serverSide.javaSpringBoot.model.SupplierModel;
 import com.serverSide.javaSpringBoot.repository.SupplierRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
+@AllArgsConstructor
 public class SupplierServiceImpl implements SupplierService{
 
     SupplierRepository supplierRepository;

@@ -58,6 +58,7 @@ public class RolesManager {
         return rolesModel;
     }
 
+    // *******************end the model to dto data transfer****************
   public RolesDto toRolesDto(RolesModel rolesModel){
         RolesDto rolesDto = new RolesDto();
         rolesDto.setRoleId(rolesModel.getRoleId());

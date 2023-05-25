@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.RatingDto;
-import com.serverSide.javaSpringBoot.dto.RolesDto;
 import com.serverSide.javaSpringBoot.model.RatingModel;
-import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.services.RatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
