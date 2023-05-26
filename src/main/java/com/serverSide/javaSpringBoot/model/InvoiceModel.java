@@ -3,8 +3,10 @@ package com.serverSide.javaSpringBoot.model;
 import lombok.*;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -19,6 +21,7 @@ public class InvoiceModel {
     private long invoiceId;
 
     @Column
+    @CreationTimestamp
     private Date createDate;
 
     @Column

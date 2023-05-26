@@ -5,6 +5,7 @@ import com.serverSide.javaSpringBoot.manager.InvoiceManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +17,13 @@ public class InvoiceController {
     private final InvoiceManager invoiceManager;
 
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public InvoiceDto createInvoice(@RequestBody InvoiceDto invoiceDto){
         return invoiceManager.createInvoice(invoiceDto);
     }
 
     @GetMapping
     public List<InvoiceDto> getAllInvoice(){
-
         return invoiceManager.getAllInvoice();
     }
 
@@ -31,10 +32,10 @@ public class InvoiceController {
         return invoiceManager.getInvoiceById(invoice_id);
     }
 
-    @PutMapping
+    /*@PutMapping
     public InvoiceDto updateInvoiceById(@RequestBody InvoiceDto invoiceDto){
         return invoiceManager.updateInvoice(invoiceDto);
-    }
+    }*/
 
     @DeleteMapping(path = "/{invoice_id}")
     public ResponseEntity<String> deleteInvoiceById(@PathVariable long invoice_id){

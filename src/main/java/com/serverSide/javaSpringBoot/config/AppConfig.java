@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,6 +57,8 @@ public class AppConfig {
     public void configGlobal(final AuthenticationManagerBuilder auth){
         auth.authenticationProvider(customAuthenticationProvider);
     }
+    private final String[] whiteListGetOnly = {"/products/*/*"};
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -70,15 +73,16 @@ public class AppConfig {
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/users/register").permitAll()
-                .requestMatchers("/products/**").permitAll()
-                .requestMatchers("/guest/**").permitAll()
-                .requestMatchers(   "/v2/api-docs",
+                //.requestMatchers("/users/register").permitAll()
+                //.requestMatchers("/products/**").permitAll()
+                //.requestMatchers("/guest/**").permitAll()
+                /*.requestMatchers(   "/v2/api-docs",
                         "/v3/api-docs",
                         "/swagger-resources/**",
-                        "/swagger-ui/**").permitAll()
-                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                .requestMatchers("/user/**").hasAuthority("USER")
+                        "/swagger-ui/**").permitAll()*/
+                //.requestMatchers("/admin/**").hasAuthority("ADMIN")
+                //.requestMatchers("/user/**").hasAuthority("USER")
+                .requestMatchers(HttpMethod.GET, whiteListGetOnly).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .authenticationManager(manager)

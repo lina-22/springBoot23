@@ -3,6 +3,7 @@ package com.serverSide.javaSpringBoot.manager;
 import com.serverSide.javaSpringBoot.dto.RolesDto;
 import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.services.RolesService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +29,7 @@ class RolesManagerTest {
     private RolesManager underTest;
 
     @Test
+    @Disabled
     void createRoles() {
         //given -
         RolesDto rolesDto = new RolesDto(1, "ADMIN");

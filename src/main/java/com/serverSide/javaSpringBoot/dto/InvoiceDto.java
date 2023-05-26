@@ -21,4 +21,5 @@ public class InvoiceDto {
     private String status;
     private BigDecimal tax;
     private BigDecimal subTotal;
+    private long reservationId;
 }

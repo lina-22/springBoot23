@@ -6,6 +6,7 @@ import com.serverSide.javaSpringBoot.manager.SupplierManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +18,27 @@ public class SupplierController {
     private final SupplierManager supplierManager;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public SupplierDto createSupplier(@RequestBody SupplierDto supplierDto){
-
         return supplierManager.createSupplier(supplierDto);
     }
 
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<SupplierDto> getAllSupplier(){
-
         return supplierManager.getAllSupplier();
     }
 
     @GetMapping(path="/{supplier_id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public SupplierDto getSupplierById(@PathVariable long supplier_id){
-
         return supplierManager.getSupplierById(supplier_id);
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public SupplierDto updateSupplierById(@RequestBody SupplierDto supplierDto){
-
         return  supplierManager.updateSupplier(supplierDto);
     }
 

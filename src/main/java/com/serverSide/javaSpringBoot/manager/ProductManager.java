@@ -70,6 +70,8 @@ public class ProductManager {
 
         });
 
+
+
         Set<AvailableProductModel> availableProductModelSet = availableProductService.saveAll(availableProductModels);
 
         ProductModel productModelToSave = new ProductModel();
@@ -77,6 +79,7 @@ public class ProductManager {
             System.out.println("test prd id : " + productDto.getProductId());
             productModelToSave.setProductId(productDto.getProductId());
         }
+
         productModelToSave.setPrice(productDto.getPrice());
         productModelToSave.setDescription(productDto.getDescription());
         productModelToSave.setDiscount(productDto.getDiscount());
@@ -85,6 +88,10 @@ public class ProductManager {
         productModelToSave.setImportCountry(productDto.getImportCountry());
         productModelToSave.set_featured(productDto.is_featured());
         productModelToSave.setAvailableProductModel(availableProductModelSet);
+        Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
+        if (supplierModel.isPresent()) {
+            productModelToSave.setSupplierModel(supplierModel.get());
+        }
 
         ProductModel addedProduct = productService.createAndUpdate(productModelToSave);
 
