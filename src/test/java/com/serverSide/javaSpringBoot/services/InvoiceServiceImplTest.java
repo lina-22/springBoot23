@@ -5,8 +5,10 @@ import com.serverSide.javaSpringBoot.model.InvoiceModel;
 import com.serverSide.javaSpringBoot.model.InvoiceModel;
 import com.serverSide.javaSpringBoot.repository.InvoiceRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +20,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-//class InvoiceServiceImplTest {
-//
-//    @Mock
-//    private InvoiceRepository invoiceRepository;
-//
-//    @InjectMocks InvoiceServiceImpl underTest;
+@ExtendWith(SpringExtension.class)
+class InvoiceServiceImplTest {
+
+    @Mock
+    private InvoiceRepository invoiceRepository;
+
+    @InjectMocks InvoiceServiceImpl underTest;
 //    @Test
 //    void shouldCreate() {
 //        //given -
@@ -91,17 +94,17 @@ import static org.mockito.Mockito.*;
 //    }
 
 
-//    @Test
-//    void shouldDelete() {
-//
-//        //given -
-//        long invoiceId = 1;
-//
-//        //when -
-//        doNothing().when(invoiceRepository).deleteById(invoiceId);
-//        underTest.delete(invoiceId);
-//
-//        //then -
-//        verify(invoiceRepository, times(1)).deleteById(invoiceId);
-//    }
-//}
+    @Test
+    void shouldDelete() {
+
+        //given -
+        long invoiceId = 1;
+
+        //when -
+        doNothing().when(invoiceRepository).deleteById(invoiceId);
+        underTest.delete(invoiceId);
+
+        //then -
+        verify(invoiceRepository, times(1)).deleteById(invoiceId);
+    }
+}
