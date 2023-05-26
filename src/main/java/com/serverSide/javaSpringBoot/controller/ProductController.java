@@ -25,6 +25,7 @@ class ProductController {
     private final ProductManager productManager;
 
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ProductDto createProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
         return productManager.createAndUpdateProduct(productDto, image);
     }
@@ -37,21 +38,25 @@ class ProductController {
     }
 
     @GetMapping(path= "/{pageNumber}/{size}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Page getProductPaginated(@PathVariable int pageNumber, @PathVariable int size){
        return productManager.getAllProductPaginated(pageNumber, size);
     }
 
     @GetMapping(path= "/{product_id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ProductDto getProductById(@PathVariable long product_id){
         return productManager.getProductById(product_id);
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ProductDto updateProductById(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
         return productManager.createAndUpdateProduct(productDto,image);
     }
 
     @DeleteMapping(path = "/{product_id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<String> deleteProductById(@PathVariable long product_id){
         try{
             productManager.deleteProductById(product_id);

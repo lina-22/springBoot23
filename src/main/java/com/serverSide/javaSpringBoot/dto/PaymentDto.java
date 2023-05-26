@@ -9,7 +9,7 @@ import java.util.Date;
 public class PaymentDto {
     private long paymentId;
     private int amount;
-    private Date datePayment;
     private String details;
+    private Date datePayment;
 
 }
