@@ -60,25 +60,25 @@ class MaterialServiceImplTest {
         assertThat(result.get().getMaterialValue()).isEqualTo("S");
     }
 
-//    @Test
-//    @Disabled
-//    void shouldFindAll() {
-//
-//        //given -
-//        MaterialModel materialModel1 = new MaterialModel(1, "S", null);
-//        MaterialModel materialModel2 = new MaterialModel(2, "S", null);
-//        MaterialModel materialModel3 = new MaterialModel(3, "S", null);
-//        List<MaterialModel> materialModels = new ArrayList<>(Arrays.asList(materialModel1, materialModel2, materialModel3));
-//        given(materialRepository.findAll()).willReturn(materialModels);
-//
-//        //when -
-//        List<MaterialModel> result = underTest.findAll();
-//
-//        //then -
-//        verify(materialRepository, times(1)).findAll();
-//        assertThat(result).isNotNull();
-//        assertThat(result).material();
-//    }
+    @Test
+    @Disabled
+    void shouldFindAll() {
+
+        //given -
+        MaterialModel materialModel1 = new MaterialModel(1, "S", null);
+        MaterialModel materialModel2 = new MaterialModel(2, "S", null);
+        MaterialModel materialModel3 = new MaterialModel(3, "S", null);
+        List<MaterialModel> materialModels = new ArrayList<>(Arrays.asList(materialModel1, materialModel2, materialModel3));
+        given(materialRepository.findAll()).willReturn(materialModels);
+
+        //when -
+        List<MaterialModel> result = underTest.findAll();
+
+        //then -
+        verify(materialRepository, times(1)).findAll();
+        assertThat(result).isNotNull();
+        assertThat(result).size();
+    }
 
     @Test
     void shouldUpdate() {
