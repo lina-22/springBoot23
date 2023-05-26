@@ -21,6 +21,7 @@ public class ProductDto {
     private String importCountry;
     private Set<AvailableProductDtoRes> availableProductDtoRes;
     private Set<AvailableProductDtoReq> availableProductDtoReq;
+    private long supplierId;
 
 
 

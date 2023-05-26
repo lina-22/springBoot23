@@ -52,6 +52,7 @@ public class UsersManager {
     }
 
     public UserDto getUsersById(long users_id) {
+
         return toUsersDto(usersService.findById(users_id).get());
     }
 
@@ -70,6 +71,9 @@ public class UsersManager {
     }
 
     public void deleteUserById(long users_id){
+
+//          usersService.delete(users_id).get();
+//        usersService.delete(users_id);
         usersService.delete(users_id);
     }
 

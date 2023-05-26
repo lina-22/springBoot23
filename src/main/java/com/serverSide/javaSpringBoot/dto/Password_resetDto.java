@@ -13,4 +13,5 @@ public class Password_resetDto {
 
     private long passwordResetId;
     private String token;
+    private long userId;
 }

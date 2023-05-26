@@ -19,6 +19,7 @@ public class ProductManager {
     private ColourService colourService;
     private MaterialService materialService;
     private SizeService sizeService;
+    private SupplierService supplierService;
     private AvailableProductService availableProductService;
 
     private AvailableProductManager availableProductManager;
@@ -56,6 +57,11 @@ public class ProductManager {
             if (materialModel.isPresent()) {
                 availableProductModel.setMaterialModel(materialModel.get());
             }
+
+//            Optional<SupplierModel> supplierModel = supplierService.findById('long supplier_id');
+//            if (supplierModel.isPresent()) {
+//                availableProductModel.setSupplierModel(supplierModel.get());
+//            }
 
             availableProductModel.setSkuReference(data.getSkuReference());
             availableProductModel.setApQuantity(data.getQty());

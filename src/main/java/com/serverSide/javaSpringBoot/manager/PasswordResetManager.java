@@ -2,7 +2,9 @@ package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.Password_resetDto;
 import com.serverSide.javaSpringBoot.model.Password_resetModel;
+import com.serverSide.javaSpringBoot.model.UserModel;
 import com.serverSide.javaSpringBoot.services.Password_resetService;
+import com.serverSide.javaSpringBoot.services.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,12 @@ import java.util.Optional;
 public class PasswordResetManager {
 
     private Password_resetService password_resetService;
+    private UsersService usersService;
 
 
     public Password_resetDto createPassword_reset(Password_resetDto password_resetDto){
+        Optional<UserModel> userModel = usersService.findById(password_resetDto.getUserId());
+
         Password_resetModel password_resetToAdd = toPassword_resetModel(password_resetDto);
 
         Password_resetModel addedPassword_reset = password_resetService.create(password_resetToAdd);
