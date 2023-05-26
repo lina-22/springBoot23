@@ -69,6 +69,10 @@ public class UsersManager {
 
     }
 
+    public void deleteUserById(long users_id){
+        usersService.delete(users_id);
+    }
+
     // ******************* the dto to model data transfer****************
     public UserModel toUserModel(UserDto userDto) {
         UserModel userModel = new UserModel();

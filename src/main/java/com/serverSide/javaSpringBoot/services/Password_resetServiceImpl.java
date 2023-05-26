@@ -1,11 +1,15 @@
 package com.serverSide.javaSpringBoot.services;
 import com.serverSide.javaSpringBoot.model.Password_resetModel;
 import com.serverSide.javaSpringBoot.repository.Password_resetRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
+@AllArgsConstructor
 public class Password_resetServiceImpl implements Password_resetService{
 
     @Autowired
