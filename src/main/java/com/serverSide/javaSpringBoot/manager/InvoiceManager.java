@@ -23,11 +23,12 @@ public class InvoiceManager {
 
     public InvoiceDto createInvoice(InvoiceDto invoiceDto){
           InvoiceModel invoiceToAdd = toInvoiceModel(invoiceDto);
-//
-//        Optional<ReservationModel> reservationModel = reservationService.findById(invoiceDto.getReservationId());
-//        if (reservationModel.isPresent()) {
-//            invoiceToAdd.setReservationModel(reservationModel.get());
-//        }
+
+        Optional<ReservationModel> reservationModel = reservationService.findById(invoiceDto.getReservationId());
+        if (reservationModel.isPresent()) {
+//            System.out.println("test invoice :"+ reservationModel.toString());   this line for get info at console
+            invoiceToAdd.setReservationModel(reservationModel.get());
+        }
 
 //        Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
 //        if (supplierModel.isPresent()) {
