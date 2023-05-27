@@ -21,9 +21,15 @@ public class PasswordResetManager {
 
 
     public Password_resetDto createPassword_reset(Password_resetDto password_resetDto){
-        Optional<UserModel> userModel = usersService.findById(password_resetDto.getUserId());
 
         Password_resetModel password_resetToAdd = toPassword_resetModel(password_resetDto);
+
+        //bellow line for add the foreign id at the DB
+        Optional<UserModel> userModel = usersService.findById(password_resetDto.getUserId());
+        if(userModel.isPresent()){
+            password_resetToAdd.setUserModel(userModel.get());
+        }
+         //above line for add the foreign id at the DB
 
         Password_resetModel addedPassword_reset = password_resetService.create(password_resetToAdd);
 //        System.out.println("hello"+addedPassword_reset);
@@ -72,6 +78,9 @@ public class PasswordResetManager {
         Password_resetDto password_resetDto = new Password_resetDto();
         password_resetDto.setPasswordResetId(password_resetModel.getPasswordResetId());
         password_resetDto.setToken(password_resetModel.getToken());
+        //bellow line for add the foreign id at the DB
+        password_resetDto.setUserId(password_resetModel.getUserModel().getUserId());
+        //above line for add the foreign id at the DB
         return  password_resetDto;
     }
 
