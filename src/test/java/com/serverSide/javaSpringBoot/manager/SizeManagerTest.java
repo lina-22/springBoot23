@@ -132,7 +132,7 @@ class SizeManagerTest {
     }
 
     @Test
-    void shouldConverttoSizeDto() {
+    void shouldConvertToSizeDto() {
         SizeModel sizeModel = new SizeModel(1, "S", null);
         //given -
 

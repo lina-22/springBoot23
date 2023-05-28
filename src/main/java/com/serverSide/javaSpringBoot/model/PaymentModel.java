@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,7 +30,8 @@ public abstract class PaymentModel {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "date_payment", nullable = false)
+    @Column(name = "date_payment")
+    @CreationTimestamp
     private Date datePayment;
 
     @Column(name = "details", nullable = false)

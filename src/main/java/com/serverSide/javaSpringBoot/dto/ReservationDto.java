@@ -17,4 +17,5 @@ public class ReservationDto {
     private  String status;
     private Date expireDate;
     private  long paymentId;
+    private long availableProductIds;
 }

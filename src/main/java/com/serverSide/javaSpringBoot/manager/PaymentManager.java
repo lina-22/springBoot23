@@ -29,7 +29,6 @@ public class PaymentManager {
 
         PaypalPaymentModel paypalPaymentModel = new PaypalPaymentModel();
 
-        paypalPaymentModel.setDatePayment(new Date(12/10/2023));
 
         paypalPaymentModel.setAccount_email(paypalPaymentDto.getAccountEmail());
 

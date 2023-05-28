@@ -1,25 +1,39 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.RatingDto;
+import com.serverSide.javaSpringBoot.model.ProductModel;
 import com.serverSide.javaSpringBoot.model.RatingModel;
+import com.serverSide.javaSpringBoot.services.ProductService;
 import com.serverSide.javaSpringBoot.services.RatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class RatingManager {
 
     private RatingService ratingService;
+    private ProductService productService;
 
-    public RatingDto createRating(RatingDto ratingDto){
-       RatingModel ratingToAdd = toRatingModel(ratingDto);
-       RatingModel addedRating = ratingService.create(ratingToAdd);
-       return toRatingDto(addedRating);
+    public String createRating(RatingDto ratingDto){
+        Optional<ProductModel> productModel = productService.findById(ratingDto.getProductId());
+
+        RatingModel ratingToAdd = toRatingModel(ratingDto);
+        RatingModel addedRatingModel = ratingService.create(ratingToAdd);
+
+        Set<RatingModel> ratingModelSet = new HashSet<>();
+        ratingModelSet.add(addedRatingModel);
+
+        if(productModel.isPresent()){
+            productModel.get().setRatingModels(ratingModelSet);
+        }
+        ProductModel updatedProductModel=productService.update(productModel.get());
+        if(updatedProductModel !=null){
+            return "Rating added successfully";
+        }
+        return "Something went wrong";
     }
 
     public List<RatingDto> getAllRating() {

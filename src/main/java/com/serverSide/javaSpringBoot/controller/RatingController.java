@@ -18,7 +18,7 @@ public class RatingController {
     private final RatingManager ratingManager;
 
     @PostMapping
-    public RatingDto createRating(@RequestBody RatingDto ratingDto){
+    public String createRating(@RequestBody RatingDto ratingDto){
 
         return ratingManager.createRating(ratingDto);
     }
