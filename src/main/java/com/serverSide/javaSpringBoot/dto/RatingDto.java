@@ -14,5 +14,6 @@ public class RatingDto {
 
     private long ratingId;
     private int rate;
+    private long productId;
 
 }

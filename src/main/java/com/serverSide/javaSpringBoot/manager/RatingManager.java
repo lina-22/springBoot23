@@ -69,6 +69,7 @@ public class RatingManager {
            RatingDto ratingDto = new RatingDto();
            ratingDto.setRatingId(ratingModel.getRatingId());
            ratingDto.setRate(ratingModel.getRate());
+//           ratingDto.setProductId(ratingModel.getUser);
            return ratingDto;
     }
 

@@ -1,6 +1,9 @@
 package com.serverSide.javaSpringBoot.services.inheritance;
 
 import com.serverSide.javaSpringBoot.model.PaymentModel;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
 

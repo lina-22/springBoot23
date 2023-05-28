@@ -1,8 +1,10 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
+import com.serverSide.javaSpringBoot.model.PaymentModel;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.services.ReservationService;
+import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,19 @@ import java.util.Optional;
 public class ReservationManager {
 
     private ReservationService reservationService;
+
+//    private PaymentService paymentService;
       public ReservationDto createReservation(ReservationDto reservationDto){
        ReservationModel reservationToAdd = toReservationModel(reservationDto);
-       ReservationModel addedReservation = reservationService.create(reservationToAdd);
+
+//          reservationDto.setPaymentId(reservationModel.getPaymentModel().getPaymentId());
+
+//          Optional<PaymentModel> paymentModel = paymentService.findById(reservationDto.getPaymentId());
+//          if(paymentModel.isPresent()){
+//            reservationToAdd.setPaymentModel(paymentModel.get());
+//          }
+
+          ReservationModel addedReservation = reservationService.create(reservationToAdd);
 
        return toReservationDto(addedReservation);
     }
@@ -70,6 +82,7 @@ public class ReservationManager {
         reservationDto.setReference(reservationModel.getReference());
         reservationDto.setStatus(reservationModel.getStatus());
         reservationDto.setExpireDate(reservationModel.getExpireDate());
+//        reservationDto.setPaymentId(reservationModel.getPaymentModel().getPaymentId());
 
         return  reservationDto;
     }
