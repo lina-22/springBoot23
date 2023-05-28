@@ -33,12 +33,14 @@ class SizeManagerTest {
 
     @Test
     @Disabled
-    void createSize() {
+    void shouldCreateSize() {
+
         //given -
         SizeDto sizeDto = new SizeDto(1, "S");
         SizeModel sizeModel = new SizeModel(1, "S", null);
         given(sizeService.create(sizeModel)).willReturn(sizeModel);
         when(sizeManager.toSizeDto(sizeModel)).thenReturn(sizeDto);
+
         //when -
         SizeDto result = underTest.createSize(sizeDto);
 
@@ -71,7 +73,7 @@ class SizeManagerTest {
     }
 
     @Test
-    void getSizeById() {
+    void shouldGetSizeById() {
         //given -
         long sizeId = 1;
         SizeModel sizeModel = new SizeModel(1, "S", null);
