@@ -1,8 +1,10 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
+import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.PaymentModel;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
+import com.serverSide.javaSpringBoot.services.AvailableProductService;
 import com.serverSide.javaSpringBoot.services.ReservationService;
 import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
 import lombok.AllArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -19,21 +22,24 @@ public class ReservationManager {
     private ReservationService reservationService;
 
 //    private PaymentService paymentService;
-      public ReservationDto createReservation(ReservationDto reservationDto){
-       ReservationModel reservationToAdd = toReservationModel(reservationDto);
+
+    private AvailableProductService availableProductService;
+public ReservationDto createReservation(ReservationDto reservationDto){
+//    List<AvailableProductModel> availableProductModelSet = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
+
+    ReservationModel reservationToAdd = toReservationModel(reservationDto);
 
 //          reservationDto.setPaymentId(reservationModel.getPaymentModel().getPaymentId());
 
-//          Optional<PaymentModel> paymentModel = paymentService.findById(reservationDto.getPaymentId());
-//          if(paymentModel.isPresent()){
-//            reservationToAdd.setPaymentModel(paymentModel.get());
-//          }
+//    Optional<PaymentModel> paymentModel = paymentService.findById(reservationDto.getPaymentId());
+//    if(paymentModel.isPresent()){
+//        reservationToAdd.setPaymentModel(paymentModel.get());
+//    }
 
-          ReservationModel addedReservation = reservationService.create(reservationToAdd);
+    ReservationModel addedReservation = reservationService.create(reservationToAdd);
 
-       return toReservationDto(addedReservation);
-    }
-
+    return toReservationDto(addedReservation);
+}
 
     public List<ReservationDto> getAllReservation() {
         List<ReservationDto>reservationDtoList = new ArrayList<>();

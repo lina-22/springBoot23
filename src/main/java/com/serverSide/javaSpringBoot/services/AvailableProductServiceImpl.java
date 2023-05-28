@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.services;
 
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
+import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.repository.AvailableProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,6 +44,16 @@ public class AvailableProductServiceImpl implements AvailableProductService {
     public List<AvailableProductModel> findAll(){
         return mAvailableProductRepository.findAll();
     };
+
+    @Override
+    public List<AvailableProductModel> findAllByIds(List<Long> ids){
+        return (List<AvailableProductModel>) mAvailableProductRepository.findAllById(ids);
+    }
+
+//    @Override
+//    public List<ReservationModel> findAllByIds(List<Long> ids) {
+//        return (List<ReservationModel>) mReservationRepository.findAllById(ids);
+//    }
 
     @Override
     public void delete(long ap_id) {

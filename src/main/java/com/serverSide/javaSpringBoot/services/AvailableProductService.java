@@ -18,5 +18,7 @@ public interface AvailableProductService {
 
      List<AvailableProductModel> findAll();
 
+     List<AvailableProductModel> findAllByIds(List<Long>ids);
+
       void delete(long ap_id);
 }
