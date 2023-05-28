@@ -24,6 +24,7 @@ public class PaymentController {
         return paymentManager.createPayPalPayment(paymentDto);
     }
 
+
 //    @PostMapping(value = "/card")
 //    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 //    public CardPaymentDto createCardPayment(@RequestBody CardPaymentDto paymentDto){
@@ -36,7 +37,7 @@ public class PaymentController {
 //        return paymentManager.createStripePayment(paymentDto);
 //    }
 
-    @GetMapping(value = "/paypal")
+    @GetMapping(value = "/test")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public String test(){
         return "test ok...";

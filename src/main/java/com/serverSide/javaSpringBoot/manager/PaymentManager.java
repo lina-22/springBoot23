@@ -97,7 +97,7 @@ public class PaymentManager {
         });
         return paymentDtoList;
     }
-*/
+
   /*  public PaymentDto getPaymentById(long payment_id){
 PaymentModel paymentModel = paymentService.findById(payment_id).get();
 PaymentModel paymentModel1 = paymentService.findById(payment_id).get();
