@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,5 +18,5 @@ public class ReservationDto {
     private  String status;
     private Date expireDate;
     private  long paymentId;
-    private long availableProductIds;
+    private List<Long> availableProductIds;
 }

@@ -36,7 +36,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String accessToken = request.getHeader(jwtConfig.getHeader());
-        System.out.println("test here : "  + accessToken);
+        System.out.println("test here login : "  + request);
         log.info("Start do filter once per request, {}", request.getRequestURI());
 
         if (!ObjectUtils.isEmpty(accessToken) && accessToken.startsWith(jwtConfig.getPrefix() + " ")) {

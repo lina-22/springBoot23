@@ -2,20 +2,23 @@ package com.serverSide.javaSpringBoot.config.filter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Configuration
 public class CorsFilter implements Filter {
 
+    private static final Logger log = Logger.getAnonymousLogger();
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
         final HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-
+        log.info("Adding Access Control Response Headers");
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
@@ -24,6 +27,10 @@ public class CorsFilter implements Filter {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         }
         chain.doFilter(request, response);
+
+    }
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 }

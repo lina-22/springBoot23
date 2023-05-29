@@ -10,10 +10,7 @@ import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -25,19 +22,17 @@ public class ReservationManager {
 
     private AvailableProductService availableProductService;
 public ReservationDto createReservation(ReservationDto reservationDto){
-//    List<AvailableProductModel> availableProductModelSet = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
+    List<AvailableProductModel> availableProducts = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
+Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
 
+    for (AvailableProductModel availableProductModel : availableProductModels) {
+        System.out.println(availableProductModel.toString());
+    }
     ReservationModel reservationToAdd = toReservationModel(reservationDto);
-
-//          reservationDto.setPaymentId(reservationModel.getPaymentModel().getPaymentId());
-
-//    Optional<PaymentModel> paymentModel = paymentService.findById(reservationDto.getPaymentId());
-//    if(paymentModel.isPresent()){
-//        reservationToAdd.setPaymentModel(paymentModel.get());
-//    }
+    reservationToAdd.setMAvailableProduct(availableProductModels);
 
     ReservationModel addedReservation = reservationService.create(reservationToAdd);
-
+    System.out.println("tested ok ...." + addedReservation.toString());
     return toReservationDto(addedReservation);
 }
 

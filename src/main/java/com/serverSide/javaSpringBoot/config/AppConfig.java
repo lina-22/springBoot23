@@ -22,6 +22,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -57,7 +62,8 @@ public class AppConfig {
     public void configGlobal(final AuthenticationManagerBuilder auth){
         auth.authenticationProvider(customAuthenticationProvider);
     }
-    private final String[] whiteListGetOnly = {"/products/*/*"};
+    private final String[] whiteListGetOnly = {"/products/*/*", "/*"};
+
 
 
     @Bean
@@ -69,12 +75,13 @@ public class AppConfig {
         AuthenticationManager manager = builder.build();
 
         http
-                .cors().disable()
+                .cors(c -> c.disable())
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeHttpRequests()
-                //.requestMatchers("/users/register").permitAll()
-                //.requestMatchers("/products/**").permitAll()
+                .requestMatchers("/users/register").permitAll()
+                .requestMatchers("/*").permitAll()
+                .requestMatchers("/reservations").permitAll()
                 //.requestMatchers("/guest/**").permitAll()
                 /*.requestMatchers(   "/v2/api-docs",
                         "/v3/api-docs",
