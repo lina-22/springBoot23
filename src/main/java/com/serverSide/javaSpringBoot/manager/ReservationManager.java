@@ -21,9 +21,9 @@ public class ReservationManager {
 //    private PaymentService paymentService;
 
     private AvailableProductService availableProductService;
-public ReservationDto createReservation(ReservationDto reservationDto){
+    public ReservationDto createReservation(ReservationDto reservationDto){
     List<AvailableProductModel> availableProducts = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
-Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
+    Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
 
     for (AvailableProductModel availableProductModel : availableProductModels) {
         System.out.println(availableProductModel.toString());
