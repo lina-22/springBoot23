@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
+import com.serverSide.javaSpringBoot.dto.ProfileUpdateDto;
 import com.serverSide.javaSpringBoot.dto.UserDto;
 import com.serverSide.javaSpringBoot.model.RolesModel;
 import com.serverSide.javaSpringBoot.model.UserModel;
@@ -11,9 +12,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static org.apache.coyote.http11.Constants.a;
 
 /**
  *
@@ -56,37 +57,27 @@ public class UsersManager {
         return toUsersDto(usersService.findById(users_id).get());
     }
 
-    public UserDto updateUsers(UserDto userDto) {
-        Optional<UserModel> usersModel = usersService.findById(userDto.getUserId());
-        if (usersModel.isPresent()) {
-            usersModel.get().setFirstName(userDto.getFirstName());
-            usersModel.get().setLastName(userDto.getLastName());
-            usersModel.get().setEmail(userDto.getEmail());
-            usersModel.get().setPassword(userDto.getPassword());
-            UserModel updatedUserModel = usersService.update(usersModel.get());
-            return toUsersDto(updatedUserModel);
-        }
-        return new UserDto();
-
+    public BaseResponseDto updateUsers(UserDto userDto) {
+        UserModel userModel= toUserModel(userDto);
+        return usersService.update(userModel);
     }
 
-    public void deleteUserById(long users_id){
-
-//          usersService.delete(users_id).get();
-//        usersService.delete(users_id);
-        usersService.delete(users_id);
+    public void deleteUserById(long usersId){
+        usersService.delete(usersId);
     }
 
     // ******************* the dto to model data transfer****************
     public UserModel toUserModel(UserDto userDto) {
         UserModel userModel = new UserModel();
+        userModel.setUserId(userDto.getUserId());
         userModel.setFirstName(userDto.getFirstName());
         userModel.setLastName(userDto.getLastName());
         userModel.setEmail(userDto.getEmail());
         userModel.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         RolesModel rolesModel = rolesService.findByName(userDto.getRole());
-        userModel.setRolesModel(rolesModel);
+        Set rolesSet = new HashSet<>(Arrays.asList(rolesModel));
+        userModel.setRolesModelSet(rolesSet);
 
         return userModel;
     }
@@ -97,11 +88,8 @@ public class UsersManager {
         userDto.setFirstName(userModel.getFirstName());
         userDto.setLastName(userModel.getLastName());
         userDto.setEmail(userModel.getEmail());
-        userDto.setPassword(userModel.getPassword());
-        userDto.setRole(userModel.getRolesModel().getName());
         return userDto;
     }
-
 
     // *******************the dto to model data transfer****************
 }

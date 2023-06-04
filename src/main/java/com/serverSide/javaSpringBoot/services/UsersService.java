@@ -12,7 +12,7 @@ public interface UsersService {
      Optional<UserModel> findById(long users_id);
      List<UserModel> findAll();
 
-     UserModel update(UserModel userModel);
+     BaseResponseDto update(UserModel userModel);
 
      void delete(long users_id);
 

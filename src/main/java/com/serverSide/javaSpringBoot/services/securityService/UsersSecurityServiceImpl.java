@@ -48,10 +48,10 @@ public class UsersSecurityServiceImpl implements UsersSecurityService {
             throw new BaseException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Username already exists.");
         }
         //validate role -
-        List<String>roles = roleRepository.findAll().stream().map(RolesModel::getName).toList();
+      /*  List<String>roles = roleRepository.findAll().stream().map(RolesModel::getName).toList();
         System.out.println("test list print : " + roles.toString());
         if (!roles.contains(userModel.getRolesModel().getName())){
             throw new BaseException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Invalid role.");
-        }
+        }*/
     }
 }

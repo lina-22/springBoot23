@@ -26,24 +26,24 @@ public class UsersController {
         return usersManager.getAllUsers();
     }
 
-    @GetMapping(path = "/{users_id}")
-    public UserDto getUserById(@PathVariable long users_id){
-        return usersManager.getUsersById(users_id);
+    @GetMapping(path = "/{usersid}")
+    public UserDto getUserById(@PathVariable long usersid){
+        return usersManager.getUsersById(usersid);
     }
 
     @PutMapping
-    public UserDto updateUserById(@RequestBody UserDto userDTO){
+    public BaseResponseDto updateUser(@RequestBody UserDto userDTO){
         return usersManager.updateUsers(userDTO);
     }
 
-    @DeleteMapping(path = "/{users_id}")
-    public ResponseEntity<String> deleteUserById(@PathVariable long users_id){
+    @DeleteMapping(path = "/{usersid}")
+    public ResponseEntity<String> deleteUserById(@PathVariable long usersid){
         try{
-            usersManager.deleteUserById(users_id);
-            return new ResponseEntity<>("User with id +" + users_id + "has benn deleted sucessfuly .", HttpStatus.OK);
+            usersManager.deleteUserById(usersid);
+            return new ResponseEntity<>("User with id +" + usersid + "has benn deleted sucessfuly .", HttpStatus.OK);
         }catch (Exception excp){
             System.out.println(excp.getMessage());
-            return new ResponseEntity<>("User with" + users_id + "not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Something went wrong ", HttpStatus.SERVICE_UNAVAILABLE);
         }
     }
 }

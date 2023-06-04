@@ -38,7 +38,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }catch (Exception e){
             throw new BaseException(String.valueOf(HttpStatus.UNAUTHORIZED.value()), "User's not found");
         }
-        List<RolesModel>rolesModels = Arrays.asList(userModel.getRolesModel());
+        //List<RolesModel>rolesModels = Arrays.asList(userModel.getRolesModel());
+        List<RolesModel> rolesModels = new ArrayList<>(userModel.getRolesModelSet());
         final List<GrantedAuthority> authorities = getAuthorities(rolesModels.stream().toList());
 
         final Authentication auth = new UsernamePasswordAuthenticationToken(email, password, authorities);

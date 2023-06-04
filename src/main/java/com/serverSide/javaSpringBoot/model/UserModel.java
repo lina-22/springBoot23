@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -33,10 +34,14 @@ public class UserModel {
     @Column(name="password", nullable = false)
     private  String password;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "users_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")}
+    )
     @JsonIgnore
-    @ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_role_id", referencedColumnName = "role_id")
-    private RolesModel rolesModel;
+    private Set<RolesModel> rolesModelSet;
 
 /*
     @JsonIgnore

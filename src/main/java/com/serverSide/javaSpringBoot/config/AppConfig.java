@@ -81,7 +81,7 @@ public class AppConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/users/register").permitAll()
                 .requestMatchers("/*").permitAll()
-                .requestMatchers("/reservations").permitAll()
+                .requestMatchers("/**").permitAll()
                 //.requestMatchers("/guest/**").permitAll()
                 /*.requestMatchers(   "/v2/api-docs",
                         "/v3/api-docs",

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,8 @@ public class AppUserDetailsService implements UserDetailsService {
         if (ObjectUtils.isEmpty(user)){
             throw new BaseException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Invalid username or password.");
         }
-        List<RolesModel> rolesModels = Arrays.asList(user.getRolesModel());
+        //List<RolesModel> rolesModels = Arrays.asList(user.getRolesModel());
+        List<RolesModel> rolesModels = new ArrayList<>(user.getRolesModelSet());
         return new AppUserDetails(
                 user.getEmail(),
                 user.getPassword(),

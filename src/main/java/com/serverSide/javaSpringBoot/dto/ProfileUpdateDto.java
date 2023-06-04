@@ -5,24 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.lang.constant.ClassDesc;
-import java.util.Optional;
-import java.util.Set;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class ProfileUpdateDto {
 
     private long userId;
     private String firstName;
     private String lastName;
+    private String passwordSuccessfullyUpdated;
     private String email;
-    private String password;
     private String role;
-    private Set<RolesDto>rolesDtoSet;
-//    private String passwordSuccessfullyUpdated;
-//    private Set<ProfileUpdateDto> profileUpdateDto;
-
 }

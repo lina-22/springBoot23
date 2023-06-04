@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,10 +23,8 @@ public class RolesModel {
     @Column(name="name", nullable = false)
     private  String name;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "rolesModel")
-    private Set<UserModel> userModel;
-
+    @ManyToMany(mappedBy = "rolesModelSet", fetch = FetchType.EAGER)
+    private Set<UserModel>userModelSet;
 }
 
 
