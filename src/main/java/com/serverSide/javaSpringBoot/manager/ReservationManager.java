@@ -29,7 +29,7 @@ public class ReservationManager {
         System.out.println(availableProductModel.toString());
     }
     ReservationModel reservationToAdd = toReservationModel(reservationDto);
-    reservationToAdd.setMAvailableProduct(availableProductModels);
+   // reservationToAdd.setMAvailableProduct(availableProductModels);
 
     ReservationModel addedReservation = reservationService.create(reservationToAdd);
     System.out.println("tested ok ...." + addedReservation.toString());

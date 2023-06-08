@@ -34,7 +34,7 @@ public class UserModel {
     @Column(name="password", nullable = false)
     private  String password;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "users_id")},

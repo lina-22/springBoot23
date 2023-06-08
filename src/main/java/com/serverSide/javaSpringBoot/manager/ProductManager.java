@@ -64,6 +64,7 @@ public class ProductManager {
 //            }
 
             availableProductModel.setSkuReference(data.getSkuReference());
+            System.out.println("test here....: " + data.getQty());
             availableProductModel.setApQuantity(data.getQty());
 
             availableProductModels.add(availableProductModel);

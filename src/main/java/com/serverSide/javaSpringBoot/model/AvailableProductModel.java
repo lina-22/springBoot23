@@ -49,9 +49,11 @@ public class AvailableProductModel {
     @JoinColumn(name = "material_id", referencedColumnName = "material_id")
     private MaterialModel materialModel;
 
-    @JsonIgnore
+    @OneToMany(mappedBy = "availableProductModel")
+    private Set<ReservationAvailableProduct> reservationAvailableProducts = new HashSet<>();
+    /*@JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
-    private Set<ReservationModel>mReservations = new HashSet<>();
+    private Set<ReservationModel>mReservations = new HashSet<>();*/
 
 
     /*@ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.DETACH)
@@ -61,17 +63,5 @@ public class AvailableProductModel {
     private Set<ProductModel> productModel = new HashSet<>();
 */
 
-    @Override
-    public String toString() {
-        return "AvailableProductModel{" +
-                "apId=" + apId +
-                ", apQuantity=" + apQuantity +
-                ", skuReference='" + skuReference + '\'' +
-                ", categoryModel=" + categoryModel +
-                ", sizeModel=" + sizeModel +
-                ", colourModel=" + colourModel +
-                ", materialModel=" + materialModel +
-                ", mReservations=" + mReservations +
-                '}';
-    }
+
 }
