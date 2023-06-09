@@ -1,13 +1,18 @@
 package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
+import com.serverSide.javaSpringBoot.dto.ReservationReqDto;
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.PaymentModel;
+import com.serverSide.javaSpringBoot.model.ReservationAvailableProduct;
 import com.serverSide.javaSpringBoot.model.ReservationModel;
 import com.serverSide.javaSpringBoot.services.AvailableProductService;
+import com.serverSide.javaSpringBoot.services.ReservationAvailableProductService;
 import com.serverSide.javaSpringBoot.services.ReservationService;
 import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,7 +26,8 @@ public class ReservationManager {
 //    private PaymentService paymentService;
 
     private AvailableProductService availableProductService;
-    public ReservationDto createReservation(ReservationDto reservationDto){
+    private ReservationAvailableProductService reservationAvailableProductService;
+/*    public ReservationDto createReservation(ReservationDto reservationDto){
     List<AvailableProductModel> availableProducts = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
     Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
 
@@ -34,7 +40,32 @@ public class ReservationManager {
     ReservationModel addedReservation = reservationService.create(reservationToAdd);
     System.out.println("tested ok ...." + addedReservation.toString());
     return toReservationDto(addedReservation);
-}
+}*/
+
+    public ResponseEntity createReservation(ReservationReqDto reservationReqDto){
+
+        ReservationModel reservationModel = new ReservationModel();
+        reservationModel.setReference(reservationReqDto.getReference());
+        reservationModel.setStatus(reservationReqDto.getStatus());
+        reservationModel.setExpireDate(new Date(10/12/2025));
+        ReservationModel savedReservationModel = reservationService.create(reservationModel);
+
+        reservationReqDto.getReservedProductDtos().forEach(data->{
+            Optional<AvailableProductModel> availableProductModel = availableProductService.findById(data.getProductId());
+            ReservationAvailableProduct reservationAvailableProduct = new ReservationAvailableProduct();
+            reservationAvailableProduct.setAvailableProductModel(availableProductModel.get());
+            reservationAvailableProduct.setReservationModel(savedReservationModel);
+            reservationAvailableProduct.setQty(data.getQty());
+            reservationAvailableProductService.create(reservationAvailableProduct);
+        });
+
+        Optional<ReservationModel> result =reservationService.findById(savedReservationModel.getReservationId());
+        if (result.isPresent()){
+            return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
+        }
+
+   return new ResponseEntity<>("Something went wrong", HttpStatus.SERVICE_UNAVAILABLE);
+    }
 
     public List<ReservationDto> getAllReservation() {
         List<ReservationDto>reservationDtoList = new ArrayList<>();

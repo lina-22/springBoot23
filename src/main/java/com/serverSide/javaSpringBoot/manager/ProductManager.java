@@ -31,7 +31,7 @@ public class ProductManager {
             throw new RuntimeException(e);
         }
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
-        productDto.getAvailableProductDtoReq().forEach(data->{
+        productDto.getAvailableProductReqDto().forEach(data->{
 
             AvailableProductModel availableProductModel = new AvailableProductModel();
             if(data.getId() != 0) {
@@ -175,7 +175,7 @@ public class ProductManager {
         productDto.set_featured(productModel.is_featured());
         productDto.setImage(productModel.getImage());
         productDto.setImportCountry(productModel.getImportCountry());
-        productDto.setAvailableProductDtoRes(availableProductManager
+        productDto.setAvailableProductReDtos(availableProductManager
                 .toDtos(productModel.getAvailableProductModel()));
         return productDto;
     }

@@ -1,5 +1,5 @@
 package com.serverSide.javaSpringBoot.manager;
-import com.serverSide.javaSpringBoot.dto.AvailableProductDtoRes;
+import com.serverSide.javaSpringBoot.dto.AvailableProductResDto;
 import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.services.AvailableProductService;
 import lombok.AllArgsConstructor;
@@ -47,27 +47,27 @@ public class AvailableProductManager {
         return  availableProductDto;
     }*/
     // *******************the dto to model data transfer****************
-    public AvailableProductDtoRes toDto(AvailableProductModel availableProductModel){
+    public AvailableProductResDto toDto(AvailableProductModel availableProductModel){
 
-        AvailableProductDtoRes availableProductDtoRes = new AvailableProductDtoRes();
-        availableProductDtoRes.setId(availableProductModel.getApId());
-        availableProductDtoRes.setQty(availableProductModel.getApQuantity());
-        availableProductDtoRes.setSkuReference(availableProductModel.getSkuReference());
+        AvailableProductResDto availableProductResDto = new AvailableProductResDto();
+        availableProductResDto.setId(availableProductModel.getApId());
+        availableProductResDto.setQty(availableProductModel.getApQuantity());
+        availableProductResDto.setSkuReference(availableProductModel.getSkuReference());
 
-        availableProductDtoRes.setSize(availableProductModel.getSizeModel().getSizeValue());
+        availableProductResDto.setSize(availableProductModel.getSizeModel().getSizeValue());
 
-        availableProductDtoRes.setCategory(availableProductModel.getCategoryModel().getCategoryValue());
+        availableProductResDto.setCategory(availableProductModel.getCategoryModel().getCategoryValue());
 
-        availableProductDtoRes.setColour(availableProductModel.getColourModel().getColourValue());
-        availableProductDtoRes.setMaterial(availableProductModel.getMaterialModel().getMaterialValue());
-        return availableProductDtoRes;
+        availableProductResDto.setColour(availableProductModel.getColourModel().getColourValue());
+        availableProductResDto.setMaterial(availableProductModel.getMaterialModel().getMaterialValue());
+        return availableProductResDto;
     }
 
-    public Set<AvailableProductDtoRes> toDtos(Set<AvailableProductModel>availableProductModels){
-        Set<AvailableProductDtoRes> availableProductDtoRespons = new HashSet<>();
+    public Set<AvailableProductResDto> toDtos(Set<AvailableProductModel>availableProductModels){
+        Set<AvailableProductResDto> availableProductResponDtos = new HashSet<>();
         availableProductModels.forEach(data->{
-          availableProductDtoRespons.add(toDto(data));
+          availableProductResponDtos.add(toDto(data));
         });
-        return availableProductDtoRespons;
+        return availableProductResponDtos;
     }
 }

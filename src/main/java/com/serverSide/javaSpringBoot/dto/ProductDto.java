@@ -19,8 +19,8 @@ public class ProductDto {
     private byte[] image;
     private String description;
     private String importCountry;
-    private Set<AvailableProductDtoRes> availableProductDtoRes;
-    private Set<AvailableProductDtoReq> availableProductDtoReq;
+    private Set<AvailableProductResDto> availableProductReDtos;
+    private Set<AvailableProductReqDto> availableProductReqDto;
     private long supplierId;
 
 

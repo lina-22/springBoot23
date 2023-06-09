@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
+import com.serverSide.javaSpringBoot.dto.ReservationReqDto;
 import com.serverSide.javaSpringBoot.manager.ReservationManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,14 @@ import java.util.List;
 public class ReservationController {
 
     private final ReservationManager reservationManager;
-    @PostMapping
+   /* @PostMapping
     public ReservationDto createReservation(@RequestBody ReservationDto reservationDto){
         return reservationManager.createReservation(reservationDto);
+    }*/
+
+    @PostMapping
+    public ResponseEntity createReservation(@RequestBody ReservationReqDto reservationReqDto){
+        return reservationManager.createReservation(reservationReqDto);
     }
 
     @GetMapping
