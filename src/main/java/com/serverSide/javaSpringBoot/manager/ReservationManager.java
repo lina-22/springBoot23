@@ -2,18 +2,17 @@ package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.ReservationReqDto;
-import com.serverSide.javaSpringBoot.model.AvailableProductModel;
-import com.serverSide.javaSpringBoot.model.PaymentModel;
-import com.serverSide.javaSpringBoot.model.ReservationAvailableProduct;
-import com.serverSide.javaSpringBoot.model.ReservationModel;
+import com.serverSide.javaSpringBoot.model.*;
 import com.serverSide.javaSpringBoot.services.AvailableProductService;
 import com.serverSide.javaSpringBoot.services.ReservationAvailableProductService;
 import com.serverSide.javaSpringBoot.services.ReservationService;
+import com.serverSide.javaSpringBoot.services.UsersService;
 import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.*;
 
@@ -27,6 +26,7 @@ public class ReservationManager {
 
     private AvailableProductService availableProductService;
     private ReservationAvailableProductService reservationAvailableProductService;
+    private UsersService usersService;
 /*    public ReservationDto createReservation(ReservationDto reservationDto){
     List<AvailableProductModel> availableProducts = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
     Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
@@ -48,6 +48,9 @@ public class ReservationManager {
         reservationModel.setReference(reservationReqDto.getReference());
         reservationModel.setStatus(reservationReqDto.getStatus());
         reservationModel.setExpireDate(new Date(10/12/2025));
+        Optional<UserModel>userModel = usersService.findById(reservationReqDto.getUserId());
+        System.out.println("test here :" + reservationReqDto.getUserId());
+        reservationModel.setUserModel(userModel.get());
         ReservationModel savedReservationModel = reservationService.create(reservationModel);
 
         reservationReqDto.getReservedProductDtos().forEach(data->{
@@ -74,6 +77,21 @@ public class ReservationManager {
             reservationDtoList.add(toReservationDto(data));
         });
         return reservationDtoList;
+    }
+
+    public List<ReservationDto>getAllByUser(long userId){
+        Optional<UserModel>userModel= usersService.findById(userId);
+        if (userModel.isEmpty()) {
+            throw new NotFoundException("User does not exists");
+        }
+        List<ReservationModel>reservationModels= reservationService.findAllByUser(userModel.get());
+        reservationModels.forEach(data->{
+            /*data.getReservationAvailableProducts().forEach(data->{
+                data.getAvailableProductModel().getApId()
+            });*/
+            System.out.println("test here : " + data.toString());
+        });
+return null;
     }
 
     public ReservationDto getReservationById(long reservationId){

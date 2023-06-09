@@ -25,6 +25,12 @@ public class ReservationController {
         return reservationManager.createReservation(reservationReqDto);
     }
 
+    @GetMapping(path = "/users/{user_id}")
+    public List<ReservationDto> getAllReservationByUser(@PathVariable long user_id){
+        //to do -
+        return reservationManager.getAllByUser(user_id);
+    }
+
     @GetMapping
     public List<ReservationDto> getAllReservation(){
         return reservationManager.getAllReservation();

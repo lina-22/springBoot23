@@ -30,7 +30,8 @@ public class ReservationModel {
     @Column(name="expire_date", nullable = false)
     private Date expireDate;
 
-    @OneToMany(mappedBy = "reservationModel")
+    @JsonIgnore
+    @OneToMany(mappedBy = "reservationModel",fetch = FetchType.LAZY)
     private Set<ReservationAvailableProduct> reservationAvailableProducts = new HashSet<>();
 
     /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
@@ -42,11 +43,12 @@ public class ReservationModel {
    @JsonIgnore
     private Set<AvailableProductModel> mAvailableProduct = new HashSet<>();*/
 
-  /*  @ManyToOne
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private UsersModel usersModel;*/
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( name = "fk_usr_id", referencedColumnName = "users_id")
+    private UserModel userModel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
     private PaymentModel paymentModel;
 }

@@ -34,7 +34,7 @@ public class UserModel {
     @Column(name="password", nullable = false)
     private  String password;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "users_id")},
@@ -43,13 +43,14 @@ public class UserModel {
     @JsonIgnore
     private Set<RolesModel> rolesModelSet;
 
-/*
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usr_id", referencedColumnName = "users_id")
     private Set<ReservationModel> reservationModel;
 
-    //@OneToMany(mappedBy = "userModel")
+/*
+   //@OneToMany(mappedBy = "userModel")
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usr_id", referencedColumnName = "users_id")
