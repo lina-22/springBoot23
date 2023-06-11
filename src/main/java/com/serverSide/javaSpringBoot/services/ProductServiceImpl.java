@@ -18,7 +18,7 @@ public class   ProductServiceImpl implements ProductService{
     ProductRepository mProductRepository;
     @Override
     public ProductModel createAndUpdate(ProductModel productModel){
-        return  mProductRepository.saveAndFlush(productModel); //saveAndFlush ?
+        return  mProductRepository.saveAndFlush(productModel);
     }
     @Override
     public Optional<ProductModel> findById(long product_id) {

@@ -43,7 +43,6 @@ public class ProductManager {
         productModelToSave.setImage(productDto.getImage());
         productModelToSave.setImportCountry(productDto.getImportCountry());
         productModelToSave.set_featured(productDto.is_featured());
-        //productModelToSave.setAvailableProductModel(availableProductModelSet);
         Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
         if (supplierModel.isPresent()) {
             productModelToSave.setSupplierModel(supplierModel.get());
@@ -162,8 +161,6 @@ public class ProductManager {
         productModel.setDiscount(productDto.getDiscount());
         productModel.set_featured(productDto.is_featured());
         productModel.setImportCountry(productDto.getImportCountry());
-//        Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
-//        productModel.setMCategories(categoryModelSet); // for this line catagories can see with products at data base??
         return productModel;
 
     }

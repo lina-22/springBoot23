@@ -23,7 +23,8 @@ public class RolesModel {
     @Column(name="name", nullable = false)
     private  String name;
 
-    @ManyToMany(mappedBy = "rolesModelSet",fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToMany(mappedBy = "rolesModelSet",fetch = FetchType.EAGER)
     private Set<UserModel>userModelSet;
 }
 
