@@ -37,6 +37,8 @@ public class AvailableProductServiceImpl implements AvailableProductService {
 
     @Override
     public Optional<AvailableProductModel> findById(long ap_id){
+
+        System.out.println("test service : " + mAvailableProductRepository.findById(ap_id));
         return mAvailableProductRepository.findById(ap_id);
     };
 

@@ -18,7 +18,7 @@ public class ReservationReqDto {
     private String status;
     private Date expireDate;
     private long userId;
-    private List <ReservedProductDto> reservedProductDtos;
+    private List <ReservedProductReqDto> reservedProductReqDtos;
 
 
 }

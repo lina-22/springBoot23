@@ -12,8 +12,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationAvailableProductId implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    private Long reservationId;
-    private Long ap_id;
+    private long reservationId;
+    private long ap_id;
 }

@@ -7,8 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 public class ReservedProductResDto {
     long id;
-    byte image;
+    byte[] image;
     Double price;
     String prodcutName;
     String description;
+    int qty;
 }

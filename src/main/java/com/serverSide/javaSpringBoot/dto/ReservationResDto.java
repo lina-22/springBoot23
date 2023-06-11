@@ -13,7 +13,7 @@ public class ReservationResDto {
     long id;
     String status;
     String reference;
-    Date expireData;
+    Date expireDate;
     long userId;
     String email;
     String firstName;

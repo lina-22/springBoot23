@@ -1,17 +1,16 @@
 package com.serverSide.javaSpringBoot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="AvailableProduct")
@@ -29,28 +28,29 @@ public class AvailableProductModel {
     private String skuReference;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private CategoryModel categoryModel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "size_id", referencedColumnName = "size_id")
     private SizeModel sizeModel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "colour_id", referencedColumnName = "colour_id")
     private ColourModel colourModel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "material_id", referencedColumnName = "material_id")
     private MaterialModel materialModel;
 
-    @OneToMany(mappedBy = "availableProductModel")
-    private Set<ReservationAvailableProduct> reservationAvailableProducts = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "availableProductModel", cascade = CascadeType.ALL,  orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ReservationAvailableProduct> reservationAvailableProducts = new ArrayList<>();
     /*@JsonIgnore
     @ManyToMany(mappedBy = "mAvailableProduct")
     private Set<ReservationModel>mReservations = new HashSet<>();*/
@@ -58,10 +58,11 @@ public class AvailableProductModel {
 
     /*@ManyToOne(targetEntity = RolesModel.class, cascade = CascadeType.DETACH)
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")*/
- /*   @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private Set<ProductModel> productModel = new HashSet<>();
-*/
+
+    //@JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
+    private ProductModel productModel;
 
 
 }

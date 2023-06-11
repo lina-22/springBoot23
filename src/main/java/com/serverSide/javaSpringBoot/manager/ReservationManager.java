@@ -2,14 +2,11 @@ package com.serverSide.javaSpringBoot.manager;
 
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.ReservationReqDto;
+import com.serverSide.javaSpringBoot.dto.ReservationResDto;
+import com.serverSide.javaSpringBoot.dto.ReservedProductResDto;
 import com.serverSide.javaSpringBoot.model.*;
-import com.serverSide.javaSpringBoot.services.AvailableProductService;
-import com.serverSide.javaSpringBoot.services.ReservationAvailableProductService;
-import com.serverSide.javaSpringBoot.services.ReservationService;
-import com.serverSide.javaSpringBoot.services.UsersService;
-import com.serverSide.javaSpringBoot.services.inheritance.PaymentService;
+import com.serverSide.javaSpringBoot.services.*;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
@@ -25,6 +22,7 @@ public class ReservationManager {
 //    private PaymentService paymentService;
 
     private AvailableProductService availableProductService;
+    private ProductService productService;
     private ReservationAvailableProductService reservationAvailableProductService;
     private UsersService usersService;
 /*    public ReservationDto createReservation(ReservationDto reservationDto){
@@ -52,22 +50,27 @@ public class ReservationManager {
         System.out.println("test here :" + reservationReqDto.getUserId());
         reservationModel.setUserModel(userModel.get());
         ReservationModel savedReservationModel = reservationService.create(reservationModel);
-
-        reservationReqDto.getReservedProductDtos().forEach(data->{
+        System.out.println("test av prd 1111:"  + reservationReqDto.getReservedProductReqDtos().toString() );
+        reservationReqDto.getReservedProductReqDtos().forEach(data->{
+            System.out.println("test av prd :"  );
             Optional<AvailableProductModel> availableProductModel = availableProductService.findById(data.getProductId());
+            System.out.println("test av prd : aftert" +availableProductModel.get() );
             ReservationAvailableProduct reservationAvailableProduct = new ReservationAvailableProduct();
-            reservationAvailableProduct.setAvailableProductModel(availableProductModel.get());
             reservationAvailableProduct.setReservationModel(savedReservationModel);
+            reservationAvailableProduct.setQty(data.getQty());
+            reservationAvailableProduct.setAvailableProductModel(availableProductModel.get());
+
             reservationAvailableProduct.setQty(data.getQty());
             reservationAvailableProductService.create(reservationAvailableProduct);
         });
 
-        Optional<ReservationModel> result =reservationService.findById(savedReservationModel.getReservationId());
+        /*Optional<ReservationModel> result =reservationService.findById(savedReservationModel.getReservationId());
         if (result.isPresent()){
             return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
         }
 
-   return new ResponseEntity<>("Something went wrong", HttpStatus.SERVICE_UNAVAILABLE);
+   return new ResponseEntity<>("Something went wrong", HttpStatus.SERVICE_UNAVAILABLE);*/
+        return  null;
     }
 
     public List<ReservationDto> getAllReservation() {
@@ -79,19 +82,72 @@ public class ReservationManager {
         return reservationDtoList;
     }
 
-    public List<ReservationDto>getAllByUser(long userId){
+    public List<ReservationResDto>getAllReservationByUser(long userId){
+
+        /*long id;
+        String status;
+        String reference;
+        Date expireData;
+        long userId;
+        String email;
+        String firstName;
+        String lastName;
+        List<ReservedProductResDto> reservedProductResDtos;
+
+        long id;
+    byte image;
+    Double price;
+    String prodcutName;
+    String description;
+    int qty;
+        */
+
         Optional<UserModel>userModel= usersService.findById(userId);
         if (userModel.isEmpty()) {
             throw new NotFoundException("User does not exists");
         }
+        List<ReservationResDto> reservationResDtos = new ArrayList<>();
+
         List<ReservationModel>reservationModels= reservationService.findAllByUser(userModel.get());
         reservationModels.forEach(data->{
+            ReservationResDto reservationResDto = new ReservationResDto();
+            reservationResDto.setId(data.getReservationId());
+            reservationResDto.setStatus(data.getStatus());
+            reservationResDto.setReference(data.getReference());
+            reservationResDto.setExpireDate(data.getExpireDate());
+            reservationResDto.setFirstName(userModel.get().getFirstName());
+            reservationResDto.setLastName(userModel.get().getLastName());
+            reservationResDto.setEmail(userModel.get().getEmail());
+
+            List<ReservedProductResDto>reservedProductResDtos = new ArrayList<>();
+            // setting reserved product -
+            data.getReservationAvailableProducts().forEach(details ->{
+                System.out.println("in.....");
+                System.out.println("test prd ok : .... : " + details.getAvailableProductModel().getProductModel().getProductId());
+                Optional<ProductModel>productModel = productService.findById(details.getAvailableProductModel().getProductModel().getProductId());
+
+                if (productModel.isPresent()){
+                    ReservedProductResDto reservedProductResDto = new ReservedProductResDto();
+                    reservedProductResDto.setProdcutName(productModel.get().getName());
+                    reservedProductResDto.setDescription(productModel.get().getDescription());
+                    reservedProductResDto.setImage(productModel.get().getImage());
+                    reservedProductResDto.setPrice(productModel.get().getPrice());
+                    reservedProductResDto.setQty(details.getQty());
+                    reservedProductResDtos.add(reservedProductResDto);
+                }
+
+
+            });
+            reservationResDto.setReservedProductResDtos(reservedProductResDtos);
             /*data.getReservationAvailableProducts().forEach(data->{
                 data.getAvailableProductModel().getApId()
             });*/
-            System.out.println("test here : " + data.toString());
+            data.getReservationAvailableProducts().forEach(data2->{
+                System.out.println("test here : " + data2.getQty());
+            });
+            reservationResDtos.add(reservationResDto);
         });
-return null;
+return reservationResDtos;
     }
 
     public ReservationDto getReservationById(long reservationId){

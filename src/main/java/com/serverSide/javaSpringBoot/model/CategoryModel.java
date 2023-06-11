@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,16 +26,17 @@ public class CategoryModel {
     private String categoryValue;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoryModel", fetch = FetchType.LAZY)
     private Set<AvailableProductModel> availableProductModel = new HashSet<>();
 
-    @Override
+  /*  @Override
     public String toString() {
         return "CategoryModel{" +
                 "categoryId=" + categoryId +
                 ", categoryValue='" + categoryValue + '\'' +
                 ", availableProductModel=" + availableProductModel +
                 '}';
-    }
+    }*/
 
 }

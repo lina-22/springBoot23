@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.controller;
 import com.serverSide.javaSpringBoot.dto.ReservationDto;
 import com.serverSide.javaSpringBoot.dto.ReservationReqDto;
+import com.serverSide.javaSpringBoot.dto.ReservationResDto;
 import com.serverSide.javaSpringBoot.manager.ReservationManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,9 +27,9 @@ public class ReservationController {
     }
 
     @GetMapping(path = "/users/{user_id}")
-    public List<ReservationDto> getAllReservationByUser(@PathVariable long user_id){
+    public List<ReservationResDto> getAllReservationByUser(@PathVariable long user_id){
         //to do -
-        return reservationManager.getAllByUser(user_id);
+        return reservationManager.getAllReservationByUser(user_id);
     }
 
     @GetMapping

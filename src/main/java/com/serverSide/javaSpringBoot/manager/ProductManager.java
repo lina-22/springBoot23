@@ -25,11 +25,34 @@ public class ProductManager {
     private AvailableProductManager availableProductManager;
 
     public ProductDto createAndUpdateProduct(ProductDto productDto, MultipartFile image){
+
+        ProductModel productModelToSave = new ProductModel();
+        if(productDto.getProductId() != 0) {
+            System.out.println("test prd id : " + productDto.getProductId());
+            productModelToSave.setProductId(productDto.getProductId());
+        }
         try {
             setImage(productDto, image);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        productModelToSave.setPrice(productDto.getPrice());
+        productModelToSave.setDescription(productDto.getDescription());
+        productModelToSave.setDiscount(productDto.getDiscount());
+        productModelToSave.setName(productDto.getName());
+        productModelToSave.setImage(productDto.getImage());
+        productModelToSave.setImportCountry(productDto.getImportCountry());
+        productModelToSave.set_featured(productDto.is_featured());
+        //productModelToSave.setAvailableProductModel(availableProductModelSet);
+        Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
+        if (supplierModel.isPresent()) {
+            productModelToSave.setSupplierModel(supplierModel.get());
+        }
+
+        ProductModel addedProduct = productService.createAndUpdate(productModelToSave);
+
+
+
         List<AvailableProductModel>availableProductModels = new ArrayList<>();
         productDto.getAvailableProductReqDto().forEach(data->{
 
@@ -58,6 +81,8 @@ public class ProductManager {
                 availableProductModel.setMaterialModel(materialModel.get());
             }
 
+            availableProductModel.setProductModel(addedProduct);
+
 //            Optional<SupplierModel> supplierModel = supplierService.findById('long supplier_id');
 //            if (supplierModel.isPresent()) {
 //                availableProductModel.setSupplierModel(supplierModel.get());
@@ -75,28 +100,8 @@ public class ProductManager {
 
         Set<AvailableProductModel> availableProductModelSet = availableProductService.saveAll(availableProductModels);
 
-        ProductModel productModelToSave = new ProductModel();
-        if(productDto.getProductId() != 0) {
-            System.out.println("test prd id : " + productDto.getProductId());
-            productModelToSave.setProductId(productDto.getProductId());
-        }
-
-        productModelToSave.setPrice(productDto.getPrice());
-        productModelToSave.setDescription(productDto.getDescription());
-        productModelToSave.setDiscount(productDto.getDiscount());
-        productModelToSave.setName(productDto.getName());
-        productModelToSave.setImage(productDto.getImage());
-        productModelToSave.setImportCountry(productDto.getImportCountry());
-        productModelToSave.set_featured(productDto.is_featured());
-        productModelToSave.setAvailableProductModel(availableProductModelSet);
-        Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
-        if (supplierModel.isPresent()) {
-            productModelToSave.setSupplierModel(supplierModel.get());
-        }
-
-        ProductModel addedProduct = productService.createAndUpdate(productModelToSave);
-
-        return toProductDto(addedProduct);
+       ProductModel productModel =  productService.findById(addedProduct.getProductId()).get();
+        return toProductDto(productModel);
     }
 
     private ProductDto setImage(ProductDto productDto, MultipartFile image) throws IOException {

@@ -3,13 +3,10 @@ package com.serverSide.javaSpringBoot.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 @Entity
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,9 +27,8 @@ public class ReservationModel {
     @Column(name="expire_date", nullable = false)
     private Date expireDate;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "reservationModel",fetch = FetchType.LAZY)
-    private Set<ReservationAvailableProduct> reservationAvailableProducts = new HashSet<>();
+    @OneToMany(mappedBy = "reservationModel", cascade = CascadeType.ALL)
+    private List<ReservationAvailableProduct> reservationAvailableProducts = new ArrayList<>();
 
     /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
     @JoinTable(
@@ -48,6 +44,7 @@ public class ReservationModel {
     @JoinColumn( name = "fk_usr_id", referencedColumnName = "users_id")
     private UserModel userModel;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
     private PaymentModel paymentModel;

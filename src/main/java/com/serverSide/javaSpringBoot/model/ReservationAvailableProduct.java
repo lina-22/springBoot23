@@ -1,31 +1,38 @@
 package com.serverSide.javaSpringBoot.model;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
-@Data
+
+@Getter
+@Setter
 @Entity
-@NoArgsConstructor
+@Table
 @AllArgsConstructor
+@NoArgsConstructor
 public class ReservationAvailableProduct {
 
     @EmbeddedId
     private ReservationAvailableProductId id = new ReservationAvailableProductId();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("reservationId")
     private ReservationModel reservationModel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("ap_id")
     private AvailableProductModel availableProductModel;
 
     private int Qty;
 
+    /*public ReservationAvailableProduct(ReservationAvailableProductId id, ReservationModel reservationModel, AvailableProductModel availableProductModel, int qty) {
+        this.id = new ReservationAvailableProductId( availableProductModel.getApId(), reservationModel.getReservationId());
+        this.reservationModel = reservationModel;
+        this.availableProductModel = availableProductModel;
+        Qty = qty;
+    }
+
+    public ReservationAvailableProduct() {
+    }*/
 }
