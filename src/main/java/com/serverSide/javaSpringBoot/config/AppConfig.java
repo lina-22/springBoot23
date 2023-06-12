@@ -89,7 +89,7 @@ public class AppConfig {
                         "/swagger-ui/**").permitAll()*/
                 //.requestMatchers("/admin/**").hasAuthority("ADMIN")
                 //.requestMatchers("/user/**").hasAuthority("USER")
-                .requestMatchers(HttpMethod.GET, whiteListGetOnly).permitAll()
+                //.requestMatchers(HttpMethod.GET, whiteListGetOnly).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .authenticationManager(manager)
@@ -102,8 +102,8 @@ public class AppConfig {
                 )
                 .accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
-                .addFilterBefore(new JwtUsernamePasswordAuthenticationFilter(manager, jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtUsernamePasswordAuthenticationFilter(manager, jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
+               // .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

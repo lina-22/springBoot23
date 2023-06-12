@@ -83,7 +83,7 @@ public class JwtServiceImpl implements JwtService {
         return !ObjectUtils.isEmpty(userDetails);
     }
 
-    private String extractUsername(String token){
+    public String extractUsername(String token){
         return extractClaims(token, Claims::getSubject);
     }
 

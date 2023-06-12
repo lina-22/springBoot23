@@ -13,6 +13,7 @@ public interface JwtService {
     Key getKey();
 
     String generateToken(AppUserDetails userDetails);
+    String extractUsername(String token);
 
     boolean isValidToken(String token);
 }
