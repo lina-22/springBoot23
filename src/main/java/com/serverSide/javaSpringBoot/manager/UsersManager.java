@@ -74,11 +74,9 @@ public class UsersManager {
         userModel.setLastName(userDto.getLastName());
         userModel.setEmail(userDto.getEmail());
         userModel.setPassword(passwordEncoder.encode(userDto.getPassword()));
-
         RolesModel rolesModel = rolesService.findByName(userDto.getRole());
         Set rolesSet = new HashSet<>(Arrays.asList(rolesModel));
         userModel.setRolesModelSet(rolesSet);
-
         return userModel;
     }
 

@@ -1,6 +1,7 @@
 package com.serverSide.javaSpringBoot.config;
 
 
+import com.serverSide.javaSpringBoot.config.filter.CorsFilter;
 import com.serverSide.javaSpringBoot.config.filter.CustomAuthenticationProvider;
 import com.serverSide.javaSpringBoot.config.filter.JwtTokenAuthenticationFilter;
 import com.serverSide.javaSpringBoot.config.filter.JwtUsernamePasswordAuthenticationFilter;
@@ -21,6 +22,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -75,11 +77,10 @@ public class AppConfig {
         AuthenticationManager manager = builder.build();
 
         http
-                .cors(c -> c.disable())
+                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/users/register").permitAll()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers("/**").permitAll()
                 //.requestMatchers("/guest/**").permitAll()

@@ -36,8 +36,8 @@ public class ProductModel {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "importCountry")
-    private String importCountry;
+//    @Column(name = "importCountry")
+//    private String importCountry;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productModel")
     //@JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
@@ -62,7 +62,7 @@ public class ProductModel {
                 ", discount=" + discount +
                 ", image='" + image + '\'' +
                 ", description='" + description + '\'' +
-                ", importCountry='" + importCountry + '\'' +
+//                ", importCountry='" + importCountry + '\'' +
                 ", availableProductModel=" + availableProductModel +
                 '}';
     }

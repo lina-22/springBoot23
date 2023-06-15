@@ -41,7 +41,7 @@ public class ProductManager {
         productModelToSave.setDiscount(productDto.getDiscount());
         productModelToSave.setName(productDto.getName());
         productModelToSave.setImage(productDto.getImage());
-        productModelToSave.setImportCountry(productDto.getImportCountry());
+//        productModelToSave.setImportCountry(productDto.getImportCountry());
         productModelToSave.set_featured(productDto.is_featured());
         Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
         if (supplierModel.isPresent()) {
@@ -127,18 +127,13 @@ public class ProductManager {
 
     public ProductDto updateProduct(ProductDto productDto){
        Optional<ProductModel> productModel =  productService.findById(productDto.getProductId());
-       // Set<CategoryModel> categoryModelSet = new HashSet<>(categoryService.findAllById(productDto.getCategoryIds()));
-
-
         if (productModel.isPresent()){
             productModel.get().setName(productDto.getName());
             productModel.get().setDescription(productDto.getDescription());
             productModel.get().setDiscount(productDto.getDiscount());
             productModel.get().set_featured(productDto.is_featured());
             productModel.get().setPrice(productDto.getPrice());
-            productModel.get().setImportCountry(productDto.getImportCountry());
-         //   productModel.get().setMCategories(categoryModelSet);
-
+//            productModel.get().setImportCountry(productDto.getImportCountry());
             ProductModel updatedProductModel =  productService.update(productModel.get());
             return toProductDto(updatedProductModel);
         }
@@ -160,7 +155,7 @@ public class ProductManager {
         productModel.setPrice(productDto.getPrice());
         productModel.setDiscount(productDto.getDiscount());
         productModel.set_featured(productDto.is_featured());
-        productModel.setImportCountry(productDto.getImportCountry());
+//        productModel.setImportCountry(productDto.getImportCountry());
         return productModel;
 
     }
@@ -176,7 +171,7 @@ public class ProductManager {
         productDto.setDiscount(productModel.getDiscount());
         productDto.set_featured(productModel.is_featured());
         productDto.setImage(productModel.getImage());
-        productDto.setImportCountry(productModel.getImportCountry());
+//        productDto.setImportCountry(productModel.getImportCountry());
         productDto.setAvailableProductReDtos(availableProductManager
                 .toDtos(productModel.getAvailableProductModel()));
         return productDto;

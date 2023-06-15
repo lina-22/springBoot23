@@ -48,4 +48,6 @@ public class ReservationModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
     private PaymentModel paymentModel;
+
+
 }
