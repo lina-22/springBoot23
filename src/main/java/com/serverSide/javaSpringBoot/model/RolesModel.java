@@ -6,13 +6,15 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
-@Data
+@Getter
+@Setter
 public class RolesModel {
 
     @Id
@@ -25,7 +27,7 @@ public class RolesModel {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "rolesModelSet",fetch = FetchType.EAGER)
-    private Set<UserModel>userModelSet;
+    private List<UserModel> userModelSet;
 }
 
 

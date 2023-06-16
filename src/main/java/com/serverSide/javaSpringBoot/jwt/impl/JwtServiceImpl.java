@@ -61,7 +61,7 @@ public class JwtServiceImpl implements JwtService {
             roles.add(role.getAuthority());
         });
 
-        log.info("Roles: {} ", roles);
+        log.info("Roles: {2323} ", roles);
 
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())

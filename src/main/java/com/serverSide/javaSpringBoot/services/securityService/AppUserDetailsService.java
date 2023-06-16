@@ -38,7 +38,6 @@ public class AppUserDetailsService implements UserDetailsService {
         if (ObjectUtils.isEmpty(user)){
             throw new BaseException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Invalid username or password.");
         }
-        //List<RolesModel> rolesModels = Arrays.asList(user.getRolesModel());
         List<RolesModel> rolesModels = new ArrayList<>(user.getRolesModelSet());
         return new AppUserDetails(
                 user.getEmail(),

@@ -40,7 +40,6 @@ public class AppConfig {
     @Autowired
     JwtConfig jwtConfig;
 
-
     @Autowired
     private JwtService jwtService;
 

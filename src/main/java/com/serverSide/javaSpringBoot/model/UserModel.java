@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,7 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 public class UserModel {
 
     @Id
@@ -34,14 +36,14 @@ public class UserModel {
     @Column(name="password", nullable = false)
     private  String password;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",
-            joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "users_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")}
+            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_id")
     )
     @JsonIgnore
-    private Set<RolesModel> rolesModelSet;
+    private List<RolesModel> rolesModelSet;
 
 
     @JsonIgnore

@@ -4,7 +4,10 @@ import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
 import com.serverSide.javaSpringBoot.dto.LoginRequestDto;
 import com.serverSide.javaSpringBoot.jwt.JwtConfig;
 import com.serverSide.javaSpringBoot.jwt.JwtService;
+import com.serverSide.javaSpringBoot.repository.UsersRepository;
+import com.serverSide.javaSpringBoot.services.UsersService;
 import com.serverSide.javaSpringBoot.services.securityService.AppUserDetails;
+import com.serverSide.javaSpringBoot.services.securityService.AppUserDetailsService;
 import com.serverSide.javaSpringBoot.util.HelperUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -60,7 +63,6 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
                                             FilterChain chain,
                                             Authentication authentication) throws IOException, ServletException {
         AppUserDetails userDetailsCustom = (AppUserDetails) authentication.getPrincipal();
-
         String accessToken = jwtService.generateToken(userDetailsCustom);
         String json = HelperUtils.JSON_WRITER.writeValueAsString(accessToken);
         response.setContentType("application/json; charset=UTF-8");
