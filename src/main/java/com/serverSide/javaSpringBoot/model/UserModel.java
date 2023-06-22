@@ -51,20 +51,5 @@ public class UserModel {
     @JoinColumn(name = "fk_usr_id", referencedColumnName = "users_id")
     private Set<ReservationModel> reservationModel;
 
-/*
-   //@OneToMany(mappedBy = "userModel")
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_usr_id", referencedColumnName = "users_id")
-    private Set<PaymentModel> paymentModel;
-
-    //@OneToMany(mappedBy = "userModel")
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_usr_id", referencedColumnName = "users_id")
-    private Set<Password_resetModel> password_resetModelModel;
-*/
-
-
 
 }

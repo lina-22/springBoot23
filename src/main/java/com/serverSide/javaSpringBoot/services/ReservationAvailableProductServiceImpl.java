@@ -1,7 +1,7 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.ReservationAvailableProduct;
-import com.serverSide.javaSpringBoot.repository.ReservationAvailableProductRepository;
+import com.serverSide.javaSpringBoot.model.ReservationProductForSale;
+import com.serverSide.javaSpringBoot.repository.ReservationProductForSaleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class ReservationAvailableProductServiceImpl implements ReservationAvailableProductService{
 
-    private ReservationAvailableProductRepository repository;
+    private ReservationProductForSaleRepository repository;
 
     @Override
-    public ReservationAvailableProduct create(ReservationAvailableProduct reservationAvailableProduct) {
-        return repository.save(reservationAvailableProduct);
+    public ReservationProductForSale create(ReservationProductForSale reservationProductForSale) {
+        return repository.save(reservationProductForSale);
     }
 }

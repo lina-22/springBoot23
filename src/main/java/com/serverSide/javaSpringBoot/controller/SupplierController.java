@@ -1,6 +1,5 @@
 package com.serverSide.javaSpringBoot.controller;
 
-import com.serverSide.javaSpringBoot.dto.RatingDto;
 import com.serverSide.javaSpringBoot.dto.SupplierDto;
 import com.serverSide.javaSpringBoot.manager.SupplierManager;
 import lombok.AllArgsConstructor;

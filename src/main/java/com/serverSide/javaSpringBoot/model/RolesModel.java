@@ -29,14 +29,3 @@ public class RolesModel {
     @ManyToMany(mappedBy = "rolesModelSet",fetch = FetchType.EAGER)
     private List<UserModel> userModelSet;
 }
-
-
-/*    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "users_id",referencedColumnName = "users_id")}
-    )
-   @JsonIgnore
-    private Set<UserModel> userModel = new HashSet<>();
-*/

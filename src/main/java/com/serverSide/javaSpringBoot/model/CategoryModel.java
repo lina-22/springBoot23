@@ -25,18 +25,8 @@ public class CategoryModel {
     @Column(name = "category_value", nullable = false)
     private String categoryValue;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "categoryModel", fetch = FetchType.LAZY)
-    private Set<AvailableProductModel> availableProductModel = new HashSet<>();
-
-  /*  @Override
-    public String toString() {
-        return "CategoryModel{" +
-                "categoryId=" + categoryId +
-                ", categoryValue='" + categoryValue + '\'' +
-                ", availableProductModel=" + availableProductModel +
-                '}';
-    }*/
+    private Set<ProductForSale> productForSale = new HashSet<>();
 
 }

@@ -24,5 +24,5 @@ public class MaterialModel {
     private String materialValue;
 
     @OneToMany(mappedBy = "materialModel", fetch = FetchType.LAZY)
-    private Set<AvailableProductModel> availableProductModel = new HashSet<>();
+    private Set<ProductForSale> productForSale = new HashSet<>();
 }

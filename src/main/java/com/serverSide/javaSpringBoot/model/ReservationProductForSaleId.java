@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationAvailableProductId implements Serializable {
+public class ReservationProductForSaleId implements Serializable {
     private long reservationId;
-    private long ap_id;
+    private long id;
 }

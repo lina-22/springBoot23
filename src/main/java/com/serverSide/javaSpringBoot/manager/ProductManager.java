@@ -20,9 +20,9 @@ public class ProductManager {
     private MaterialService materialService;
     private SizeService sizeService;
     private SupplierService supplierService;
-    private AvailableProductService availableProductService;
+    private ProductForSaleService productForSaleService;
 
-    private AvailableProductManager availableProductManager;
+    private ProductForSaleManager productForSaleManager;
 
     public ProductDto createAndUpdateProduct(ProductDto productDto, MultipartFile image){
 
@@ -41,8 +41,6 @@ public class ProductManager {
         productModelToSave.setDiscount(productDto.getDiscount());
         productModelToSave.setName(productDto.getName());
         productModelToSave.setImage(productDto.getImage());
-//        productModelToSave.setImportCountry(productDto.getImportCountry());
-        productModelToSave.set_featured(productDto.is_featured());
         Optional<SupplierModel> supplierModel = supplierService.findById(productDto.getSupplierId());
         if (supplierModel.isPresent()) {
             productModelToSave.setSupplierModel(supplierModel.get());
@@ -52,52 +50,47 @@ public class ProductManager {
 
 
 
-        List<AvailableProductModel>availableProductModels = new ArrayList<>();
-        productDto.getAvailableProductReqDto().forEach(data->{
+        List<ProductForSale> productForSales = new ArrayList<>();
+        productDto.getProductForSaleReqDto().forEach(data->{
 
-            AvailableProductModel availableProductModel = new AvailableProductModel();
+            ProductForSale productForSale = new ProductForSale();
             if(data.getId() != 0) {
                 System.out.println("test avl p id : " + data.getId());
-                availableProductModel.setApId(data.getId());
+                productForSale.setId(data.getId());
             }
             Optional<CategoryModel> categoryModel = categoryService.findById(data.getCategoryId());
             if (categoryModel.isPresent()) {
-                availableProductModel.setCategoryModel(categoryModel.get());
+                productForSale.setCategoryModel(categoryModel.get());
             }
 
             Optional<ColourModel> colourModel = colourService.findById(data.getColourId());
             if (colourModel.isPresent()) {
-                availableProductModel.setColourModel(colourModel.get());
+                productForSale.setColourModel(colourModel.get());
             }
 
             Optional<SizeModel> sizeModel = sizeService.findById(data.getSizeId());
             if (sizeModel.isPresent()) {
-                availableProductModel.setSizeModel(sizeModel.get());
+                productForSale.setSizeModel(sizeModel.get());
             }
 
             Optional<MaterialModel> materialModel = materialService.findById(data.getMaterialId());
             if (materialModel.isPresent()) {
-                availableProductModel.setMaterialModel(materialModel.get());
+                productForSale.setMaterialModel(materialModel.get());
             }
 
-            availableProductModel.setProductModel(addedProduct);
+            productForSale.setProductModel(addedProduct);
 
-//            Optional<SupplierModel> supplierModel = supplierService.findById('long supplier_id');
-//            if (supplierModel.isPresent()) {
-//                availableProductModel.setSupplierModel(supplierModel.get());
-//            }
-
-            availableProductModel.setSkuReference(data.getSkuReference());
+            productForSale.setSkuReference(data.getSkuReference());
             System.out.println("test here....: " + data.getQty());
-            availableProductModel.setApQuantity(data.getQty());
+            productForSale.setQuantity(data.getQty());
 
-            availableProductModels.add(availableProductModel);
+            productForSales.add(productForSale);
 
         });
 
 
 
-        Set<AvailableProductModel> availableProductModelSet = availableProductService.saveAll(availableProductModels);
+        Set<ProductForSale> productForSaleSet = productForSaleService.saveAll(productForSales);
 
        ProductModel productModel =  productService.findById(addedProduct.getProductId()).get();
         return toProductDto(productModel);
@@ -131,9 +124,7 @@ public class ProductManager {
             productModel.get().setName(productDto.getName());
             productModel.get().setDescription(productDto.getDescription());
             productModel.get().setDiscount(productDto.getDiscount());
-            productModel.get().set_featured(productDto.is_featured());
             productModel.get().setPrice(productDto.getPrice());
-//            productModel.get().setImportCountry(productDto.getImportCountry());
             ProductModel updatedProductModel =  productService.update(productModel.get());
             return toProductDto(updatedProductModel);
         }
@@ -154,8 +145,6 @@ public class ProductManager {
         productModel.setDescription(productDto.getDescription());
         productModel.setPrice(productDto.getPrice());
         productModel.setDiscount(productDto.getDiscount());
-        productModel.set_featured(productDto.is_featured());
-//        productModel.setImportCountry(productDto.getImportCountry());
         return productModel;
 
     }
@@ -169,11 +158,9 @@ public class ProductManager {
         productDto.setDescription(productModel.getDescription());
         productDto.setPrice(productModel.getPrice());
         productDto.setDiscount(productModel.getDiscount());
-        productDto.set_featured(productModel.is_featured());
         productDto.setImage(productModel.getImage());
-//        productDto.setImportCountry(productModel.getImportCountry());
-        productDto.setAvailableProductReDtos(availableProductManager
-                .toDtos(productModel.getAvailableProductModel()));
+        productDto.setProductForSaleResDtos(productForSaleManager
+                .toDtos(productModel.getProductForSale()));
         return productDto;
     }
 }

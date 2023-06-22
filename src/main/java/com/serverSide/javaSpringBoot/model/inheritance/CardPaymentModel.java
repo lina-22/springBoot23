@@ -22,9 +22,6 @@ public class CardPaymentModel extends PaymentModel {
     @Column(name = "card_number", nullable = false)
     private String card_number;
 
-//    @Column(name = "ex_date", nullable = false)
-//    private Date expDate;
-
     public CardPaymentModel(long l, BigDecimal i, Date date, String test_details, Set<ReservationModel> reservationModel, UserModel userModel, String s){
         super(l, i, date, test_details, reservationModel, userModel);
         this.card_number = s;

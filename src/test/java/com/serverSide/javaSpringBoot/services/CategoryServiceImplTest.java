@@ -1,9 +1,7 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.AvailableProductModel;
 import com.serverSide.javaSpringBoot.model.CategoryModel;
 import com.serverSide.javaSpringBoot.repository.CategoryRepository;
-import jakarta.persistence.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 class CategoryServiceImplTest {

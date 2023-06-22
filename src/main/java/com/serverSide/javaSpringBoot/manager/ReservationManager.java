@@ -21,24 +21,10 @@ public class ReservationManager {
 
 //    private PaymentService paymentService;
 
-    private AvailableProductService availableProductService;
+    private ProductForSaleService productForSaleService;
     private ProductService productService;
     private ReservationAvailableProductService reservationAvailableProductService;
     private UsersService usersService;
-/*    public ReservationDto createReservation(ReservationDto reservationDto){
-    List<AvailableProductModel> availableProducts = availableProductService.findAllByIds(reservationDto.getAvailableProductIds());
-    Set<AvailableProductModel>availableProductModels = new HashSet<>(availableProducts);
-
-    for (AvailableProductModel availableProductModel : availableProductModels) {
-        System.out.println(availableProductModel.toString());
-    }
-    ReservationModel reservationToAdd = toReservationModel(reservationDto);
-   // reservationToAdd.setMAvailableProduct(availableProductModels);
-
-    ReservationModel addedReservation = reservationService.create(reservationToAdd);
-    System.out.println("tested ok ...." + addedReservation.toString());
-    return toReservationDto(addedReservation);
-}*/
 
     public ResponseEntity createReservation(ReservationReqDto reservationReqDto){
 
@@ -53,23 +39,16 @@ public class ReservationManager {
         System.out.println("test av prd 1111:"  + reservationReqDto.getReservedProductReqDtos().toString() );
         reservationReqDto.getReservedProductReqDtos().forEach(data->{
             System.out.println("test av prd :"  );
-            Optional<AvailableProductModel> availableProductModel = availableProductService.findById(data.getProductId());
+            Optional<ProductForSale> availableProductModel = productForSaleService.findById(data.getProductId());
             System.out.println("test av prd : aftert" +availableProductModel.get() );
-            ReservationAvailableProduct reservationAvailableProduct = new ReservationAvailableProduct();
-            reservationAvailableProduct.setReservationModel(savedReservationModel);
-            reservationAvailableProduct.setQty(data.getQty());
-            reservationAvailableProduct.setAvailableProductModel(availableProductModel.get());
+            ReservationProductForSale reservationProductForSale = new ReservationProductForSale();
+            reservationProductForSale.setReservationModel(savedReservationModel);
+            reservationProductForSale.setQty(data.getQty());
+            reservationProductForSale.setProductForSale(availableProductModel.get());
 
-            reservationAvailableProduct.setQty(data.getQty());
-            reservationAvailableProductService.create(reservationAvailableProduct);
+            reservationProductForSale.setQty(data.getQty());
+            reservationAvailableProductService.create(reservationProductForSale);
         });
-
-        /*Optional<ReservationModel> result =reservationService.findById(savedReservationModel.getReservationId());
-        if (result.isPresent()){
-            return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
-        }
-
-   return new ResponseEntity<>("Something went wrong", HttpStatus.SERVICE_UNAVAILABLE);*/
         return  null;
     }
 
@@ -83,24 +62,6 @@ public class ReservationManager {
     }
 
     public List<ReservationResDto>getAllReservationByUser(long userId){
-
-        /*long id;
-        String status;
-        String reference;
-        Date expireData;
-        long userId;
-        String email;
-        String firstName;
-        String lastName;
-        List<ReservedProductResDto> reservedProductResDtos;
-
-        long id;
-    byte image;
-    Double price;
-    String prodcutName;
-    String description;
-    int qty;
-        */
 
         Optional<UserModel>userModel= usersService.findById(userId);
         if (userModel.isEmpty()) {
@@ -121,10 +82,10 @@ public class ReservationManager {
 
             List<ReservedProductResDto>reservedProductResDtos = new ArrayList<>();
             // setting reserved product -
-            data.getReservationAvailableProducts().forEach(details ->{
+            data.getReservationProductForSales().forEach(details ->{
                 System.out.println("in.....");
-                System.out.println("test prd ok : .... : " + details.getAvailableProductModel().getProductModel().getProductId());
-                Optional<ProductModel>productModel = productService.findById(details.getAvailableProductModel().getProductModel().getProductId());
+                System.out.println("test prd ok : .... : " + details.getProductForSale().getProductModel().getProductId());
+                Optional<ProductModel>productModel = productService.findById(details.getProductForSale().getProductModel().getProductId());
 
                 if (productModel.isPresent()){
                     ReservedProductResDto reservedProductResDto = new ReservedProductResDto();
@@ -139,10 +100,7 @@ public class ReservationManager {
 
             });
             reservationResDto.setReservedProductResDtos(reservedProductResDtos);
-            /*data.getReservationAvailableProducts().forEach(data->{
-                data.getAvailableProductModel().getApId()
-            });*/
-            data.getReservationAvailableProducts().forEach(data2->{
+            data.getReservationProductForSales().forEach(data2->{
                 System.out.println("test here : " + data2.getQty());
             });
             reservationResDtos.add(reservationResDto);
