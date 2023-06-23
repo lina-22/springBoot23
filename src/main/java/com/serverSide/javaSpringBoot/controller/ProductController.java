@@ -1,5 +1,6 @@
 package com.serverSide.javaSpringBoot.controller;
 
+import com.serverSide.javaSpringBoot.dto.BaseResponseDto;
 import com.serverSide.javaSpringBoot.dto.ProductDto;
 import com.serverSide.javaSpringBoot.manager.ProductManager;
 import com.serverSide.javaSpringBoot.model.PaymentModel;
@@ -26,8 +27,14 @@ class ProductController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ProductDto createProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
-        return productManager.createAndUpdateProduct(productDto, image);
+    public ResponseEntity createProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
+        try{
+            productManager.createAndUpdateProduct(productDto, image);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.BAD_GATEWAY);
+        }
+
     }
 
     @GetMapping
@@ -47,8 +54,13 @@ class ProductController {
 
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ProductDto updateProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
-        return productManager.createAndUpdateProduct(productDto,image);
+    public ResponseEntity updateProduct(@RequestPart ProductDto productDto, @RequestPart MultipartFile image){
+        try{
+            productManager.createAndUpdateProduct(productDto, image);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.BAD_GATEWAY);
+        }
     }
 
     @DeleteMapping(path = "/{product_id}")

@@ -50,6 +50,7 @@ public class ProductForSale {
     @OneToMany(mappedBy = "productForSale", cascade = CascadeType.ALL,  orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReservationProductForSale> reservationProductForSales = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
     private ProductModel productModel;

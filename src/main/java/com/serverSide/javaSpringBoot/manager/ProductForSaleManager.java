@@ -4,7 +4,10 @@ import com.serverSide.javaSpringBoot.model.ProductForSale;
 import com.serverSide.javaSpringBoot.services.ProductForSaleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Service
 @AllArgsConstructor
@@ -28,8 +31,8 @@ public class ProductForSaleManager {
         return productForSaleResDto;
     }
 
-    public Set<ProductForSaleResDto> toDtos(Set<ProductForSale> productForSales){
-        Set<ProductForSaleResDto> productForSaleResDtos = new HashSet<>();
+    public List<ProductForSaleResDto> toDtos(List<ProductForSale> productForSales){
+        List<ProductForSaleResDto> productForSaleResDtos = new ArrayList<>();
         productForSales.forEach(data->{
             productForSaleResDtos.add(toDto(data));
         });

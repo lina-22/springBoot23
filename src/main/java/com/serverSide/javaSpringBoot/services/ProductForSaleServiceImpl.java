@@ -22,11 +22,10 @@ public class ProductForSaleServiceImpl implements ProductForSaleService {
     }
 
     @Override
-    public Set<ProductForSale> saveAll(List<ProductForSale> productForSales) {
+    public List<ProductForSale> saveAll(List<ProductForSale> productForSales) {
         mProductForSaleRepository.saveAll(productForSales);
         List<ProductForSale> savedAvailables = mProductForSaleRepository.saveAllAndFlush(productForSales);
-        Set<ProductForSale> productForSaleSet = new HashSet<>(savedAvailables);
-        return productForSaleSet;
+        return savedAvailables;
     };
 
     @Override

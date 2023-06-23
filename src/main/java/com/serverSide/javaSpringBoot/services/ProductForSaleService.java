@@ -10,7 +10,7 @@ public interface ProductForSaleService {
 
      ProductForSale createAndUpdate(ProductForSale productForSale);
 
-    Set<ProductForSale> saveAll(List<ProductForSale> productForSales);
+    List<ProductForSale> saveAll(List<ProductForSale> productForSales);
 
      ProductForSale update(ProductForSale productForSale);
 

@@ -2,6 +2,7 @@ package com.serverSide.javaSpringBoot.dto;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -18,8 +19,8 @@ public class ProductDto {
     private byte[] image;
     private String description;
     private String importCountry;
-    private Set<ProductForSaleResDto> productForSaleResDtos;
-    private Set<ProductForSaleReqDto> productForSaleReqDto;
+    private List<ProductForSaleResDto> productForSaleResDtos;
+    private List<ProductForSaleReqDto> productForSaleReqDto;
     private long supplierId;
 
 

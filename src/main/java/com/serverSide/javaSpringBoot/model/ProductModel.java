@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Entity
 @Getter
@@ -33,26 +34,14 @@ public class ProductModel {
     @Column(name = "description")
     private String description;
 
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productModel")
     //@JoinColumn(name = "fk_prd_id", referencedColumnName = "product_id")
-    private Set<ProductForSale> productForSale = new HashSet<>();
+    private List<ProductForSale> productForSale;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
     private SupplierModel supplierModel;
 
-    @Override
-    public String toString() {
-        return "ProductModel{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", discount=" + discount +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-//                ", importCountry='" + importCountry + '\'' +
-                ", availableProductModel=" + productForSale +
-                '}';
-    }
 }

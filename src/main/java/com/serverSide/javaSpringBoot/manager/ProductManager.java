@@ -24,11 +24,11 @@ public class ProductManager {
 
     private ProductForSaleManager productForSaleManager;
 
-    public ProductDto createAndUpdateProduct(ProductDto productDto, MultipartFile image){
+    public String createAndUpdateProduct(ProductDto productDto, MultipartFile image){
 
         ProductModel productModelToSave = new ProductModel();
         if(productDto.getProductId() != 0) {
-            System.out.println("test prd id : " + productDto.getProductId());
+            System.out.println("test prd id : " + productDto.toString());
             productModelToSave.setProductId(productDto.getProductId());
         }
         try {
@@ -52,10 +52,8 @@ public class ProductManager {
 
         List<ProductForSale> productForSales = new ArrayList<>();
         productDto.getProductForSaleReqDto().forEach(data->{
-
             ProductForSale productForSale = new ProductForSale();
             if(data.getId() != 0) {
-                System.out.println("test avl p id : " + data.getId());
                 productForSale.setId(data.getId());
             }
             Optional<CategoryModel> categoryModel = categoryService.findById(data.getCategoryId());
@@ -77,23 +75,17 @@ public class ProductManager {
             if (materialModel.isPresent()) {
                 productForSale.setMaterialModel(materialModel.get());
             }
-
             productForSale.setProductModel(addedProduct);
-
             productForSale.setSkuReference(data.getSkuReference());
-            System.out.println("test here....: " + data.getQty());
             productForSale.setQuantity(data.getQty());
 
             productForSales.add(productForSale);
 
         });
 
+         productForSaleService.saveAll(productForSales);
 
-
-        Set<ProductForSale> productForSaleSet = productForSaleService.saveAll(productForSales);
-
-       ProductModel productModel =  productService.findById(addedProduct.getProductId()).get();
-        return toProductDto(productModel);
+        return "Success";
     }
 
     private ProductDto setImage(ProductDto productDto, MultipartFile image) throws IOException {
