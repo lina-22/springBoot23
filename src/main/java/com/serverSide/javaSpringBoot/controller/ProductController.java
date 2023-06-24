@@ -68,7 +68,7 @@ class ProductController {
     public ResponseEntity<String> deleteProductById(@PathVariable long product_id){
         try{
             productManager.deleteProductById(product_id);
-            return new ResponseEntity<>("Product with id + " + product_id + " has been deleted successfully.", HttpStatus.OK);
+            return new ResponseEntity<>("Product with id " + product_id + " has been deleted successfully.", HttpStatus.OK);
         }catch (Exception excp){
             System.out.println(excp.getMessage());
             return new ResponseEntity<>("Product with " + product_id + " not found", HttpStatus.NOT_FOUND);

@@ -21,7 +21,6 @@ import java.util.Set;
 @Table(name = "payments")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PaymentModel {
-
     @Id
     @Column(name ="payment_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +36,9 @@ public abstract class PaymentModel {
     @Column(name = "details", nullable = false)
     private String details;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "paymentModel", fetch = FetchType.LAZY)
     private Set<ReservationModel> reservationModel = new HashSet<>();
-
 
     @JsonIgnore
     @ManyToOne
