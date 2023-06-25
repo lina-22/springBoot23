@@ -23,13 +23,12 @@ public class ReservationController {
 
     @PostMapping
     public ResponseEntity createReservation(@RequestBody ReservationReqDto reservationReqDto){
-        return reservationManager.createReservation(reservationReqDto);
+        return new ResponseEntity<>( reservationManager.createReservation(reservationReqDto), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/users/{user_id}")
-    public List<ReservationResDto> getAllReservationByUser(@PathVariable long user_id){
-        //to do -
-        return reservationManager.getAllReservationByUser(user_id);
+    @GetMapping(path = "/users/{email}")
+    public List<ReservationResDto> getAllReservationByUser(@PathVariable String email){
+        return reservationManager.getAllReservationByUser(email);
     }
 
     @GetMapping

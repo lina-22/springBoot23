@@ -8,7 +8,6 @@ import com.serverSide.javaSpringBoot.repository.RolesRepository;
 import com.serverSide.javaSpringBoot.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import java.util.List;

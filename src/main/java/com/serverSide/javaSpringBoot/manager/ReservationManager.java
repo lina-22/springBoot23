@@ -26,30 +26,40 @@ public class ReservationManager {
     private ReservationAvailableProductService reservationAvailableProductService;
     private UsersService usersService;
 
-    public ResponseEntity createReservation(ReservationReqDto reservationReqDto){
-
+    public List<ReservedProductResDto> createReservation(ReservationReqDto reservationReqDto){
         ReservationModel reservationModel = new ReservationModel();
         reservationModel.setReference(reservationReqDto.getReference());
         reservationModel.setStatus(reservationReqDto.getStatus());
-        reservationModel.setExpireDate(new Date(10/12/2025));
-        Optional<UserModel>userModel = usersService.findById(reservationReqDto.getUserId());
-        System.out.println("test here :" + reservationReqDto.getUserId());
-        reservationModel.setUserModel(userModel.get());
+        reservationModel.setExpireDate(generateExpireDate());
+        UserModel userModel = usersService.findByEmail(reservationReqDto.getEmail());
+        reservationModel.setUserModel(userModel);
         ReservationModel savedReservationModel = reservationService.create(reservationModel);
-        System.out.println("test av prd 1111:"  + reservationReqDto.getReservedProductReqDtos().toString() );
+
+        List<ReservationProductForSale> reservationProductForSaleList = new ArrayList<>();
         reservationReqDto.getReservedProductReqDtos().forEach(data->{
-            System.out.println("test av prd :"  );
             Optional<ProductForSale> availableProductModel = productForSaleService.findById(data.getProductId());
-            System.out.println("test av prd : aftert" +availableProductModel.get() );
             ReservationProductForSale reservationProductForSale = new ReservationProductForSale();
             reservationProductForSale.setReservationModel(savedReservationModel);
             reservationProductForSale.setQty(data.getQty());
             reservationProductForSale.setProductForSale(availableProductModel.get());
-
             reservationProductForSale.setQty(data.getQty());
-            reservationAvailableProductService.create(reservationProductForSale);
+            ReservationProductForSale savedReservationProductForSale = reservationAvailableProductService.create(reservationProductForSale);
+            reservationProductForSaleList.add(savedReservationProductForSale);
         });
-        return  null;
+
+        //Making list of reserved products -
+        List<ReservedProductResDto>reservedProductResDtos = new ArrayList<>();
+        reservationProductForSaleList.forEach(data ->{
+            ReservedProductResDto reservedProductResDto = new ReservedProductResDto();
+            reservedProductResDto.setId(data.getId().getId());
+            reservedProductResDto.setImage(data.getProductForSale().getProductModel().getImage());
+            reservedProductResDto.setDescription(data.getProductForSale().getProductModel().getDescription());
+            reservedProductResDto.setPrice(data.getProductForSale().getProductModel().getPrice());
+            reservedProductResDto.setQty(data.getQty());
+            reservedProductResDto.setProdcutName(data.getProductForSale().getProductModel().getName());
+            reservedProductResDtos.add(reservedProductResDto);
+        });
+        return  reservedProductResDtos;
     }
 
     public List<ReservationDto> getAllReservation() {
@@ -61,30 +71,28 @@ public class ReservationManager {
         return reservationDtoList;
     }
 
-    public List<ReservationResDto>getAllReservationByUser(long userId){
+    public List<ReservationResDto>getAllReservationByUser(String email){
 
-        Optional<UserModel>userModel= usersService.findById(userId);
-        if (userModel.isEmpty()) {
+        UserModel userModel= usersService.findByEmail(email);
+        if (userModel == null) {
             throw new NotFoundException("User does not exists");
         }
         List<ReservationResDto> reservationResDtos = new ArrayList<>();
 
-        List<ReservationModel>reservationModels= reservationService.findAllByUser(userModel.get());
+        List<ReservationModel>reservationModels= reservationService.findAllByUser(userModel);
         reservationModels.forEach(data->{
             ReservationResDto reservationResDto = new ReservationResDto();
             reservationResDto.setId(data.getReservationId());
             reservationResDto.setStatus(data.getStatus());
             reservationResDto.setReference(data.getReference());
             reservationResDto.setExpireDate(data.getExpireDate());
-            reservationResDto.setFirstName(userModel.get().getFirstName());
-            reservationResDto.setLastName(userModel.get().getLastName());
-            reservationResDto.setEmail(userModel.get().getEmail());
+            reservationResDto.setFirstName(userModel.getFirstName());
+            reservationResDto.setLastName(userModel.getLastName());
+            reservationResDto.setEmail(userModel.getEmail());
 
             List<ReservedProductResDto>reservedProductResDtos = new ArrayList<>();
             // setting reserved product -
             data.getReservationProductForSales().forEach(details ->{
-                System.out.println("in.....");
-                System.out.println("test prd ok : .... : " + details.getProductForSale().getProductModel().getProductId());
                 Optional<ProductModel>productModel = productService.findById(details.getProductForSale().getProductModel().getProductId());
 
                 if (productModel.isPresent()){
@@ -97,12 +105,8 @@ public class ReservationManager {
                     reservedProductResDtos.add(reservedProductResDto);
                 }
 
-
             });
             reservationResDto.setReservedProductResDtos(reservedProductResDtos);
-            data.getReservationProductForSales().forEach(data2->{
-                System.out.println("test here : " + data2.getQty());
-            });
             reservationResDtos.add(reservationResDto);
         });
 return reservationResDtos;
@@ -151,6 +155,11 @@ return reservationResDtos;
         return  reservationDto;
     }
 
-
+private Date generateExpireDate(){
+    Calendar calendar = Calendar.getInstance();
+    calendar.add(Calendar.DAY_OF_YEAR, 4);
+    Date futureDateTime = calendar.getTime();
+    return futureDateTime;
+}
     // *******************the dto to model data transfer****************
 }

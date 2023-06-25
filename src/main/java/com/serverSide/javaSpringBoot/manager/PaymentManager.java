@@ -23,7 +23,7 @@ public class PaymentManager {
 
     public PaypalPaymentDto createPayPalPayment(PaypalPaymentDto paypalPaymentDto){
 
-        Optional<UserModel> userModel = usersService.findById(paypalPaymentDto.getUserId());
+        UserModel userModel = usersService.findByEmail(paypalPaymentDto.getAccountEmail());
         List<ReservationModel> reservationModelSet =  reservationService.findAllByIds(paypalPaymentDto.getReservationIds());
         Set<ReservationModel>reservationModels = new HashSet<>(reservationModelSet);
 
@@ -35,7 +35,7 @@ public class PaymentManager {
         paypalPaymentModel.setAmount(paypalPaymentDto.getAmount());
         paypalPaymentModel.setDetails(paypalPaymentDto.getDetails());
         System.out.println("test here : " + paypalPaymentModel.toString() + " " +paypalPaymentDto.getAccountEmail());
-        paypalPaymentModel.setUserModel(userModel.get());
+        paypalPaymentModel.setUserModel(userModel);
         paypalPaymentModel.setReservationModel(reservationModels);
 
         PaypalPaymentModel paymentModel = paypalPaymentService.createPaypalPayment(paypalPaymentModel);

@@ -52,9 +52,8 @@ public class UsersManager {
         return usersDtoList;
     }
 
-    public UserDto getUsersById(long users_id) {
-
-        return toUsersDto(usersService.findById(users_id).get());
+    public UserDto getUsersByEmail(String email) {
+        return toUsersDto(usersService.findByEmail(email));
     }
 
     public BaseResponseDto updateUsers(UserDto userDto) {

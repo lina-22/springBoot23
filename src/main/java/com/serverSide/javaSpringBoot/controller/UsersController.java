@@ -26,9 +26,9 @@ public class UsersController {
         return usersManager.getAllUsers();
     }
 
-    @GetMapping(path = "/{usersid}")
-    public UserDto getUserById(@PathVariable long usersid){
-        return usersManager.getUsersById(usersid);
+    @GetMapping(path = "/{email}")
+    public UserDto getUserById(@PathVariable String email){
+        return usersManager.getUsersByEmail(email);
     }
 
     @PutMapping
@@ -36,11 +36,12 @@ public class UsersController {
         return usersManager.updateUsers(userDTO);
     }
 
-    @DeleteMapping(path = "/{usersid}")
-    public ResponseEntity<String> deleteUserById(@PathVariable long usersid){
+    @DeleteMapping(path = "/{email}")
+    public ResponseEntity<String> deleteUser(@PathVariable String email){
         try{
-            usersManager.deleteUserById(usersid);
-            return new ResponseEntity<>("User with id +" + usersid + "has benn deleted sucessfuly .", HttpStatus.OK);
+            usersManager.getUsersByEmail(email);
+            usersManager.deleteUserById(usersManager.getUsersByEmail(email).getUserId());
+            return new ResponseEntity<>("User with email +" + email + "has benn deleted sucessfuly .", HttpStatus.OK);
         }catch (Exception excp){
             System.out.println(excp.getMessage());
             return new ResponseEntity<>("Something went wrong ", HttpStatus.SERVICE_UNAVAILABLE);

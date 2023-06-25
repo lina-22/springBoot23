@@ -23,9 +23,9 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<UserModel> findById(long users_id) {
+    public UserModel findByEmail(String email) {
 
-        return usersRepository.findById(users_id);
+        return usersRepository.findByEmail(email);
     }
 
     @Override

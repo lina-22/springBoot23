@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UsersService {
 
      UserModel create(UserModel userModel);
-     Optional<UserModel> findById(long users_id);
+     UserModel findByEmail(String email);
      List<UserModel> findAll();
 
      BaseResponseDto update(UserModel userModel);
