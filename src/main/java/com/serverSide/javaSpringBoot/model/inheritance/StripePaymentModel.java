@@ -22,8 +22,8 @@ public class StripePaymentModel extends PaymentModel {
     @Column(name = "account_email", nullable = false)
     private String account_email;
 
-    public StripePaymentModel(long l, BigDecimal i, Date date, String test_details, Set<ReservationModel> reservationModel, UserModel userModel, String s) {
-        super(l, i, date, test_details, reservationModel, userModel);
+    public StripePaymentModel(long l, BigDecimal i, Date date, String test_details, ReservationModel reservationModel, UserModel userModel, String s) {
+        super(l, i, date, test_details, reservationModel);
         this.account_email = s;
     }
 

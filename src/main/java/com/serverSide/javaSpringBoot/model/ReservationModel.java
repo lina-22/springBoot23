@@ -36,8 +36,7 @@ public class ReservationModel {
     private UserModel userModel;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private PaymentModel paymentModel;
 
 

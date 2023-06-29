@@ -20,7 +20,6 @@ public class PaypalPaymentDto extends PaymentModel {
     private BigDecimal amount;
     private Date paymentDate;
     private String details;
-    private List<Long> reservationIds;
-    private long userId;
+    private long reservationId;
 }
 

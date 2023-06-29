@@ -37,11 +37,8 @@ public abstract class PaymentModel {
     private String details;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "paymentModel", fetch = FetchType.LAZY)
-    private Set<ReservationModel> reservationModel = new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")
+    private ReservationModel reservationModel;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
-    private UserModel userModel;
 }

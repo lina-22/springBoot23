@@ -1,9 +1,5 @@
 package com.serverSide.javaSpringBoot.services;
 
-import com.serverSide.javaSpringBoot.model.Password_resetModel;
-import com.serverSide.javaSpringBoot.model.Password_resetModel;
-import com.serverSide.javaSpringBoot.model.Password_resetModel;
-import com.serverSide.javaSpringBoot.repository.Password_resetRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
