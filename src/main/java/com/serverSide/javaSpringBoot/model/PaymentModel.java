@@ -36,9 +36,9 @@ public abstract class PaymentModel {
     @Column(name = "details", nullable = false)
     private String details;
 
-    @JsonIgnore
+/*    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id")
-    private ReservationModel reservationModel;
+    private ReservationModel reservationModel;*/
 
 }

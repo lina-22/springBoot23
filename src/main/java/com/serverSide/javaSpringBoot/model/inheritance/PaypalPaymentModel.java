@@ -28,9 +28,8 @@ public class PaypalPaymentModel extends PaymentModel {
                               BigDecimal i,
                               Date date,
                               String test_details,
-                              ReservationModel reservationModel,
                               String s) {
-        super(l, i, date, test_details, reservationModel);
+        super(l, i, date, test_details);
         this.account_email = s;
     }
 }

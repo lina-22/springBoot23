@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "product_line")
 public class ReservationProductForSale {
 
     @EmbeddedId

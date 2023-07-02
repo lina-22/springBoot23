@@ -23,7 +23,6 @@ public class PaymentManager {
         paypalPaymentModel.setAccount_email(paypalPaymentDto.getAccountEmail());
         paypalPaymentModel.setAmount(paypalPaymentDto.getAmount());
         paypalPaymentModel.setDetails(paypalPaymentDto.getDetails());
-        paypalPaymentModel.setReservationModel(reservationModel.get());
 
         PaypalPaymentModel paymentModel = paypalPaymentService.createPaypalPayment(paypalPaymentModel);
         return toDto(paymentModel);
@@ -36,7 +35,6 @@ public class PaymentManager {
         paypalPaymentDto.setAmount(paymentModel.getAmount());
         paypalPaymentDto.setPaymentDate(paymentModel.getDatePayment());
         paypalPaymentDto.setDetails(paymentModel.getDetails());
-        paypalPaymentDto.setReservationId(paymentModel.getReservationModel().getReservationId());
         return paypalPaymentDto;
     }
 

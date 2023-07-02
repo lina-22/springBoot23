@@ -36,7 +36,8 @@ public class ReservationModel {
     private UserModel userModel;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
     private PaymentModel paymentModel;
 
 
