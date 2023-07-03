@@ -82,6 +82,7 @@ public class SupplierManager {
         supplierDto.setSupplierCountry(supplierModel.getSupplierCountry());
         supplierDto.setCompanyName(supplierModel.getCompanyName());
         supplierDto.setContactName(supplierModel.getContactName());
+        supplierDto.setContactTitle(supplierModel.getContactTitle());
         supplierDto.setAddress(supplierModel.getAddress());
         supplierDto.setRegion(supplierModel.getRegion());
         supplierDto.setPostalCode(supplierModel.getPostalCode());
