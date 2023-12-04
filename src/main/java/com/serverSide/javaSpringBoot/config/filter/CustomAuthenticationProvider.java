@@ -41,7 +41,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         //List<RolesModel>rolesModels = Arrays.asList(userModel.getRolesModel());
         List<RolesModel> rolesModels = new ArrayList<>(userModel.getRolesModelSet());
         final List<GrantedAuthority> authorities = getAuthorities(rolesModels.stream().toList());
-
+        System.out.println("test here ***********:" + authorities);
         final Authentication auth = new UsernamePasswordAuthenticationToken(email, password, authorities);
 
         log.info("End actual authentication");

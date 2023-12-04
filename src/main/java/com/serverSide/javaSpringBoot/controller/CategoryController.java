@@ -5,6 +5,7 @@ import com.serverSide.javaSpringBoot.manager.CategoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +16,33 @@ import java.util.List;
 class CategoryController {
     private final CategoryManager categoryManager;
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto){
         return categoryManager.createCategory(categoryDto);
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<CategoryDto> getAllCategory(){
         return categoryManager.getAllCategory();
     }
 
     @GetMapping(path = "/{category_id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public CategoryDto getCategoryById(@PathVariable long category_id){
 
         return categoryManager.getCategoryById(category_id);
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto){
 
         return categoryManager.updateCategory(categoryDto);
     }
 
     @DeleteMapping(path ="/{category_id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteCategoryById(@PathVariable long category_id){
         try{
             categoryManager.deleteCategoryById(category_id);

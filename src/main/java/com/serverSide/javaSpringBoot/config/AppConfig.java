@@ -63,9 +63,8 @@ public class AppConfig {
     public void configGlobal(final AuthenticationManagerBuilder auth){
         auth.authenticationProvider(customAuthenticationProvider);
     }
-    private final String[] whiteListGetOnly = {"/products/*/*", "/*"};
 
-
+ private final String[] whiteListGetOnly = {"products/*/*", "/*"};
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -82,14 +81,29 @@ public class AppConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/*").permitAll()
                 .requestMatchers("/**").permitAll()
+                .requestMatchers("/sizes", "/sizes/*").hasAuthority("ADMIN")
+                .requestMatchers("/users/register").permitAll()
+                .requestMatchers("/login").permitAll()
+                .requestMatchers("/products").permitAll()
+
+                //.requestMatchers("/**").permitAll()
                 //.requestMatchers("/guest/**").permitAll()
                 /*.requestMatchers(   "/v2/api-docs",
                         "/v3/api-docs",
                         "/swagger-resources/**",
                         "/swagger-ui/**").permitAll()*/
-                //.requestMatchers("/admin/**").hasAuthority("ADMIN")
+
                 //.requestMatchers("/user/**").hasAuthority("USER")
                 //.requestMatchers(HttpMethod.GET, whiteListGetOnly).permitAll()
+             /*   .requestMatchers("/roles/**").hasAuthority("ADMIN")
+                .requestMatchers("/categories/**").hasAuthority("ADMIN")
+                .requestMatchers("/colours/**").hasAuthority("ADMIN")
+                .requestMatchers("/materials/**").hasAuthority("ADMIN")
+                .requestMatchers("/suplliers/**").hasAuthority("ADMIN")
+                .requestMatchers("/sizes/**").hasAuthority("ADMIN")
+                .requestMatchers("/materials/**").hasAuthority("ADMIN")
+                .requestMatchers("/materials/**").hasAuthority("ADMIN")
+                .requestMatchers("/materials/**").hasAuthority("ADMIN")*/
                 .anyRequest().authenticated()
                 .and()
                 .authenticationManager(manager)
@@ -103,7 +117,7 @@ public class AppConfig {
                 .accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
                 .addFilterBefore(new JwtUsernamePasswordAuthenticationFilter(manager, jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
-               // .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
+                //.addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig, jwtService), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

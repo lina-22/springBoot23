@@ -23,11 +23,13 @@ public class InvoiceController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<InvoiceDto> getAllInvoice(){
         return invoiceManager.getAllInvoice();
     }
 
     @GetMapping(path = "/{invoice_id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public InvoiceDto getInvoiceById(@PathVariable long invoice_id){
         return invoiceManager.getInvoiceById(invoice_id);
     }
@@ -38,6 +40,7 @@ public class InvoiceController {
     }*/
 
     @DeleteMapping(path = "/{invoice_id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteInvoiceById(@PathVariable long invoice_id){
         try{
             invoiceManager.deleteInvoiceById(invoice_id);
